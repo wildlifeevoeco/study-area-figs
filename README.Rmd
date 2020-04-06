@@ -1,0 +1,16 @@
+---
+output: github_document
+---
+
+# study-area-figures
+
+Collecting WEEL study area figures in one place, for sharing! 
+
+
+## Currently:
+1. Fogo Island
+
+
+```{r}
+knitr::include_graphics('graphics/fogo.png')
+```
