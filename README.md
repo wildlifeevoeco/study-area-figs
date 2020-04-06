@@ -22,6 +22,9 @@ you’d like to share, carefully remove it from the `.gitignore`**
 This uses data from Open Street Map and three packages: `sf`,
 `data.table` and `ggplot`.
 
+Reproducing: run `01-fogo-island-prep.R` to generate the islands polygon
+and `02-fogo-island-figure.R` to generate the figure.
+
 ``` r
 knitr::include_graphics('graphics/01-fogo-island.png')
 ```
