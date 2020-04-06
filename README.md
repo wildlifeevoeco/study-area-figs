@@ -19,7 +19,8 @@ you’d like to share, carefully remove it from the `.gitignore`**
 
 1.  Fogo Island
 
-<!-- end list -->
+This uses data from Open Street Map and three packages: `sf`,
+`data.table` and `ggplot`.
 
 ``` r
 knitr::include_graphics('graphics/01-fogo-island.png')

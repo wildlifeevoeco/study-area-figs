@@ -18,6 +18,8 @@ Collecting WEEL study area figures in one place, for sharing!
 ## Currently:
 1. Fogo Island
 
+This uses data from Open Street Map and three packages: `sf`, `data.table` and `ggplot`. 
+
 
 ```{r}
 knitr::include_graphics('graphics/01-fogo-island.png')
