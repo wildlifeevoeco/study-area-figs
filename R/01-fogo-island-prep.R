@@ -21,10 +21,16 @@ coast <- opq(bb) %>%
 	osmdata_sf()
 
 # Grab polygons (small islands)
-smallislands <- coast$osm_polygons
+polys <- coast$osm_polygons
 
 # Grab lines (large islands including Fogo)
-coastline <- coast$osm_lines
+lns <- coast$osm_lines
+
+# Union -> polygonize -> cast lines = geo set
+castpolys <- st_cast(st_polygonize(st_union(lns)))
+
+# Combine geometries and cast as sf
+islands <- st_as_sf(c(st_geometry(polys), castpolys))
 
 
 ## Water (internal)
@@ -38,7 +44,6 @@ pols <- water$osm_polygons
 
 # Union and combine
 waterpols <- st_union(st_combine(mpols), st_combine(pols))
-
 
 
 ## Roads
@@ -59,15 +64,13 @@ roads <- routes$osm_lines
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
-utmsmallislands <- st_transform(smallislands, utm)
-utmfogocoast <- st_transform(coastline, utm)
+utmislands <- st_transform(islands, utm)
 
 utmroads <- st_transform(roads, utm)
 
 utmwater <- st_transform(waterpols, utm)
 
 ### Output ----
-saveRDS(utmsmallislands, "output/fogo-small-islands.Rds")
-saveRDS(utmfogocoast, "output/fogo-island-coastline.Rds")
+saveRDS(utmislands, "output/fogo-island-polygons.Rds")
 saveRDS(utmroads, "output/fogo-roads.Rds")
 saveRDS(utmwater, "output/fogo-water.Rds")
