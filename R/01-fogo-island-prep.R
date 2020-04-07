@@ -14,16 +14,17 @@ bb <- c(xmin = -54.3533,
 				xmax = -53.954220,
 				ymax = 49.763834)
 
+## Coastline
 # Download osm coastlines in bbox
-zz <- opq(bb) %>%
+coast <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = 'coastline') %>%
 	osmdata_sf()
 
 # Grab polygons (small islands)
-polys <- zz$osm_polygons
+polys <- coast$osm_polygons
 
 # Grab lines (large islands including Fogo)
-lns <- zz$osm_lines
+lns <- coast$osm_lines
 
 # Union -> polygonize -> cast lines = geo set
 castpolys <- st_cast(st_polygonize(st_union(lns)))
