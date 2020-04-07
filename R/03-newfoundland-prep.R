@@ -40,4 +40,3 @@ utmNL <- st_transform(nl, utm)
 
 ### Output ----
 saveRDS(utmNL, "output/newfoundland-polygons.Rds")
-
