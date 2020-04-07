@@ -7,8 +7,7 @@ libs <- c(
 	'data.table',
 	'ggplot2',
 	'sf',
-	'rgdal',
-	'patchwork'
+	'rgdal'
 )
 lapply(libs, require, character.only = TRUE)
 
@@ -48,11 +47,12 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-# Base islands
-(gfogo <- ggplot(fogo) +
+# Base Fogo
+gfogo <- ggplot(fogo) +
  	geom_sf(fill = islandcol) +
- 	themeMap)
+ 	themeMap
 
+# Base NL with red box indicating Fogo
 gnl <- ggplot(nl) +
  	geom_sf(fill = islandcol) +
  	themeMap +
@@ -73,25 +73,7 @@ gnl <- ggplot(nl) +
 					axis.ticks = element_blank())
 
 
-layout <- c('BBAAAA
-						 BBAAAA
-						 ##AAAA')
-(g <- gfogo +
-	gnl +
-	plot_layout(design = layout)
-)
-
 gfogo +
-	# geom_rect(
-	# 	aes(
-	# 		xmin = x[2] - 1e4,
-	# 		xmax = x[2],
-	# 		ymin = y[1],
-	# 		ymax = y[1] + 1e4
-	# 	),
-	# 	fill = NA,
-	# 	color = 'black',
-	# 	data = utmBB)
 	annotation_custom(
 		ggplotGrob(gnl),
 		xmin = utmBB$x[2] - 1e4,
