@@ -70,28 +70,31 @@ gnl <- ggplot(nl) +
  		color = 'red'
  	) +
 		theme(axis.text = element_blank(),
-					axis.ticks = element_blank())
+					axis.ticks = element_blank(),
+					plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
 
 
-gfogo +
+# Use annotation custom to drop the NL inset on Fogo
+# Numbers here taken from the bbox but adjusted to be placed in the bottom left
+(g <- gfogo +
 	annotation_custom(
 		ggplotGrob(gnl),
-		xmin = utmBB$x[2] - 1e4,
-		xmax = utmBB$x[2],
+		xmin = utmBB$x[2] - 0.9e4,
+		xmax = utmBB$x[2] + 0.1e4,
 		ymin = utmBB$y[1],
 		ymax = utmBB$y[1] + 1e4
 	)
+)
 
 
-
-# TODO: need to project
 ### Output ----
-# ggsave(
-# 	'graphics/01-fogo-island.png',
-# 	width = 5,
-# 	height = 5,
-# 	dpi = 320
-# )
+ggsave(
+	'graphics/01-fogo-island.png',
+	g,
+	width = 5,
+	height = 5,
+	dpi = 320
+)
 
 
 
