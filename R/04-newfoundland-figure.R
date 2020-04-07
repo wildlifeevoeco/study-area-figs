@@ -31,6 +31,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
+# NOTE: this figure only has the main island's coastline (eg missing Fogo)
 # Base NL
 (gnl <- ggplot(nl) +
  	geom_sf(fill = islandcol) +
