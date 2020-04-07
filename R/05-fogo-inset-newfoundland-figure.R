@@ -89,7 +89,7 @@ gnl <- ggplot(nl) +
 
 ### Output ----
 ggsave(
-	'graphics/01-fogo-island.png',
+	'graphics/03-fogo-inset-nl.png',
 	g,
 	width = 5,
 	height = 5,
