@@ -42,7 +42,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ggsave(
 	'graphics/04-newfoundland.png',
 	gnl,
-	width = 5,
-	height = 5,
+	width = 7,
+	height = 7,
 	dpi = 320
 )
