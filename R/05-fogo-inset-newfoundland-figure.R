@@ -18,6 +18,11 @@ nl <- readRDS('output/newfoundland-polygons.Rds')
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
+# Bbox from 01-fogo-island-prep.R
+bb <- c(xmin = -54.3533,
+				ymin = 49.5194,
+				xmax = -53.954220,
+				ymax = 49.763834)
 
 ### Theme ----
 # Colors
