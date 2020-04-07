@@ -30,7 +30,8 @@ dtbb <- data.table(x = c(bb[['xmin']], bb[['xmax']]),
 									 y = c(bb[['ymin']], bb[['ymax']]))
 
 # Project and buffer out for clarity
-utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)]) + 10000
+buf <- 3e4
+utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)]) + c(-buf, buf)
 
 
 ### Theme ----
