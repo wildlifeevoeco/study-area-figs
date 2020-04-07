@@ -20,12 +20,18 @@ nl <- readRDS('output/newfoundland-polygons.Rds')
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Bbox from 01-fogo-island-prep.R
-bb <- data.table(
+bb <- c(
 	xmin = -54.3533,
 	ymin = 49.5194,
 	xmax = -53.954220,
 	ymax = 49.763834
 )
+dtbb <- data.table(x = c(bb[['xmin']], bb[['xmax']]),
+									 y = c(bb[['ymin']], bb[['ymax']]))
+
+# Project and buffer out for clarity
+utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)]) + 10000
+
 
 ### Theme ----
 # Colors
@@ -49,9 +55,12 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 (gnl <- ggplot(nl) +
 	geom_sf(fill = islandcol) +
 	themeMap +
-	geom_rect(aes(xmin = xmin, xmax = xmax,
-								ymin = ymin, ymax = ymax),
-						data = bb))
+	geom_rect(aes(xmin = x[1], xmax = x[2],
+								ymin = y[1], ymax = y[2]),
+						data = utmBB,
+						fill = NA,
+						size = 1.5,
+						color = 'red'))
 
 # TODO: need to project
 ### Output ----
