@@ -31,7 +31,7 @@ knitr::include_graphics('graphics/01-fogo-island.png')
 
 <img src="graphics/01-fogo-island.png" width="1600" />
 
-1.  Newfoundland
+2.  Newfoundland
 
 This uses data from Open Street Map and four packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
@@ -45,7 +45,7 @@ knitr::include_graphics('graphics/03-newfoundland.png')
 
 <img src="graphics/03-newfoundland.png" width="1600" />
 
-1.  Fogo with Newfoundland inset
+3.  Fogo with Newfoundland inset
 
 This uses data from Open Street Map and four packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
