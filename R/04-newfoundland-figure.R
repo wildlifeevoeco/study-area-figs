@@ -32,7 +32,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 ### Plot ----
 # Base NL
-(gfogo <- ggplot(nl) +
+(gnl <- ggplot(nl) +
  	geom_sf(fill = islandcol) +
  	themeMap)
 
