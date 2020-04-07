@@ -13,6 +13,7 @@ lapply(libs, require, character.only = TRUE)
 
 ### Data ----
 fogo <- readRDS('output/fogo-island-polygons.Rds')
+roads <- readRDS('output/fogo-roads.Rds')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
@@ -44,11 +45,10 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Base fogo
 (gfogo <- ggplot(fogo) +
 	geom_sf(fill = islandcol, color = coastcol) +
-	geom_sf(
-		color = roadcol,
-		size = 0.5,
-		alpha = 0.5,
-		data = roads) +
+	geom_sf(aes(color = highway),
+					data = roads) +
+ 	scale_color_manual(values = roadpal) +
+ 	guides(color = FALSE) +
  	themeMap)
 
 
