@@ -50,16 +50,24 @@ routes <- opq(bb) %>%
 roads <- routes$osm_lines
 
 
-### Reproject islands ----
+
+# NOTE: there is also wetland data
+
+
+### Reproject ----
 # Projections
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
-utmislands <- st_transform(islands, utm)
+utmsmallislands <- st_transform(smallislands, utm)
+utmfogocoast <- st_transform(coastline, utm)
 
 utmroads <- st_transform(roads, utm)
 
+utmwater <- st_transform(waterpols, utm)
 
 ### Output ----
-saveRDS(utmislands, "output/fogo-island-polygons.Rds")
+saveRDS(utmsmallislands, "output/fogo-small-islands.Rds")
+saveRDS(utmfogocoast, "output/fogo-island-coastline.Rds")
 saveRDS(utmroads, "output/fogo-roads.Rds")
+saveRDS(utmwater, "output/fogo-water.Rds")

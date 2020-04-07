@@ -12,7 +12,8 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-fogo <- readRDS('output/fogo-island-polygons.Rds')
+fogocoast <- readRDS('output/fogo-island-coastline.Rds')
+smallislands <- readRDS('output/fogo-small-islands.Rds')
 roads <- readRDS('output/fogo-roads.Rds')
 
 # CRS
@@ -43,8 +44,9 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 ### Plot ----
 # Base fogo
-(gfogo <- ggplot(fogo) +
-	geom_sf(fill = islandcol, color = coastcol) +
+(gfogo <- ggplot() +
+ 	geom_sf(color = coastcol, data = fogocoast) +
+	geom_sf(fill = islandcol, data = fogo) +
 	geom_sf(aes(color = highway),
 					data = roads) +
  	scale_color_manual(values = roadpal) +
