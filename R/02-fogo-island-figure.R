@@ -12,8 +12,7 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-fogocoast <- readRDS('output/fogo-island-coastline.Rds')
-smallislands <- readRDS('output/fogo-small-islands.Rds')
+fogo <- readRDS('output/fogo-island-polygons.Rds')
 roads <- readRDS('output/fogo-roads.Rds')
 
 # CRS
