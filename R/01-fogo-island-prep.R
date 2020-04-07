@@ -41,7 +41,7 @@ routes <- opq(bb) %>%
 	osmdata_sf()
 
 # Grab roads
-roads <- routes$osm_multilines
+roads <- routes$osm_lines
 
 
 ### Reproject islands ----
