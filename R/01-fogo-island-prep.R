@@ -57,8 +57,12 @@ routes <- opq(bb) %>%
 roads <- routes$osm_lines
 
 
-
 # NOTE: there is also wetland data
+
+
+### Cut water out of islands
+cutisles <- st_difference(islands, waterpols)
+
 
 
 ### Reproject ----
@@ -66,13 +70,10 @@ roads <- routes$osm_lines
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
-utmislands <- st_transform(islands, utm)
+utmislands <- st_transform(cutisles, utm)
 
 utmroads <- st_transform(roads, utm)
-
-utmwater <- st_transform(waterpols, utm)
 
 ### Output ----
 saveRDS(utmislands, "output/fogo-island-polygons.Rds")
 saveRDS(utmroads, "output/fogo-roads.Rds")
-saveRDS(utmwater, "output/fogo-water.Rds")
