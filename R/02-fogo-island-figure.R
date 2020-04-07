@@ -22,6 +22,8 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Colors
 watercol <- '#c3e2ec'
 islandcol <- '#d0c2a9'
+coastcol <- '#bbae98'
+roadcol <- '#666666'
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
