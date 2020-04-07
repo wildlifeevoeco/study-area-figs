@@ -12,7 +12,7 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-islands <- readRDS('output/fogo-island-polygons.Rds')
+fogo <- readRDS('output/fogo-island-polygons.Rds')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
@@ -31,8 +31,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-# Base islands
-(gfogo <- ggplot(islands) +
+# Base fogo
+(gfogo <- ggplot(fogo) +
 		geom_sf(fill = islandcol) +
 		themeMap)
 
