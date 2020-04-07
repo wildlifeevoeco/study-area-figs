@@ -26,6 +26,13 @@ coastcol <- '#bbae98'
 roadcol <- '#666666'
 gridcol <- '#323232'
 
+
+roadcols <- data.table(highway = c("primary", "secondary", "residential",
+																	 "service", "unclassified", "footway"))
+roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
+roadpal <- roadcols[, setNames(cols, highway)]
+
+
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									panel.background = element_rect(fill = watercol),
