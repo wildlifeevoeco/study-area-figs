@@ -21,19 +21,29 @@ coast <- opq(bb) %>%
 	osmdata_sf()
 
 # Grab polygons (small islands)
-polys <- coast$osm_polygons
+smallislands <- coast$osm_polygons
 
 # Grab lines (large islands including Fogo)
-lns <- coast$osm_lines
+coastline <- coast$osm_lines
 
-# Union -> polygonize -> cast lines = geo set
-castpolys <- st_cast(st_polygonize(st_union(lns)))
 
-# Combine geometries and cast as sf
-islands <- st_as_sf(c(st_geometry(polys), castpolys))
+## Water (internal)
+water <- opq(bb) %>%
+	add_osm_feature(key = 'natural', value = 'water') %>%
+	osmdata_sf()
 
-# Basic island id
-islands$id <- seq.int(length.out = nrow(islands))
+# Grab polygons
+mpols <- water$osm_multipolygons
+pols <- water$osm_polygons
+
+# Union and combine
+rbind(st_union(mpols), st_union(pols))
+
+
+# Grab lines (large islands including Fogo)
+coastline <- coast$osm_lines
+
+
 
 ## Roads
 routes <- opq(bb) %>%
