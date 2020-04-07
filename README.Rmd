@@ -25,7 +25,7 @@ Reproducing: run `01-fogo-island-prep.R` to generate the islands polygon and `02
 
 
 ```{r}
-knitr::include_graphics('graphics/01-fogo-island.png')
+knitr::include_graphics('graphics/02-fogo-island.png')
 ```
 
 2. Newfoundland 
@@ -36,7 +36,7 @@ This uses data from Open Street Map and four packages: `osmdata`, `sf`, `data.ta
 Reproducing: run `03-newfoundland-prep.R` to generate the islands polygon and `04-newfoundland-figure.R` to generate the figure. 
 
 ```{r}
-knitr::include_graphics('graphics/03-newfoundland.png')
+knitr::include_graphics('graphics/04-newfoundland.png')
 ```
 
 
@@ -49,5 +49,5 @@ This uses data from Open Street Map and four packages: `osmdata`, `sf`, `data.ta
 Reproducing: run `01-fogo-island-prep.R`, `03-newfoundland-prep.R`, to generate the Fogo and NL polygons and `04-fogo-inset-newfoundland-figure.R` to combine and generate the figure. 
 
 ```{r}
-knitr::include_graphics('graphics/04-fogo-inset-nl.png')
+knitr::include_graphics('graphics/05-fogo-inset-nl.png')
 ```

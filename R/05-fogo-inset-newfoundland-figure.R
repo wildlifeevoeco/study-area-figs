@@ -42,7 +42,7 @@ utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)])
 # Colors
 watercol <- '#c3e2ec'
 islandcol <- '#d0c2a9'
-coastcol <- '#a89c88'
+coastcol <- '#82796a'
 roadcol <- '#666666'
 gridcol <- '#323232'
 

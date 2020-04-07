@@ -26,10 +26,10 @@ Reproducing: run `01-fogo-island-prep.R` to generate the islands polygon
 and `02-fogo-island-figure.R` to generate the figure.
 
 ``` r
-knitr::include_graphics('graphics/01-fogo-island.png')
+knitr::include_graphics('graphics/02-fogo-island.png')
 ```
 
-<img src="graphics/01-fogo-island.png" width="1600" />
+<img src="graphics/02-fogo-island.png" width="3200" />
 
 2.  Newfoundland
 
@@ -40,10 +40,10 @@ Reproducing: run `03-newfoundland-prep.R` to generate the islands
 polygon and `04-newfoundland-figure.R` to generate the figure.
 
 ``` r
-knitr::include_graphics('graphics/03-newfoundland.png')
+knitr::include_graphics('graphics/04-newfoundland.png')
 ```
 
-<img src="graphics/03-newfoundland.png" width="1600" />
+<img src="graphics/04-newfoundland.png" width="2240" />
 
 3.  Fogo with Newfoundland inset
 
@@ -56,7 +56,7 @@ generate the Fogo and NL polygons and
 figure.
 
 ``` r
-knitr::include_graphics('graphics/04-fogo-inset-nl.png')
+knitr::include_graphics('graphics/05-fogo-inset-nl.png')
 ```
 
-<img src="graphics/04-fogo-inset-nl.png" width="1600" />
+<img src="graphics/05-fogo-inset-nl.png" width="2240" />

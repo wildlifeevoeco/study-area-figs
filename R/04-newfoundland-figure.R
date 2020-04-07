@@ -22,6 +22,7 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Colors
 watercol <- '#c3e2ec'
 islandcol <- '#d0c2a9'
+coastcol <- '#82796a'
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
@@ -34,7 +35,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # NOTE: this figure only has the main island's coastline (eg missing Fogo)
 # Base NL
 (gnl <- ggplot(nl) +
- 	geom_sf(fill = islandcol) +
+ 	geom_sf(fill = islandcol, color = coastcol, size = 0.3) +
  	themeMap)
 
 
