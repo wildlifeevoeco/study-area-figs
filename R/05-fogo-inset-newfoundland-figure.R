@@ -53,6 +53,49 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	geom_sf(fill = islandcol) +
  	themeMap)
 
+(gnl <- ggplot(nl) +
+ 	geom_sf(fill = islandcol) +
+ 	themeMap +
+ 	geom_sf(fill = islandcol, data = fogo) +
+ 	geom_rect(
+ 		aes(
+ 			xmin = x[1],
+ 			xmax = x[2],
+ 			ymin = y[1],
+ 			ymax = y[2]
+ 		),
+ 		data = utmBB + c(-buf, buf),
+ 		fill = NA,
+ 		size = 1.5,
+ 		color = 'red'
+ 	))
+
+
+layout <- c('BBAAAA
+						 BBAAAA
+						 ##AAAA')
+(g <- gfogo +
+	gnl +
+	plot_layout(design = layout)
+)
+
+gfogo +
+	geom_rect(
+		aes(
+			xmin = x[2] - 1000,
+			xmax = x[2],
+			ymin = y[1],
+			ymax = y[2]
+		),
+		fill = NA,
+		color = 'black',
+		data = utmBB)
+	# annotation_custom(
+	# 	ggplotGrob(gnl),
+	# 	xmin = utmBB$x[2], xmax = utmBB$x[2] - 1000,
+	# 	ymin = utmBB$y[1] + 1000, ymax = utmBB$y[1] + 3000
+	# )
+
 
 
 # TODO: need to project
