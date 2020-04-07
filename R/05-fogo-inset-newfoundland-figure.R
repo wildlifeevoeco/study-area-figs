@@ -53,7 +53,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	geom_sf(fill = islandcol) +
  	themeMap)
 
-(gnl <- ggplot(nl) +
+gnl <- ggplot(nl) +
  	geom_sf(fill = islandcol) +
  	themeMap +
  	geom_sf(fill = islandcol, data = fogo) +
@@ -68,7 +68,9 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  		fill = NA,
  		size = 1.5,
  		color = 'red'
- 	))
+ 	) +
+		theme(axis.text = element_blank(),
+					axis.ticks = element_blank())
 
 
 layout <- c('BBAAAA
