@@ -30,7 +30,7 @@ gridcol <- '#323232'
 
 roadcols <- data.table(highway = c("primary", "secondary", "residential",
 																	 "service", "unclassified", "footway"))
-roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
+roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.4)]
 roadpal <- roadcols[, setNames(cols, highway)]
 
 
@@ -44,7 +44,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ### Plot ----
 # Base fogo
 (gfogo <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.5, color = coastcol, data = fogo) +
+ 	geom_sf(fill = islandcol, size = 0.6, color = coastcol, data = fogo) +
 	geom_sf(aes(color = highway), data = roads) +
  	scale_color_manual(values = roadpal) +
  	guides(color = FALSE) +
