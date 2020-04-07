@@ -19,7 +19,7 @@ you’d like to share, carefully remove it from the `.gitignore`**
 
 1.  Fogo Island
 
-This uses data from Open Street Map and three packages: `sf`,
+This uses data from Open Street Map and four packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
 
 Reproducing: run `01-fogo-island-prep.R` to generate the islands polygon
@@ -30,3 +30,17 @@ knitr::include_graphics('graphics/01-fogo-island.png')
 ```
 
 <img src="graphics/01-fogo-island.png" width="1600" />
+
+1.  Newfoundland
+
+This uses data from Open Street Map and four packages: `osmdata`, `sf`,
+`data.table` and `ggplot`.
+
+Reproducing: run `01-newfoundland-prep.R` to generate the islands
+polygon and `02-newfoundland-figure.R` to generate the figure.
+
+``` r
+knitr::include_graphics('graphics/01-newfoundland.png')
+```
+
+<img src="graphics/01-newfoundland.png" width="1600" />
