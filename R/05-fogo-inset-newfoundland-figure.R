@@ -7,7 +7,8 @@ libs <- c(
 	'data.table',
 	'ggplot2',
 	'sf',
-	'rgdal'
+	'rgdal',
+	'patchwork'
 )
 lapply(libs, require, character.only = TRUE)
 
