@@ -37,11 +37,7 @@ mpols <- water$osm_multipolygons
 pols <- water$osm_polygons
 
 # Union and combine
-rbind(st_union(mpols), st_union(pols))
-
-
-# Grab lines (large islands including Fogo)
-coastline <- coast$osm_lines
+waterpols <- st_union(st_combine(mpols), st_combine(pols))
 
 
 
