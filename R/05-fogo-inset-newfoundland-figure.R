@@ -37,6 +37,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	geom_sf(fill = islandcol) +
  	themeMap)
 
+# Base NL
+(gnl <- ggplot(nl) +
+		geom_sf(fill = islandcol) +
+		themeMap)
+
 
 ### Output ----
 ggsave(
