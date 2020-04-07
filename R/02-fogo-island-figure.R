@@ -23,7 +23,7 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Colors
 watercol <- '#c3e2ec'
 islandcol <- '#d0c2a9'
-coastcol <- '#bbae98'
+coastcol <- '#a89c88'
 roadcol <- '#666666'
 gridcol <- '#323232'
 
@@ -44,7 +44,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ### Plot ----
 # Base fogo
 (gfogo <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.6, color = coastcol, data = fogo) +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = fogo) +
 	geom_sf(aes(color = highway), data = roads) +
  	scale_color_manual(values = roadpal) +
  	guides(color = FALSE) +
