@@ -39,7 +39,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 ### Output ----
 ggsave(
-	'graphics/01-fogo-island.png',
+	'graphics/02-fogo-island.png',
 	gfogo,
 	width = 5,
 	height = 5,

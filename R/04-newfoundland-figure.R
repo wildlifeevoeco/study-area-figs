@@ -40,7 +40,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 ### Output ----
 ggsave(
-	'graphics/01-newfoundland.png',
+	'graphics/04-newfoundland.png',
 	gnl,
 	width = 5,
 	height = 5,
