@@ -34,6 +34,14 @@ islands <- st_as_sf(c(st_geometry(polys), castpolys))
 # Basic island id
 islands$id <- seq.int(length.out = nrow(islands))
 
+## Roads
+routes <- opq(bb) %>%
+	add_osm_feature(key = 'highway') %>%
+	osmdata_sf()
+
+# Grab roads
+roads <- routes$osm_multilines
+
 
 ### Reproject islands ----
 # Projections
