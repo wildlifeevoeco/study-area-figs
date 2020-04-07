@@ -54,14 +54,25 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # Base NL
 (gnl <- ggplot(nl) +
-	geom_sf(fill = islandcol) +
-	themeMap +
-	geom_rect(aes(xmin = x[1], xmax = x[2],
-								ymin = y[1], ymax = y[2]),
-						data = utmBB,
-						fill = NA,
-						size = 1.5,
-						color = 'red'))
+		geom_sf(fill = islandcol) +
+		themeMap +
+		geom_sf(fill = islandcol, data = fogo) +
+		coord_sf(
+			xlim = c(691276 - 10000, 719709),
+			ylim = c(5488671 - 10000, 5515541)
+		) +
+		geom_rect(
+			aes(
+				xmin = x[1],
+				xmax = x[2],
+				ymin = y[1],
+				ymax = y[2]
+			),
+			data = utmBB,
+			fill = NA,
+			size = 1.5,
+			color = 'red'
+		))
 
 # TODO: need to project
 ### Output ----
