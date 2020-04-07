@@ -82,21 +82,23 @@ layout <- c('BBAAAA
 )
 
 gfogo +
-	geom_rect(
-		aes(
-			xmin = x[2] - 1000,
-			xmax = x[2],
-			ymin = y[1],
-			ymax = y[2]
-		),
-		fill = NA,
-		color = 'black',
-		data = utmBB)
-	# annotation_custom(
-	# 	ggplotGrob(gnl),
-	# 	xmin = utmBB$x[2], xmax = utmBB$x[2] - 1000,
-	# 	ymin = utmBB$y[1] + 1000, ymax = utmBB$y[1] + 3000
-	# )
+	# geom_rect(
+	# 	aes(
+	# 		xmin = x[2] - 1e4,
+	# 		xmax = x[2],
+	# 		ymin = y[1],
+	# 		ymax = y[1] + 1e4
+	# 	),
+	# 	fill = NA,
+	# 	color = 'black',
+	# 	data = utmBB)
+	annotation_custom(
+		ggplotGrob(gnl),
+		xmin = utmBB$x[2] - 1e4,
+		xmax = utmBB$x[2],
+		ymin = utmBB$y[1],
+		ymax = utmBB$y[1] + 1e4
+	)
 
 
 
