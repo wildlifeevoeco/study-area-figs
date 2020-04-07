@@ -51,7 +51,9 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Project to UTM
 utmislands <- st_transform(islands, utm)
 
+utmroads <- st_transform(roads, utm)
+
 
 ### Output ----
 saveRDS(utmislands, "output/fogo-island-polygons.Rds")
-
+saveRDS(utmroads, "output/fogo-roads.Rds")
