@@ -44,10 +44,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ### Plot ----
 # Base fogo
 (gfogo <- ggplot() +
- 	geom_sf(color = coastcol, data = fogocoast) +
-	geom_sf(fill = islandcol, data = fogo) +
-	geom_sf(aes(color = highway),
-					data = roads) +
+ 	geom_sf(fill = islandcol, size = 0.5, color = coastcol, data = fogo) +
+	geom_sf(aes(color = highway), data = roads) +
  	scale_color_manual(values = roadpal) +
  	guides(color = FALSE) +
  	themeMap)
