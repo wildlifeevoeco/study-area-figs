@@ -40,10 +40,12 @@ water <- opq(bb) %>%
 
 # Grab polygons
 mpols <- water$osm_multipolygons
-pols <- water$osm_polygons
+pols <- water$osm_polygons[!is.na(water$osm_polygons$natural),]
+onlywaterpols <- pols[pols$natural == 'water',]
 
 # Union and combine
 waterpols <- st_union(st_combine(mpols), st_combine(pols))
+
 
 
 ## Roads
