@@ -20,7 +20,7 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 ### Theme ----
 # Colors
-watercol <- '#afd8e6'
+watercol <- '#c3e2ec'
 islandcol <- '#d0c2a9'
 
 # Theme
