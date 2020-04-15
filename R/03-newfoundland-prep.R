@@ -8,12 +8,6 @@ libs <- c('sf',
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
-# Set up bounding box - order: xmin, ymin, xmax, ymax
-bb <- c(xmin = -54.3533,
-				ymin = 49.5194,
-				xmax = -53.954220,
-				ymax = 49.763834)
-
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
 zz <- opq(getbb("Newfoundland")) %>%
