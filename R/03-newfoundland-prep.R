@@ -10,7 +10,7 @@ lapply(libs, require, character.only = TRUE)
 ### Download OSM data ----
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
-zz <- opq(getbb("Newfoundland")) %>%
+zz <- opq(getbb('Newfoundland')) %>%
 	add_osm_feature(key = 'place', value = 'island') %>%
 	osmdata_sf()
 
@@ -33,4 +33,4 @@ utmNL <- st_transform(nl, utm)
 
 
 ### Output ----
-saveRDS(utmNL, "output/newfoundland-polygons.Rds")
+st_write(utmNL, 'output/newfoundland-polygons.gpkg')
