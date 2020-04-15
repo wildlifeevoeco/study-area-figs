@@ -65,7 +65,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 # x/y limits
-bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
+bb <- st_bbox(tn) - rep(c(5e3, -5e3), each = 2)
 
 
 ### Plot ----
