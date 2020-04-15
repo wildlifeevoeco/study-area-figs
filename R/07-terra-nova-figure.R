@@ -61,7 +61,7 @@ bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
  	geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
  	geom_sf(aes(color = highway), data = highway) +
- 	geom_sf_label(aes(label = 'Terra Nova National Park'), data = tn) +
+ 	geom_sf_label(aes(label = 'Terra Nova National Park'), size = 6, fontface = 'bold', data = tn) +
  	scale_color_manual(values = roadpal) +
  	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
  					 ylim = c(bb['ymin'], bb['ymax'])) +
