@@ -3,7 +3,7 @@
 
 
 ### Packages ----
-libs <- c('curl', 'zip', 'sf')
+libs <- c('curl', 'zip', 'sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
 
