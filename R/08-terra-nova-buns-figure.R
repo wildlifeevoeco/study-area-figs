@@ -44,7 +44,7 @@ water <- st_read('output/terra-nova-water.gpkg')
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
-# Only main highway
+# Only main highway and primary
 selroads <- c('trunk', 'primary')
 highway <- roads[roads$highway %in% selroads,]
 
@@ -56,7 +56,6 @@ islandcol <- '#d0c2a9'
 coastcol <- '#82796a'
 roadcol <- '#666666'
 gridcol <- '#323232'
-roadcol <- '#191919'
 
 parkcol <- '#9fb5a0'
 parkboundcol <- '#4c5d3a'
