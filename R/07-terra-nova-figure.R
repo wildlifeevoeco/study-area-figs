@@ -1,0 +1,57 @@
+### Terra Nova Study Area Figure ====
+# Alec L. Robitaille, Isabella Richmond
+
+
+### Packages ----
+libs <- c(
+	'data.table',
+	'ggplot2',
+	'sf'
+)
+lapply(libs, require, character.only = TRUE)
+
+
+### Data ----
+tn <- st_read('output/terra-nova-polygons.gpkg')
+roads <- st_read('output/terra-nova-roads.gpkg')
+
+# CRS
+utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
+
+# Only main highway
+highway <- roads[roads$highway == 'primary',]
+
+### Theme ----
+# Colors
+watercol <- '#c3e2ec'
+islandcol <- '#d0c2a9'
+coastcol <- '#82796a'
+roadcol <- '#666666'
+gridcol <- '#323232'
+roadcol <- '#191919'
+
+
+# Theme
+themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
+									panel.background = element_rect(fill = watercol),
+									panel.grid = element_line(color = gridcol, size = 0.2),
+									axis.text = element_text(size = 11, color = 'black'),
+									axis.title = element_blank())
+
+### Plot ----
+# Base terra-nova
+(gtn <- ggplot() +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = tn) +
+ 	geom_sf(color = roadcol, data = roads) +
+ 	guides(color = FALSE) +
+ 	themeMap)
+
+
+### Output ----
+ggsave(
+	'graphics/02-terra-nova.png',
+	gtn,
+	width = 10,
+	height = 10,
+	dpi = 320
+)
