@@ -3,20 +3,23 @@
 
 
 ### Packages ----
-libs <- c('sf',
-					'osmdata')
+libs <- c('curl', 'zip')
 lapply(libs, require, character.only = TRUE)
 
 
-### Input data ----
-# Terra Nova polygon
-# from: https://open.canada.ca/data/en/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e
-tn <- st_read('input/terra-nova-national-park.gpkg')
+### Download Terra Nova polygon ----
+# From Open Canada
+# https://open.canada.ca/data/en/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e
+curl_download('http://ftp.maps.canada.ca/pub/pc_pc/National-parks_Parc-national/national_parks_boundaries/national_parks_boundaries.shp.zip', 'input/national_parks.zip')
+
+zip::unzip('input/national_parks.zip', exdir = 'input/national_parks')
+
+parks <- st_read('input/national-parks.zip',)
+zip::unzip()
 
 
+tn <-
 
-### Download OSM data ----
-# Download park boundaries
 
 
 tnbbox <- searchbbox("Terra Nova National Park")
