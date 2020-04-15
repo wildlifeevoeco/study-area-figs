@@ -15,6 +15,8 @@ Collecting WEEL study area figures in one place, for sharing!
 
 **Note: currently the input folder is ignored, if you have small data you'd like to share, carefully remove it from the `.gitignore`**
 
+Also, we output the features to `.gpkg` (GeoPackage) because... [shapefiles are hell](http://switchfromshapefile.org).
+
 ## Currently:
 1. Fogo Island
 
