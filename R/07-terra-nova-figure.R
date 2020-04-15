@@ -42,10 +42,13 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
+
+
 ### Plot ----
 # Base terra-nova
 (gtn <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = tn) +
+ 	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
  	geom_sf(color = roadcol, data = roads) +
  	guides(color = FALSE) +
  	themeMap)
