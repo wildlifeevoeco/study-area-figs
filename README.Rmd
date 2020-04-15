@@ -37,6 +37,8 @@ This uses data from Open Street Map and four packages: `osmdata`, `sf`, `data.ta
 
 Reproducing: run `03-newfoundland-prep.R` to generate the islands polygon and `04-newfoundland-figure.R` to generate the figure. 
 
+Note: this map doesn't show internal water. Let me know if that's something you'd like to add.
+
 ```{r}
 knitr::include_graphics('graphics/04-newfoundland.png')
 ```
