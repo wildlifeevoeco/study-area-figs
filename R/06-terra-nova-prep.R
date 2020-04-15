@@ -37,7 +37,8 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
 utmTN <- st_transform(tn, utm)
-
+utmRoads <- st_transform(roads, utm)
 
 ### Output ----
 st_write(utmTN, 'output/terra-nova-polygons.gpkg')
+st_write(utmRoads, 'output/terra-nova-roads.gpkg')
