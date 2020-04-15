@@ -67,7 +67,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # x/y limits
 bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
-bbadjust <- bb + c(0, 0, 3e4, 0)
+bbadjust <- bb + c(-1e3, 0, 0, 0)
 
 ### Plot ----
 # Base NL with red box indicating TN
