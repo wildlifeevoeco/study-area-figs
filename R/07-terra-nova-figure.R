@@ -35,7 +35,7 @@ roadcol <- '#666666'
 gridcol <- '#323232'
 roadcol <- '#191919'
 
-parkcol <- '#7F9B62'
+parkcol <- '#9fb5a0'
 parkboundcol <- '#4c5d3a'
 
 
