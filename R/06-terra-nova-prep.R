@@ -29,6 +29,16 @@ routes <- opq(bb) %>%
 # Grab roads
 roads <- routes$osm_lines
 
+# Water (internal)
+water <- opq(bb) %>%
+	add_osm_feature(key = 'natural', value = 'water') %>%
+	osmdata_sf()
+
+# Grab polygons
+mpols <- water$osm_multipolygons
+
+# Union and combine
+waterpols <- st_union(st_combine(mpols))
 
 
 ### Reproject ----
@@ -38,7 +48,9 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Project to UTM
 utmTN <- st_transform(tn, utm)
 utmRoads <- st_transform(roads, utm)
+utmWater <- st_transform(waterpols, utm)
 
 ### Output ----
 st_write(utmTN, 'output/terra-nova-polygons.gpkg')
 st_write(utmRoads, 'output/terra-nova-roads.gpkg')
+st_write(utmWater, 'output/terra-nova-water.gpkg')
