@@ -21,7 +21,7 @@ nl <- st_read('output/newfoundland-polygons.gpkg')
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Only main highway
-highway <- roads[roads$highway == 'primary',]
+highway <- roads[roads$highway == 'trunk',]
 
 
 ### Theme ----
