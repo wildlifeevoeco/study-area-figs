@@ -7,17 +7,24 @@ libs <- c('sf',
 					'osmdata')
 lapply(libs, require, character.only = TRUE)
 
-### Download OSM data ----
-# Set up bounding box - order: xmin, ymin, xmax, ymax
-bb <- c(xmin = -54.3533,
-				ymin = 49.5194,
-				xmax = -53.954220,
-				ymax = 49.763834)
 
-# Download osm coastlines in bbox
-# NOTE: This steps takes a few moments
+### Input data ----
+# Terra Nova polygon
+# from: https://open.canada.ca/data/en/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e
+tn <- st_read('input/terra-nova-national-park.gpkg')
+
+
+
+### Download OSM data ----
+# Download park boundaries
+
+
+tnbbox <- searchbbox("Terra Nova National Park")
+
+canvec.qplot(bbox=tnbbox)
+
 zz <- opq(getbb('Newfoundland')) %>%
-	add_osm_feature(key = 'place', value = 'island') %>%
+	add_osm_feature(key = 'name', value = 'Parc national du Canada Terra-Nova national park of Canada', value_exact = FALSE) %>%
 	osmdata_sf()
 
 # Grab lines
