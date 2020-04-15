@@ -62,7 +62,7 @@ bb <- st_bbox(tn)
 
 ### Output ----
 ggsave(
-	'graphics/02-terra-nova.png',
+	'graphics/07-terra-nova.png',
 	gtn,
 	width = 10,
 	height = 10,
