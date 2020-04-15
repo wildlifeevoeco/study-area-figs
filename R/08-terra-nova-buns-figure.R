@@ -67,7 +67,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # x/y limits
 bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
-
+bbadjust <- bb + c(0, 0, 3e4, 0)
 
 ### Plot ----
 # Base NL with red box indicating TN
@@ -97,16 +97,29 @@ bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
  	geom_sf(color = roadcol, data = highway) +
  	geom_point(aes(x, y), data = grids) +
  	geom_label_repel(aes(x, y, label = SiteName), data = grids) +
- 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
- 					 ylim = c(bb['ymin'], bb['ymax'])) +
+ 	coord_sf(xlim = c(bbadjust['xmin'], bbadjust['xmax']),
+ 					 ylim = c(bbadjust['ymin'], bbadjust['ymax'])) +
  	guides(color = FALSE) +
  	themeMap)
+
+# Use annotation custom to drop the NL inset on Fogo
+# Numbers here taken from the bbox but adjusted to be placed in the bottom left
+(g <- gtn +
+		annotation_custom(
+			ggplotGrob(gnl),
+			xmin = utmBB$x[2] - 0.9e4,
+			xmax = utmBB$x[2] + 0.1e4,
+			ymin = utmBB$y[1],
+			ymax = utmBB$y[1] + 1e4
+		)
+)
+
 
 
 ### Output ----
 ggsave(
 	'graphics/08-terra-nova-buns.png',
-	gtn,
+	g,
 	width = 10,
 	height = 10,
 	dpi = 320
