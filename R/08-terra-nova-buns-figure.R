@@ -110,8 +110,8 @@ nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 
 # Use annotation custom to drop the NL inset on Fogo
 # Numbers here taken from mapview(tn), just reading off the map
-annotateSf <- st_sfc(st_multipoint(matrix(c(-54.277705, -54.13288,
-																						48.50810, 48.63357),
+annotateSf <- st_sfc(st_multipoint(matrix(c(-53.8, -53.65,
+																						48.35, 48.45),
 																 nrow = 2)))
 st_crs(annotateSf) <- 4326
 annotateBB <- st_bbox(st_transform(annotateSf, utm))
