@@ -12,6 +12,26 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
+grids <- data.table(
+	SiteName = c("Bloomfield",
+							 "Dumphy's Pond", "TNNP North", "Unicorn"),
+	AgeClass = c("> 20 - 40 yrs", "> 40 - 60 yrs",
+							 "> 60 - 80 yrs", "> 80 -100 yrs"),
+	x = c(
+		723457,
+		712397,
+		723063,
+		720037
+	),
+	y = c(
+		5359856,
+		5368213,
+		5390372,
+		5391103
+	)
+)
+
+
 tn <- st_read('output/terra-nova-polygons.gpkg')
 roads <- st_read('output/terra-nova-roads.gpkg')
 
