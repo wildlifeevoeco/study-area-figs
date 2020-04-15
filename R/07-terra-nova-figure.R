@@ -15,6 +15,8 @@ lapply(libs, require, character.only = TRUE)
 tn <- st_read('output/terra-nova-polygons.gpkg')
 roads <- st_read('output/terra-nova-roads.gpkg')
 
+nl <- st_read('output/newfoundland-polygons.gpkg')
+
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
