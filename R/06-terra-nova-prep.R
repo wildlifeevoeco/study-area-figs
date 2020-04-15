@@ -19,13 +19,13 @@ parks <- st_read('input/national-parks')
 tn <- parks[parks$parkname_e == 'Terra Nova National Park of Canada', ]
 
 
-### Reproject islands ----
-# Projections
+### Reproject ----
+# Projection
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
-utmNL <- st_transform(nl, utm)
+utmTN <- st_transform(tn, utm)
 
 
 ### Output ----
-saveRDS(utmNL, 'output/newfoundland-polygons.Rds')
+saveRDS(utmTN, 'output/terra-nova-polygons.Rds')
