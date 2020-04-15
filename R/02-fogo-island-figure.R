@@ -12,8 +12,8 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-fogo <- readRDS('output/fogo-island-polygons.Rds')
-roads <- readRDS('output/fogo-roads.Rds')
+fogo <- st_read('output/fogo-island-polygons.gpkg')
+roads <- st_read('output/fogo-roads.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')

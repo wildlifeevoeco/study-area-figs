@@ -75,5 +75,5 @@ utmislands <- st_transform(cutisles, utm)
 utmroads <- st_transform(roads, utm)
 
 ### Output ----
-saveRDS(utmislands, "output/fogo-island-polygons.Rds")
-saveRDS(utmroads, "output/fogo-roads.Rds")
+st_write(utmislands, 'output/fogo-island-polygons.gpkg')
+st_write(utmroads, 'output/fogo-roads.gpkg')

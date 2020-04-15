@@ -13,10 +13,10 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-fogo <- readRDS('output/fogo-island-polygons.Rds')
-roads <- readRDS('output/fogo-roads.Rds')
+fogo <- st_read('output/fogo-island-polygons.gpkg')
+roads <- st_read('output/fogo-roads.gpkg')
 
-nl <- readRDS('output/newfoundland-polygons.Rds')
+nl <- st_read('output/newfoundland-polygons.gpkg')
 
 
 # CRS
