@@ -1,4 +1,4 @@
-### TERG Bun Grids Study Area Figure ====
+### Terra Nova Buns Grid Study Area Figure ====
 # Alec L. Robitaille, Isabella Richmond
 
 
@@ -62,7 +62,7 @@ bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
 
 ### Output ----
 ggsave(
-	'graphics/07-terra-nova.png',
+	'graphics/08-terra-nova-buns.png',
 	gtn,
 	width = 10,
 	height = 10,
