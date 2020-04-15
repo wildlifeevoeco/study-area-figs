@@ -34,9 +34,12 @@ grids <- data.table(
 
 
 tn <- st_read('output/terra-nova-polygons.gpkg')
+
 roads <- st_read('output/terra-nova-roads.gpkg')
 
 nl <- st_read('output/newfoundland-polygons.gpkg')
+
+water <- st_read('output/terra-nova-water.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
