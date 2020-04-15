@@ -32,6 +32,8 @@ roadcol <- '#666666'
 gridcol <- '#323232'
 roadcol <- '#191919'
 
+parkcol <- '#7F9B62'
+parkboundcol <- '#4c5d3a'
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
