@@ -23,6 +23,7 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 # Only main highway
 highway <- roads[roads$highway == 'primary',]
 
+
 ### Theme ----
 # Colors
 watercol <- '#c3e2ec'
@@ -35,6 +36,7 @@ roadcol <- '#191919'
 parkcol <- '#7F9B62'
 parkboundcol <- '#4c5d3a'
 
+
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									panel.background = element_rect(fill = watercol),
@@ -42,6 +44,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
+# x/y limits
+bb <- st_bbox(tn)
 
 
 ### Plot ----
@@ -50,6 +54,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
  	geom_sf(color = roadcol, data = roads) +
+ 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+ 					 ylim = c(bb['ymin'], bb['ymax'])) +
  	guides(color = FALSE) +
  	themeMap)
 
