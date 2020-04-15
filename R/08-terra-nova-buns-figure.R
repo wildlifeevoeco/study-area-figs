@@ -107,10 +107,10 @@ bbadjust <- bb + c(0, 0, 3e4, 0)
 (g <- gtn +
 		annotation_custom(
 			ggplotGrob(gnl),
-			xmin = utmBB$x[2] - 0.9e4,
-			xmax = utmBB$x[2] + 0.1e4,
-			ymin = utmBB$y[1],
-			ymax = utmBB$y[1] + 1e4
+			xmin = bbadjust['xmin'] + 2.5e4,
+			xmax = bbadjust['xmax'] - 2e4,
+			ymin = bbadjust['ymin'] + 1e3,
+			ymax = bbadjust['ymax'] - 2e4
 		)
 )
 
