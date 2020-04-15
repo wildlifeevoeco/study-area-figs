@@ -53,7 +53,7 @@ bb <- st_bbox(tn)
 (gtn <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
- 	geom_sf(color = roadcol, data = roads) +
+ 	geom_sf(color = roadcol, data = highway) +
  	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
  					 ylim = c(bb['ymin'], bb['ymax'])) +
  	guides(color = FALSE) +
