@@ -3,7 +3,7 @@
 
 
 ### Packages ----
-libs <- c('curl', 'zip')
+libs <- c('curl', 'zip', 'sf')
 lapply(libs, require, character.only = TRUE)
 
 
@@ -28,4 +28,4 @@ utmTN <- st_transform(tn, utm)
 
 
 ### Output ----
-saveRDS(utmTN, 'output/terra-nova-polygons.Rds')
+st_write(utmTN, 'output/terra-nova-polygons.gpkg')
