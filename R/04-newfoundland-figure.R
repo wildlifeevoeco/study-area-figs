@@ -12,7 +12,7 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-nl <- readRDS('output/newfoundland-polygons.Rds')
+nl <- st_read('output/newfoundland-polygons.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
