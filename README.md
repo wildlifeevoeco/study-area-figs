@@ -63,3 +63,18 @@ knitr::include_graphics('graphics/05-fogo-inset-nl.png')
 ```
 
 <img src="graphics/05-fogo-inset-nl.png" width="2240" />
+
+3.  Terra Nova
+
+This uses data from GeoGratis and Open Street Map and six packages:
+`osmdata`, `curl`, `zip`, `sf`, `data.table` and `ggplot`.
+
+Reproducing: run `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to
+generate the NL and TN polygons and `07-terra-nova-figure.R` to combine
+and generate the figure.
+
+``` r
+knitr::include_graphics('graphics/07-terra-nova.png')
+```
+
+<img src="graphics/07-terra-nova.png" width="3200" />
