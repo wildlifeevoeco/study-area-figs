@@ -55,6 +55,7 @@ bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
 (gtn <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
+ 	geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
  	geom_sf(color = roadcol, data = highway) +
  	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
  					 ylim = c(bb['ymin'], bb['ymax'])) +
