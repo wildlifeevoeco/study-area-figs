@@ -103,14 +103,20 @@ bbadjust <- bb + c(-1e3, 0, 0, 0)
  	themeMap)
 
 # Use annotation custom to drop the NL inset on Fogo
-# Numbers here taken from the bbox but adjusted to be placed in the bottom left
+# Numbers here taken from mapview(tn), just reading off the map
+annotateSf <- st_sfc(st_multipoint(matrix(c(-54.277705, -54.13288,
+																						48.50810, 48.63357),
+																 nrow = 2)))
+st_crs(annotateSf) <- 4326
+annotateBB <- st_bbox(st_transform(annotateSf, utm))
+
 (g <- gtn +
 		annotation_custom(
 			ggplotGrob(gnl),
-			xmin = bbadjust['xmin'] + 2.5e4,
-			xmax = bbadjust['xmax'] - 2e4,
-			ymin = bbadjust['ymin'] + 1e3,
-			ymax = bbadjust['ymax'] - 2e4
+			xmin = annotateBB['xmin'],
+			xmax = annotateBB['xmax'],
+			ymin = annotateBB['ymin'],
+			ymax = annotateBB['ymax']
 		)
 )
 
