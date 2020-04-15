@@ -66,10 +66,30 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 # x/y limits
-bb <- st_bbox(tn) - rep(c(5e3, -5e3), each = 2)
+bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
 
 
 ### Plot ----
+# Base NL with red box indicating TN
+(gnl <- ggplot() +
+	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
+	geom_sf(fill = parkcol, size = 0.3, color = coastcol, data = tn) +
+	geom_rect(
+		aes(
+			xmin = bb['xmin'],
+			xmax = bb['xmax'],
+			ymin = bb['ymin'],
+			ymax = bb['ymax']
+		),
+		fill = NA,
+		size = 1.5,
+		color = 'red'
+	) +
+ 	themeMap +
+	theme(axis.text = element_blank(),
+				axis.ticks = element_blank(),
+				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm")))
+
 # Base terra-nova
 (gtn <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
