@@ -17,6 +17,8 @@ roads <- st_read('output/terra-nova-roads.gpkg')
 
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
+water <- st_read('output/terra-nova-water.gpkg')
+
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
@@ -51,7 +53,7 @@ bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
 ### Plot ----
 # Base terra-nova
 (gtn <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
  	geom_sf(color = roadcol, data = highway) +
  	coord_sf(xlim = c(bb['xmin'], bb['xmax']),

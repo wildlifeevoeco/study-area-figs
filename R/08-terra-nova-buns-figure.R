@@ -67,9 +67,14 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # x/y limits
 bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
-bbadjust <- bb + c(-1e3, 0, 0, 0)
+bbadjust <- bb #+ c(-1e3, 0, 0, 0)
+
 
 ### Plot ----
+# Crop NL
+nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
+
+
 # Base NL with red box indicating TN
 (gnl <- ggplot() +
 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
@@ -92,8 +97,9 @@ bbadjust <- bb + c(-1e3, 0, 0, 0)
 
 # Base terra-nova
 (gtn <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
+	geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
  	geom_sf(color = roadcol, data = highway) +
  	geom_point(aes(x, y), data = grids) +
  	geom_label_repel(aes(x, y, label = SiteName), data = grids) +
