@@ -74,7 +74,7 @@ bb <- st_bbox(tn) - rep(c(5e3, -5e3), each = 2)
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
  	geom_sf(color = roadcol, data = highway) +
- 	geom_point(aes(x, y), data = grids) +
+ 	geom_label(aes(x, y, label = SiteName), size = 2, data = grids, position = position_jitter(width = 2e3 , height = 2e3)) +
  	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
  					 ylim = c(bb['ymin'], bb['ymax'])) +
  	guides(color = FALSE) +
