@@ -15,7 +15,7 @@ lapply(libs, require, character.only = TRUE)
 ### Data ----
 grids <- data.table(
 	SiteName = c("Bloomfield",
-							 "Dumphy's Pond", "TNNP North", "Unicorn"),
+							 "Dunphy's Pond", "TNNP North", "Unicorn"),
 	AgeClass = c("> 20 - 40 yrs", "> 40 - 60 yrs",
 							 "> 60 - 80 yrs", "> 80 -100 yrs"),
 	x = c(
