@@ -30,6 +30,8 @@ minmax <- st_sfc(st_multipoint(matrix(
 st_crs(minmax) <- 4326
 bb <- st_bbox(st_transform(minmax, utm))
 
+highway <- st_crop(roads, bb)
+
 
 ### Theme ----
 # Colors
