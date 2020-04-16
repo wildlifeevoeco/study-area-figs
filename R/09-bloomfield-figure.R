@@ -22,6 +22,7 @@ water <- st_read('output/terra-nova-water.gpkg')
 # CRS
 utm <- st_crs(nl)
 
+# Bounding Box
 minmax <- st_sfc(st_multipoint(matrix(
 	c(-54.03,-53.93,
 		48.328, 48.384),
@@ -61,7 +62,7 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e2, 5e2), each = 2))
 (gblm <- ggplot() +
 		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
-		geom_sf(aes(color = highway), data = roads) +
+		geom_sf(aes(color = highway), data = highway) +
 		scale_color_manual(values = roadpal) +
 		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
@@ -72,7 +73,7 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e2, 5e2), each = 2))
 ### Output ----
 ggsave(
 	'graphics/09-bloomfield.png',
-	gtn,
+	gblm,
 	width = 10,
 	height = 10,
 	dpi = 320
