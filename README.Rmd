@@ -78,3 +78,5 @@ Reproducing: run  `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to generat
 ```{r}
 knitr::include_graphics('graphics/08-terra-nova-buns.png')
 ```
+
+

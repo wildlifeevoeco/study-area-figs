@@ -61,6 +61,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # TODO: add grid (sensitive data?)
 # TODO: zoom out?
 # TODO: what else to add?
+# TODO: add it to the readme
 (gblm <- ggplot() +
 		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
