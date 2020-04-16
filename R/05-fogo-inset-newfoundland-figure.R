@@ -40,7 +40,7 @@ utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)])
 
 ### Theme ----
 # Colors
-source('00-palette.R')
+source('R/00-palette.R')
 
 roadcols <- data.table(highway = c("primary", "secondary", "residential",
 																	 "service", "unclassified", "footway"))

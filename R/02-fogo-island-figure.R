@@ -21,7 +21,7 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 ### Theme ----
 # Colors
-source('00-palette.R')
+source('R/00-palette.R')
 
 roadcols <- data.table(highway = c("primary", "secondary", "residential",
 																	 "service", "unclassified", "footway"))

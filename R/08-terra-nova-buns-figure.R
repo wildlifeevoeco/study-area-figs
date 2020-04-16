@@ -51,7 +51,7 @@ highway <- roads[roads$highway %in% selroads,]
 
 ### Theme ----
 # Colors
-source('00-palette.R')
+source('R/00-palette.R')
 
 roadcols <- data.table(highway = selroads)
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.4)]
