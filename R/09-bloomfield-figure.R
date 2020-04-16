@@ -42,7 +42,7 @@ roadcol <- '#666666'
 gridcol <- '#323232'
 
 roadcols <- data.table(highway = c('residential', 'unclassified', 'track'))
-roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.4)]
+roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
 roadpal <- roadcols[, setNames(cols, highway)]
 
 
