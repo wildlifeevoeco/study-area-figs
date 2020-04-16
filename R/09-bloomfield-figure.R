@@ -20,11 +20,16 @@ nl <- st_read('output/newfoundland-polygons.gpkg')
 water <- st_read('output/terra-nova-water.gpkg')
 
 # CRS
-utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
+utm <- st_crs(nl)
 
-# Only main highway and primary
-selroads <- c('trunk', 'primary')
-highway <- roads[roads$highway %in% selroads,]
+minmax <- st_sfc(st_multipoint(matrix(
+	c(-53.99622,-53.96954,
+		48.34621, 48.36333),
+	nrow = 2
+)))
+st_crs(minmax) <- 4326
+bb <- st_bbox(st_transform(minmax, utm))
+
 
 
 ### Theme ----
