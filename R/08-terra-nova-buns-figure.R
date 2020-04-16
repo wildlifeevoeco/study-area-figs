@@ -51,16 +51,7 @@ highway <- roads[roads$highway %in% selroads,]
 
 ### Theme ----
 # Colors
-watercol <- '#c3e2ec'
-streamcol <- '#9cb4bc'
-coastcol <- streamcol
-
-islandcol <- '#d0c2a9'
-roadcol <- '#666666'
-gridcol <- '#323232'
-
-parkcol <- '#9fb5a0'
-parkboundcol <- '#4c5d3a'
+source('R/00-palette.R')
 
 roadcols <- data.table(highway = selroads)
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.4)]
