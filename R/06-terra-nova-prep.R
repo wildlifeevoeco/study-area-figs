@@ -41,6 +41,13 @@ mpols <- water$osm_multipolygons
 waterpols <- st_union(st_combine(mpols))
 
 
+# Streams
+waterways <- opq(bb) %>%
+	add_osm_feature(key = 'waterway') %>%
+	osmdata_sf()
+
+streams <- waterways$osm_lines
+
 ### Reproject ----
 # Projection
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
@@ -49,8 +56,10 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 utmTN <- st_transform(tn, utm)
 utmRoads <- st_transform(roads, utm)
 utmWater <- st_transform(waterpols, utm)
+utmStreams <- st_transform(streams, utm)
 
 ### Output ----
 st_write(utmTN, 'output/terra-nova-polygons.gpkg')
 st_write(utmRoads, 'output/terra-nova-roads.gpkg')
 st_write(utmWater, 'output/terra-nova-water.gpkg')
+st_write(utmStreams, 'output/terra-nova-streams.gpkg')
