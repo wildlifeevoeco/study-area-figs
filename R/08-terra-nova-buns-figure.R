@@ -110,8 +110,8 @@ nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 		geom_sf(aes(color = highway), data = highway) +
 		scale_color_manual(values = roadpal) +
 		geom_point(aes(x, y), data = grids) +
-		geom_sf_label(aes(label = 'Terra Nova National Park'), size = 6, fontface = 'bold', data = tn) +
-		geom_label_repel(aes(x, y, label = SiteName), data = grids) +
+		geom_sf_label(aes(label = 'Terra Nova National Park'), data = tn, fill = '#bbcbbc') +
+		geom_label_repel(aes(x, y, label = SiteName), size = 4.5, data = grids) +
 		coord_sf(xlim = c(bbadjust['xmin'], bbadjust['xmax']),
 						 ylim = c(bbadjust['ymin'], bbadjust['ymax'])) +
 		guides(color = FALSE) +
