@@ -33,6 +33,7 @@ bb <- st_bbox(st_transform(minmax, utm))
 
 highway <- st_crop(roads, bb)
 
+nlcrop <- st_crop(nl, bb + rep(c(-5e2, 5e2), each = 2))
 
 ### Theme ----
 # Colors
@@ -55,10 +56,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-# Crop NL
-nlcrop <- st_crop(nl, bb + rep(c(-5e2, 5e2), each = 2))
-
 # Base bloomfield
+# TODO: add streams
+# TODO: add grid (sensitive data?)
+# TODO: zoom out?
+# TODO: what else to add?
 (gblm <- ggplot() +
 		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
