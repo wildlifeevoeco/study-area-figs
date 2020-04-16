@@ -18,6 +18,9 @@ you’d like to share, carefully remove it from the `.gitignore`**
 Also, we output the features to `.gpkg` (GeoPackage) because…
 [shapefiles are hell](http://switchfromshapefile.org).
 
+Also\! I made a bash script for rerunning all the figures. If you want
+to try it, let me know.
+
 ## Currently:
 
 1.  Fogo Island
