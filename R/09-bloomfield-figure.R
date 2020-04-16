@@ -23,13 +23,12 @@ water <- st_read('output/terra-nova-water.gpkg')
 utm <- st_crs(nl)
 
 minmax <- st_sfc(st_multipoint(matrix(
-	c(-53.99622,-53.96954,
-		48.34621, 48.36333),
+	c(-54.03,-53.93,
+		48.328, 48.384),
 	nrow = 2
 )))
 st_crs(minmax) <- 4326
 bb <- st_bbox(st_transform(minmax, utm))
-
 
 
 ### Theme ----
