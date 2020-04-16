@@ -18,6 +18,8 @@ roads <- st_read('output/terra-nova-roads.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 water <- st_read('output/terra-nova-water.gpkg')
+streamLns <- st_read('output/terra-nova-streams-lns.gpkg')
+streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
@@ -30,6 +32,7 @@ highway <- roads[roads$highway %in% selroads,]
 ### Theme ----
 # Colors
 watercol <- '#c3e2ec'
+streamcol <- '#9cb4bc'
 islandcol <- '#d0c2a9'
 coastcol <- '#82796a'
 roadcol <- '#666666'
@@ -63,6 +66,8 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
  	geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
  	geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
+ 	geom_sf(fill = streamcol, color = NA, data = streamPols) +
+ 	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
  	geom_sf(aes(color = highway), data = highway) +
  	geom_sf_label(aes(label = 'Terra Nova National Park'), size = 5, fontface = 'bold', data = tn) +
  	scale_color_manual(values = roadpal) +
