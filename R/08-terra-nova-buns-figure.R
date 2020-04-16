@@ -109,6 +109,8 @@ nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
 		geom_sf(aes(color = highway), data = highway) +
 		scale_color_manual(values = roadpal) +
+		geom_sf(fill = streamcol, color = NA, data = streamPols) +
+		geom_sf(color = streamcol, size = 0.4, data = streamLns) +
 		geom_point(aes(x, y), data = grids) +
 		geom_sf_label(aes(label = 'Terra Nova National Park'), data = tn, fill = '#bbcbbc') +
 		geom_label_repel(aes(x, y, label = SiteName), size = 4.5, data = grids) +
