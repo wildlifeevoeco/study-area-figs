@@ -39,8 +39,7 @@ coastcol <- '#82796a'
 roadcol <- '#666666'
 gridcol <- '#323232'
 
-# TODO: fix unique to ordered by rank
-roadcols <- data.table(highway = unique(roads$highway))
+roadcols <- data.table(highway = c('residential', 'unclassified', 'track'))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.4)]
 roadpal <- roadcols[, setNames(cols, highway)]
 
