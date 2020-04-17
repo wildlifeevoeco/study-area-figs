@@ -73,12 +73,13 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # TODO: what else to add?
 # TODO: add it to the readme
 (gblm <- ggplot() +
-		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
+ 		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
 		geom_sf(aes(color = highway), data = highway) +
  		geom_sf(fill = streamcol, color = NA, data = streamPols) +
- 		geom_point(aes(x, y), data = grids) +
  	 	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
+ 	 	geom_point(aes(x, y), size = 2, data = grids) +
+ 	 	geom_label_repel(aes(x, y, label = SiteName), size = 4.5, data = grids) +
  		scale_color_manual(values = roadpal) +
 		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
