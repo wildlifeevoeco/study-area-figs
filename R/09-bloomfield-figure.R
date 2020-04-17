@@ -32,15 +32,10 @@ streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
 utm <- st_crs(nl)
 
 # Bounding Box
-minmax <- st_sfc(st_multipoint(matrix(
-	c(-54.03,-53.93,
-		48.358, 48.424),
-	nrow = 2
-)))
-st_crs(minmax) <- 4326
-adjust <- rep(c(-5e3, 5e3), each = 2)
-
-bb <- st_bbox(st_transform(minmax, utm)) + adjust
+# In meters
+dist <- 5e3
+zoomout <- rep(c(-dist, dist), each = 2)
+bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + adjust
 
 streams <- st_crop(streamLns, bb + (adjust * 2))
 
