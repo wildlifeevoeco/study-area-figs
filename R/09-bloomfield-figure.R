@@ -11,7 +11,13 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
+
+
 ### Data ----
+grids <- data.table(SiteName = "Bloomfield",
+										x = 723457,
+										y = 5359856)
+
 roads <- st_read('output/terra-nova-roads.gpkg')
 
 nl <- st_read('output/newfoundland-polygons.gpkg')
@@ -62,7 +68,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ### Plot ----
 # Base bloomfield
 
-# TODO: zoom out?
 # TODO: what else to add?
 # TODO: add it to the readme
 (gblm <- ggplot() +
@@ -70,7 +75,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
 		geom_sf(aes(color = highway), data = highway) +
  		geom_sf(fill = streamcol, color = NA, data = streamPols) +
-	 	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
+ 		geom_point(aes(x, y), data = grids) +
+ 	 	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
  		scale_color_manual(values = roadpal) +
 		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
