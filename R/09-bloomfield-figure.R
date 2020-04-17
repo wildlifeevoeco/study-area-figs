@@ -33,15 +33,15 @@ utm <- st_crs(nl)
 
 # Bounding Box
 # In meters
-dist <- 5e3
+dist <- 8e3
 zoomout <- rep(c(-dist, dist), each = 2)
-bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + adjust
+bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + zoomout
 
-streams <- st_crop(streamLns, bb + (adjust * 2))
+streams <- st_crop(streamLns, bb + (zoomout * 2))
 
-highway <- st_crop(roads, bb + (adjust * 2))
+highway <- st_crop(roads, bb + (zoomout * 2))
 
-nlcrop <- st_crop(nl, bb + (adjust * 2))
+nlcrop <- st_crop(nl, bb + (zoomout * 2))
 
 
 ### Theme ----
