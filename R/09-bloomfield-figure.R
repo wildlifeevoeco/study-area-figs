@@ -33,19 +33,21 @@ minmax <- st_sfc(st_multipoint(matrix(
 	nrow = 2
 )))
 st_crs(minmax) <- 4326
-bb <- st_bbox(st_transform(minmax, utm))
+bb <- st_bbox(st_transform(minmax, utm)) + rep(c(-1e4, 1e4), each = 2)
 
 streams <- st_crop(streamLns, bb)
 
 highway <- st_crop(roads, bb)
 
-nlcrop <- st_crop(nl, bb + rep(c(-5e2, 5e2), each = 2))
+nlcrop <- st_crop(nl, bb + rep(c(-1e4, 1e4), each = 2))
 
 ### Theme ----
 # Colors
 source("R/00-palette.R")
 
-roadcols <- data.table(highway = c('residential', 'unclassified', 'track'))
+roadcols <- data.table(highway = c("primary", "residential", "secondary", "unclassified", "footway",
+																	 "path", "service", "trunk", "track", "trunk_link", "tertiary"
+))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
 roadpal <- roadcols[, setNames(cols, highway)]
 
@@ -60,7 +62,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 ### Plot ----
 # Base bloomfield
 
-# TODO: add grid (sensitive data?)
 # TODO: zoom out?
 # TODO: what else to add?
 # TODO: add it to the readme
@@ -71,7 +72,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  		geom_sf(fill = streamcol, color = NA, data = streamPols) +
 	 	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
  		scale_color_manual(values = roadpal) +
- 	geom_sf(data = st_transform(grid, utm)) +
 		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
 		guides(color = FALSE) +
