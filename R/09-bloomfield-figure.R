@@ -6,15 +6,14 @@
 libs <- c(
 	'data.table',
 	'ggplot2',
-	'sf'
+	'sf',
+	'ggrepel'
 )
 lapply(libs, require, character.only = TRUE)
 
 
-
-
 ### Data ----
-grids <- data.table(SiteName = "Bloomfield",
+grids <- data.table(SiteName = 'Bloomfield',
 										x = 723457,
 										y = 5359856)
 
