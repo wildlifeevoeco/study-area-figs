@@ -34,24 +34,27 @@ utm <- st_crs(nl)
 # Bounding Box
 minmax <- st_sfc(st_multipoint(matrix(
 	c(-54.03,-53.93,
-		48.328, 48.384),
+		48.358, 48.424),
 	nrow = 2
 )))
 st_crs(minmax) <- 4326
-bb <- st_bbox(st_transform(minmax, utm)) + rep(c(-1e4, 1e4), each = 2)
+adjust <- rep(c(-5e3, 5e3), each = 2)
+bb <- st_bbox(st_transform(minmax, utm)) + adjust
 
-streams <- st_crop(streamLns, bb)
+streams <- st_crop(streamLns, bb + adjust)
 
 highway <- st_crop(roads, bb)
 
-nlcrop <- st_crop(nl, bb + rep(c(-1e4, 1e4), each = 2))
+nlcrop <- st_crop(nl, bb + adjust)
+
 
 ### Theme ----
 # Colors
-source("R/00-palette.R")
+source('R/00-palette.R')
 
-roadcols <- data.table(highway = c("primary", "residential", "secondary", "unclassified", "footway",
-																	 "path", "service", "trunk", "track", "trunk_link", "tertiary"
+roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'secondary', 'tertiary',
+																	 'service', 'residential', 'unclassified', 'footway',
+																	 'path', 'track'
 ))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
 roadpal <- roadcols[, setNames(cols, highway)]
