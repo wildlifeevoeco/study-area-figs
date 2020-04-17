@@ -37,10 +37,9 @@ dist <- 8e3
 zoomout <- rep(c(-dist, dist), each = 2)
 bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + zoomout
 
+# Zoomout x2 to ensure no data is clipped within view
 streams <- st_crop(streamLns, bb + (zoomout * 2))
-
 highway <- st_crop(roads, bb + (zoomout * 2))
-
 nlcrop <- st_crop(nl, bb + (zoomout * 2))
 
 
