@@ -39,13 +39,14 @@ minmax <- st_sfc(st_multipoint(matrix(
 )))
 st_crs(minmax) <- 4326
 adjust <- rep(c(-5e3, 5e3), each = 2)
+
 bb <- st_bbox(st_transform(minmax, utm)) + adjust
 
-streams <- st_crop(streamLns, bb + adjust)
+streams <- st_crop(streamLns, bb + (adjust * 2))
 
-highway <- st_crop(roads, bb)
+highway <- st_crop(roads, bb + (adjust * 2))
 
-nlcrop <- st_crop(nl, bb + adjust)
+nlcrop <- st_crop(nl, bb + (adjust * 2))
 
 
 ### Theme ----
