@@ -12,12 +12,16 @@ lapply(libs, require, character.only = TRUE)
 
 
 ### Data ----
-tn <- st_read('output/terra-nova-polygons.gpkg')
 roads <- st_read('output/terra-nova-roads.gpkg')
 
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 water <- st_read('output/terra-nova-water.gpkg')
+
+streamLns <- st_read('output/terra-nova-streams-lns.gpkg')
+
+streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
+
 
 # CRS
 utm <- st_crs(nl)
