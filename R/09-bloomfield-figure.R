@@ -63,10 +63,10 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-# Base bloomfield
+# TODO: add the NL base plot (see 08-)
 
-# TODO: what else to add?
-# TODO: add it to the readme
+
+# Base bloomfield
 (gblm <- ggplot() +
  		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
@@ -80,6 +80,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
 		guides(color = FALSE) +
 		themeMap)
+
+# TODO: add patchwork above
+
+# TODO: combine the plots using annotation custom (see 08)
+
 
 ### Output ----
 ggsave(
