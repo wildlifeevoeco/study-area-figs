@@ -3,8 +3,9 @@
 
 # Water
 watercol <- '#c3e2ec'
-streamcol <- '#9cb4bc'
-coastcol <- streamcol
+streamcol <- '#7e9da7'
+streampolcol <- '#9cb4bc'
+coastcol <- streampolcol
 
 # Land
 islandcol <- '#d0c2a9'
@@ -12,8 +13,8 @@ islandcol <- '#d0c2a9'
 # Anthro
 roadcol <- '#666666'
 
-parkcol <- '#9fb5a0'
-parkboundcol <- '#4c5d3a'
+parkcol <- '#b4bc9c'
+parkboundcol <- '#90967c'
 
 # Map etc
 gridcol <- '#323232'
