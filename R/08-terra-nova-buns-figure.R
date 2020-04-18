@@ -40,6 +40,8 @@ roads <- st_read('output/terra-nova-roads.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 water <- st_read('output/terra-nova-water.gpkg')
+streamLns <- st_read('output/terra-nova-streams-lns.gpkg')
+streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
