@@ -18,13 +18,9 @@ grids <- data.table(SiteName = 'Bloomfield',
 										y = 5359856)
 
 roads <- st_read('output/terra-nova-roads.gpkg')
-
 nl <- st_read('output/newfoundland-polygons.gpkg')
-
 water <- st_read('output/terra-nova-water.gpkg')
-
 streamLns <- st_read('output/terra-nova-streams-lns.gpkg')
-
 streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
 
 
@@ -63,7 +59,25 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-# TODO: add the NL base plot (see 08-)
+
+#NL plot
+(gnl <- ggplot() +
+ 	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nl) +
+ 	geom_rect(
+ 		aes(
+ 			xmin = bb['xmin'],
+ 			xmax = bb['xmax'],
+ 			ymin = bb['ymin'],
+ 			ymax = bb['ymax']
+ 		),
+ 		fill = NA,
+ 		size = 1.5,
+ 		color = 'red'
+ 	) +
+ 	themeMap +
+ 	theme(axis.text = element_blank(),
+ 				axis.ticks = element_blank(),
+ 				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm")))
 
 
 # Base bloomfield
@@ -83,8 +97,24 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # TODO: add patchwork above
 
-# TODO: combine the plots using annotation custom (see 08)
 
+#add NL map to bloomfield map
+annotateSf <- st_sfc(st_multipoint(matrix(c(-54.1, -54.02,
+																						48.25, 48.37),
+																					nrow = 2)))
+
+st_crs(annotateSf) <- 4326
+annotateBB <- st_bbox(st_transform(annotateSf, utm))
+
+(g <- gblm +
+		annotation_custom(
+			ggplotGrob(gnl),
+			xmin = annotateBB['xmin'],
+			xmax = annotateBB['xmax'],
+			ymin = annotateBB['ymin'],
+			ymax = annotateBB['ymax']
+		)
+)
 
 ### Output ----
 ggsave(
