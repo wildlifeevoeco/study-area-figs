@@ -21,7 +21,7 @@ tn <- parks[parks$parkname_e == 'Terra Nova National Park of Canada', ]
 
 ## Roads
 # Need latlon
-bb <- st_bbox(st_transform(st_buffer(tn, 1e4), 4326))
+bb <- st_bbox(st_transform(st_buffer(tn, 3e5), 4326))
 routes <- opq(bb) %>%
 	add_osm_feature(key = 'highway') %>%
 	osmdata_sf()
