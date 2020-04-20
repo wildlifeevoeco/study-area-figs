@@ -47,7 +47,7 @@ roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'primary_l
 																	 'secondary', 'secondary_link', 'tertiary',
 																	 'tertiary_link',
 																	 'service', 'residential', 'construction' ,
-																	 'unclassified', 'footway', 'bridleway',
+																	 'unclassified', 'cycleway', 'footway', 'bridleway',
 																	 'path', 'track', 'steps'
 ))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
