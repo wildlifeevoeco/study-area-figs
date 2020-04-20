@@ -29,7 +29,7 @@ utm <- st_crs(nl)
 
 # Bounding Box
 # In meters
-dist <- 8e3
+dist <- 5e4
 zoomout <- rep(c(-dist, dist), each = 2)
 bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + zoomout
 
@@ -45,7 +45,7 @@ source('R/00-palette.R')
 
 roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'secondary', 'tertiary',
 																	 'service', 'residential', 'unclassified', 'footway',
-																	 'path', 'track'
+																	 'path', 'track', 'steps'
 ))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
 roadpal <- roadcols[, setNames(cols, highway)]
