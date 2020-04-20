@@ -119,7 +119,7 @@ annotateBB <- st_bbox(st_transform(annotateSf, utm))
 ### Output ----
 ggsave(
 	'graphics/09-bloomfield.png',
-	gblm,
+	g,
 	width = 10,
 	height = 10,
 	dpi = 320
