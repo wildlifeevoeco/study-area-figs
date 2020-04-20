@@ -57,7 +57,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									panel.background = element_rect(fill = watercol),
-									panel.grid = element_line(color = gridcol, size = 0.2),
+									panel.grid = element_line(color = gridcol, size = 0.6),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
@@ -101,14 +101,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 
 #add NL map to bloomfield map
-annotateSf <- st_sfc(st_multipoint(matrix(c(-54.1, -54.02,
-																						48.25, 48.37),
-																					nrow = 2)))
+annoBB <- st_buffer(st_sfc(st_point(c(-54.4, 48.1))), 1e3)
+st_crs(annoBB) <- 4326
+annotateBB <- st_bbox(st_transform(annoBB, utm))
 
-st_crs(annotateSf) <- 4326
-annotateBB <- st_bbox(st_transform(annotateSf, utm))
-
-(g <- gblm +
+g <- gblm +
 		annotation_custom(
 			ggplotGrob(gnl),
 			xmin = annotateBB['xmin'],
@@ -116,7 +113,7 @@ annotateBB <- st_bbox(st_transform(annotateSf, utm))
 			ymin = annotateBB['ymin'],
 			ymax = annotateBB['ymax']
 		)
-)
+
 
 ### Output ----
 ggsave(
