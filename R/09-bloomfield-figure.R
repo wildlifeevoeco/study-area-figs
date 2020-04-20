@@ -29,7 +29,7 @@ utm <- st_crs(nl)
 
 # Bounding Box
 # In meters
-dist <- 5e4
+dist <- 4e4
 zoomout <- rep(c(-dist, dist), each = 2)
 bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + zoomout
 
