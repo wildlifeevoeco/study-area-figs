@@ -43,8 +43,11 @@ nlcrop <- st_crop(nl, bb + (zoomout * 2))
 # Colors
 source('R/00-palette.R')
 
-roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'secondary', 'tertiary',
-																	 'service', 'residential', 'unclassified', 'footway',
+roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'primary_link',
+																	 'secondary', 'secondary_link', 'tertiary',
+																	 'tertiary_link',
+																	 'service', 'residential', 'construction' ,
+																	 'unclassified', 'footway', 'bridleway',
 																	 'path', 'track', 'steps'
 ))
 roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
@@ -77,7 +80,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	themeMap +
  	theme(axis.text = element_blank(),
  				axis.ticks = element_blank(),
- 				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm")))
+ 				plot.margin = grid::unit(c(-1,-1,-1,-1), 'mm')))
 
 
 # Base bloomfield
@@ -95,7 +98,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 	guides(color = FALSE) +
 	themeMap)
 
-# TODO: add patchwork above
 
 
 #add NL map to bloomfield map
