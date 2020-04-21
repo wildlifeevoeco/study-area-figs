@@ -70,7 +70,7 @@ Reproducing: run  `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to generat
 knitr::include_graphics('graphics/07-terra-nova.png')
 ```
 
-4. Terra Nova Bunny Grids
+5. Terra Nova Bunny Grids
 
 This uses data from GeoGratis and Open Street Map and six packages: `osmdata`, `curl`, `zip`, `sf`, `data.table` and `ggplot`. 
 
@@ -80,3 +80,15 @@ Reproducing: run  `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to generat
 ```{r}
 knitr::include_graphics('graphics/08-terra-nova-buns.png')
 ```
+
+6. Bloomfield
+
+This uses data from Open Street Map and six packages: `osmdata`, `curl`, `zip`, `sf`, `data.table` and `ggplot`. 
+
+
+Reproducing: run  `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to generate the NL and TN polygons and `09-bloomfield-figure.R` to combine and generate the figure. 
+
+```{r}
+knitr::include_graphics('graphics/09-bloomfield.png')
+```
+
