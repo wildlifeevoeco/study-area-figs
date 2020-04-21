@@ -72,7 +72,7 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # NL plot
 (gnl <- ggplot() +
- 	geom_sf(fill = islandcol, size = 0.4, color = coastcol, data = nl) +
+ 	geom_sf(fill = islandcol, size = 0.1, color = 'black', data = nl) +
  	geom_rect(
  		aes(
  			xmin = bb['xmin'],
