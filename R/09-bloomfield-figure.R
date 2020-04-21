@@ -101,9 +101,9 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 
 #add NL map to bloomfield map
-annoBB <- st_buffer(st_sfc(st_point(c(-54.4, 48.1))), 1e3)
+annoBB <- st_sfc(st_point(c(-54.4, 48.1)))
 st_crs(annoBB) <- 4326
-annotateBB <- st_bbox(st_transform(annoBB, utm))
+annotateBB <- st_bbox(st_buffer(st_transform(annoBB, utm), 1e3))
 
 g <- gblm +
 		annotation_custom(
