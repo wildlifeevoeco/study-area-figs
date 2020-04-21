@@ -5,7 +5,7 @@
 watercol <- '#c3e2ec'
 streamcol <- '#7e9da7'
 streampolcol <- '#9cb4bc'
-coastcol <- streampolcol
+coastcol <- '#b59f78'
 
 # Land
 islandcol <- '#d0c2a9'
