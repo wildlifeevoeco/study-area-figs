@@ -95,10 +95,10 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 	geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
  	geom_sf(fill = streampolcol, color = NA, data = streamPols) +
-	geom_sf(color = streamcol, size = 0.4, data = streamLns) +
- 	geom_sf(aes(color = highway), size = 1, data = highway) +
+	geom_sf(color = streamcol, size = 0.2, data = streamLns) +
+ 	geom_sf(aes(color = highway), size = 0.5, data = highway) +
 	geom_point(aes(x, y), size = 2, data = grids) +
-	geom_label_repel(aes(x, y, label = SiteName), size = 4.5, data = grids) +
+	geom_label_repel(aes(x, y, label = SiteName), size = 6.5, data = grids) +
  	scale_color_manual(values = roadpal) +
 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 					 ylim = c(bb['ymin'], bb['ymax'])) +
