@@ -33,10 +33,17 @@ dist <- 4e4
 zoomout <- rep(c(-dist, dist), each = 2)
 bb <- st_bbox(st_as_sf(grids, coords = c('x', 'y'))) + zoomout
 
+# Only main highway and primary
+selroads <- c('trunk', 'primary', 'secondary')
+roads <- roads[roads$highway %in% selroads,]
+
+
 # Zoomout x2 to ensure no data is clipped within view
 streams <- st_crop(streamLns, bb + (zoomout * 2))
 highway <- st_crop(roads, bb + (zoomout * 2))
 nlcrop <- st_crop(nl, bb + (zoomout * 2))
+
+
 
 
 ### Theme ----
