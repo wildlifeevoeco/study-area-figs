@@ -24,17 +24,27 @@ water <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = 'water') %>%
 	osmdata_sf()
 
-waterlns <- st_combine(water$osm_lines)
-polys <- st_buffer(st_combine(water$osm_polygons), 0)
-mpolys <- st_combine(water$osm_multipolygons)
 
-waterpolys <- st_union(polys, mpolys)
-
-plot(waterpolys)
-
+# Download forest
+forest <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
+### Prep geometries ----
+# Combine waters
+wpolys <- st_buffer(st_combine(water$osm_polygons), 0)
+wmpolys <- st_combine(water$osm_multipolygons)
+waterpolys <- st_union(wpolys, wmpolys)
+
+waterlns <- st_combine(water$osm_lines)
+
+## Combine forests
+# Combine waters
+fpolys <- st_combine(forest$osm_polygons)
+fmpolys <- st_combine(forest$osm_multipolygons)
+forestpolys <- st_union(fpolys, fmpolys)
+
+# forestlns <- st_combine(forest$osm_lines)
 
 # ### Reproject islands ----
 # # Projections
