@@ -3,7 +3,7 @@
 
 
 ### Packages ----
-libs <- c('sf', 'osmdata')
+libs <- c('sf', 'osmdata', 'fasterize')
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
@@ -24,8 +24,16 @@ water <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = 'water') %>%
 	osmdata_sf()
 
+w <- st_as_sf(st_combine(water$osm_polygons))
+r <- raster(w,
+						resolution = 100)
+# Temporary fix
+crs(r) <- CRS(SRS_string = 'EPSG:4326')
+f <- fasterize(w, r)
+plot(f)
 
-# Download forest
+f
+f# Download forest
 forest <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
@@ -40,8 +48,8 @@ waterlns <- st_combine(water$osm_lines)
 
 ## Combine forests
 # Combine waters
-fpolys <- st_combine(forest$osm_polygons)
-fmpolys <- st_combine(forest$osm_multipolygons)
+fpolys <- st_buffer(st_combine(forest$osm_polygons), 0)
+fmpolys <- st_combine(forest$osm_multipolygons), 0)
 forestpolys <- st_union(fpolys, fmpolys)
 
 # forestlns <- st_combine(forest$osm_lines)
