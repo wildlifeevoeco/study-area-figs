@@ -9,20 +9,36 @@ lapply(libs, require, character.only = TRUE)
 ### Download OSM data ----
 library(mapview)
 
-# Download RMNP bounds
+# Bounding box (min xy, max xy)
 bb <- c(-101.1758, 50.6216, -99.4016, 51.1811)
-# zz <- opq(getbb('Riding Mountain National Park')) %>%
-bounds <- opq() %>%
-	add_osm_feature(key = 'name', value = 'Riding Mountain National Park') %>%
-osmdata_sf()$osm_polygons
 
-zzz <- opq(c(-101.1758, 50.6216, -99.4016, 51.1811)) %>%
-	add_osm_feature(key = 'name', value = 'Riding Mountain National Park')
-	# add_osm_feature(key = 'boundary', value = 'national_park') %>%
+# Download RMNP bounds
+boundscall <- opq(bb) %>%
+	add_osm_feature(key = 'name', value = 'Riding Mountain National Park') %>%
 	osmdata_sf()
 
-zz
+bounds <- boundscall$osm_polygons
 
+# Download water
+water <- opq(bb) %>%
+	add_osm_feature(key = 'natural', value = 'water') %>%
+	osmdata_sf()
+
+waterlns <- st_combine(water$osm_lines)
+waterpols <- st_combine(water$osm_polygons)
+watermpolys <- st_combine(water$osm_multipolygons)
+
+rbind(waterpolys, watermpolys)
+
+forest <- opq(bb) %>%
+	add_osm_feature(key = 'natural', value = 'wood') %>%
+	osmdata_sf()
+
+waterlns[which(colnames(waterlns) %in% c('osm_id', 'geometry')),]
+colnames(waterlns)
+
+plot(waterlns)
+plot(waterpols)
 
 # # Grab lines
 # lns <- zz$osm_lines
