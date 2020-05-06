@@ -7,12 +7,23 @@ libs <- c('sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
-# Download osm coastlines in bbox
-# NOTE: This steps takes a few moments
-zz <- opq(getbb('Riding Mountain National Park ')) %>%
-	add_osm_feature(key = 'boundary', value = 'national_park') %>%
+library(mapview)
+
+# Download RMNP bounds
+bb <- c(-101.1758, 50.6216, -99.4016, 51.1811)
+# zz <- opq(getbb('Riding Mountain National Park')) %>%
+bounds <- opq() %>%
+	add_osm_feature(key = 'name', value = 'Riding Mountain National Park') %>%
+osmdata_sf()$osm_polygons
+
+zzz <- opq(c(-101.1758, 50.6216, -99.4016, 51.1811)) %>%
+	add_osm_feature(key = 'name', value = 'Riding Mountain National Park')
+	# add_osm_feature(key = 'boundary', value = 'national_park') %>%
 	osmdata_sf()
-#
+
+zz
+
+
 # # Grab lines
 # lns <- zz$osm_lines
 #
