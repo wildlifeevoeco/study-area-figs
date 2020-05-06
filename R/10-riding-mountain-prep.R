@@ -31,7 +31,7 @@ watermpolys <- st_combine(water$osm_multipolygons)
 rbind(waterpolys, watermpolys)
 
 forest <- opq(bb) %>%
-	add_osm_feature(key = 'natural', value = 'wood') %>%
+	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
 waterlns[which(colnames(waterlns) %in% c('osm_id', 'geometry')),]
