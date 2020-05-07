@@ -55,21 +55,29 @@ fwm <- fasterize(wm, r)
 
 waterRaster <- fwm | fw
 
-## Combine forests
+## Combine forest polygons into a raster
+fpolys <- st_transform(forest$osm_polygons, utm)
+fmpolys <- st_transform(forest$osm_multipolygons, utm)
 
-fpolys <- st_buffer(st_combine(forest$osm_polygons), 0)
-fmpolys <- st_combine(forest$osm_multipolygons), 0)
-forestpolys <- st_union(fpolys, fmpolys)
+f <- st_as_sf(st_combine(fpolys))
+rf <- raster(fmpolys, resolution = res)
+ff <- fasterize(f, rf)
 
-# forestlns <- st_combine(forest$osm_lines)
+fm <- st_as_sf(st_combine(fmpolys))
+# rfm <- raster(fmpolys, resolution = res)
+ffm <- fasterize(fm, rf)
 
-# ### Reproject islands ----
-# # Projections
-# utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
-#
-# # Project to UTM
-# utmNL <- st_transform(nl, utm)
-#
-#
-# ### Output ----
-# st_write(utmNL, 'output/newfoundland-polygons.gpkg')
+forestRaster <- ff | ffm
+
+
+
+### Reproject ----
+bound <- st_transform(bounds, utm)
+road <- st_transform(roads, utm)
+
+### Output ----
+st_write(bounds, 'output/rmnp-bounds.gpkg')
+st_write(road, 'output/rmnp-roads.gpkg')
+
+writeRaster(waterRaster, 'output/rmnp-water.gpkg')
+st_write(forestRaster, 'output/rmnp-forest.gpkg')
