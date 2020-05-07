@@ -38,18 +38,19 @@ wmpolys <- st_transform(water$osm_multipolygons, utm)
 
 # Note: fasterize still needs to update to use the new sf crs
 # 	in the meantime, install with devtools::install_github('ecohealthalliance/fasterize', ref ='2efaa974684b3abdc945274292c84759a7116f5c')
+res <- 30
 w <- st_as_sf(st_combine(wpolys))
-r <- raster(wpolys, resolution = 10)
+r <- raster(wpolys, resolution = res)
 fw <- fasterize(w, r)
-plot(f)
 
+wm <- st_as_sf(st_combine(wmpolys))
+rm <- raster(wmpolys, resolution = res)
+fwm <- fasterize(wm, r)
 
-waterlns <- st_combine(water$osm_lines)
-
-
+waterRaster <- fwm | fw
 
 ## Combine forests
-# Combine waters
+
 fpolys <- st_buffer(st_combine(forest$osm_polygons), 0)
 fmpolys <- st_combine(forest$osm_multipolygons), 0)
 forestpolys <- st_union(fpolys, fmpolys)
