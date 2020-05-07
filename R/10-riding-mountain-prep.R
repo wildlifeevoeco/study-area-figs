@@ -3,7 +3,7 @@
 
 
 ### Packages ----
-libs <- c('sf', 'osmdata', 'fasterize')
+libs <- c('sf', 'osmdata', 'fasterize', 'raster')
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
@@ -28,7 +28,6 @@ water <- opq(bb) %>%
 forest <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
-
 
 # Trails and roads
 roads <- opq(bb) %>%
@@ -70,14 +69,13 @@ ffm <- fasterize(fm, rf)
 forestRaster <- ff | ffm
 
 
-
 ### Reproject ----
 bound <- st_transform(bounds, utm)
-road <- st_transform(roads, utm)
+road <- st_transform(roads$osm_lines, utm)
 
 ### Output ----
 st_write(bounds, 'output/rmnp-bounds.gpkg')
 st_write(road, 'output/rmnp-roads.gpkg')
 
-writeRaster(waterRaster, 'output/rmnp-water.gpkg')
-st_write(forestRaster, 'output/rmnp-forest.gpkg')
+writeRaster(waterRaster, 'output/rmnp-water.tif')
+writeRaster(forestRaster, 'output/rmnp-forest.tif')
