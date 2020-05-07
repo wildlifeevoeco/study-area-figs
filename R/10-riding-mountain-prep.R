@@ -29,6 +29,12 @@ forest <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
+
+# Trails and roads
+roads <- opq(bb) %>%
+	add_osm_feature(key = 'highway') %>% # , value = c('forest', 'wood')) %>%
+	osmdata_sf()
+
 ### Prep geometries ----
 utm <- st_crs(32614)
 
