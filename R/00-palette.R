@@ -18,3 +18,14 @@ parkboundcol <- '#90967c'
 
 # Map etc
 gridcol <- '#323232'
+
+
+# Road hiearchy
+levels <- c('motorway', 'trunk', 'primary', 'secondary', 'tertiary',
+						'unclassified', 'residential', 'motorway_link', 'trunk_link',
+						'primary_link', 'secondary_link', 'tertiary_link',
+						'living_street', 'service', 'pedestrian', 'track',
+						'bus_guideway', 'escape', 'raceway', 'road', 'footway',
+						'bridleway', 'steps', 'corridor', 'path', 'sidewalk',
+						'cycleway')
+roadlevels <- factor(levels, levels = levels)
