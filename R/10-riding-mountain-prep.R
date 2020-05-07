@@ -24,27 +24,29 @@ water <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = 'water') %>%
 	osmdata_sf()
 
-w <- st_as_sf(st_combine(water$osm_polygons))
-r <- raster(w,
-						resolution = 100)
-# Temporary fix
-crs(r) <- CRS(SRS_string = 'EPSG:4326')
-f <- fasterize(w, r)
-plot(f)
-
-f
-f# Download forest
+# Download forest
 forest <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
 ### Prep geometries ----
-# Combine waters
-wpolys <- st_buffer(st_combine(water$osm_polygons), 0)
-wmpolys <- st_combine(water$osm_multipolygons)
-waterpolys <- st_union(wpolys, wmpolys)
+utm <- st_crs(32614)
+
+# Combine water polygons into a raster
+wpolys <- st_transform(water$osm_polygons, utm)
+wmpolys <- st_transform(water$osm_multipolygons, utm)
+
+# Note: fasterize still needs to update to use the new sf crs
+# 	in the meantime, install with devtools::install_github('ecohealthalliance/fasterize', ref ='2efaa974684b3abdc945274292c84759a7116f5c')
+w <- st_as_sf(st_combine(wpolys))
+r <- raster(wpolys, resolution = 10)
+fw <- fasterize(w, r)
+plot(f)
+
 
 waterlns <- st_combine(water$osm_lines)
+
+
 
 ## Combine forests
 # Combine waters
