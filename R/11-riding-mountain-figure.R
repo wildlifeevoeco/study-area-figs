@@ -20,3 +20,54 @@ water <- raster('output/rmnp-water.tif')
 forest <- raster('output/rmnp-forest.tif')
 
 
+# CRS
+utm <- st_crs(32614)
+
+
+### Theme ----
+# Colors
+source('R/00-palette.R')
+
+
+roadcols <- data.table(highway = roadlevels[roadlevels %in% unique(roads$highway)])
+roadcols[, cols := gray.colors(.N, start = 0, end = 0.4)]
+roadpal <- roadcols[, setNames(cols, highway)]
+
+
+# Theme
+themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
+									panel.background = element_rect(fill = coastcol),
+									panel.grid = element_line(color = gridcol, size = 0.2),
+									axis.text = element_text(size = 11, color = 'black'),
+									axis.title = element_blank())
+
+### Plot ----
+library(rasterVis)
+roads$geometry <- st_geometry(roads)
+
+gplot(water, maxpixels = 1e3) +
+	geom_tile(aes(fill = factor(value))) +
+	scale_fill_manual(values = c("NA" = NULL, "1" = watercol)) +
+	geom_sf(aes(color = highway), data = roads) +
+	# scale_color_manual(values = roadpal) +
+	guides(color = FALSE, fill = FALSE) +
+	coord_sf() +
+	themeMap
+
+# Base rmnp
+(grmnp <- ggplot() +
+ 	# geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = rmnp) +
+ 	geom_sf(aes(color = highway), data = roads) +
+ 	scale_color_manual(values = roadpal) +
+ 	guides(color = FALSE, fill = FALSE) +
+ 	themeMap)
+
+
+### Output ----
+ggsave(
+	'graphics/11-riding-mountain.png',
+	grmnp,
+	width = 10,
+	height = 10,
+	dpi = 320
+)
