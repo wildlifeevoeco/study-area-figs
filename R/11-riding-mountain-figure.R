@@ -29,10 +29,10 @@ utm <- st_crs(32614)
 source('R/00-palette.R')
 
 
-roadcols <- data.table(highway = roadlevels[roadlevels %in% unique(roads$highway)])
-roadcols[, cols := gray.colors(.N, start = 0, end = 0.4)]
-roadpal <- roadcols[, setNames(cols, highway)]
-
+# roadcols <- data.table(highway = roadlevels[roadlevels %in% unique(roads$highway)])
+# roadcols[, cols := gray.colors(.N, start = 0, end = 0.4)]
+# roadpal <- roadcols[, setNames(cols, highway)]
+roads$highway <- factor(roads$highway, levels = levels(roadlevels))
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
@@ -42,6 +42,24 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
+library(tmap)
+
+system.time(
+	tmap_save(
+		tm_shape(rmnp) +
+			tm_polygons(alpha = 0.9) +
+			tm_shape(water) +
+			tm_raster(col = watercol) +
+			tm_shape(forest) +
+			tm_raster(col = 'green') +
+			tm_shape(roads) +
+			tm_lines(col = 'highway', legend.show = FALSE,
+							 palette = 'grey'),
+		'graphics/11-riding-mountain.png',
+		dpi = 100))
+
+
+
 library(rasterVis)
 roads$geometry <- st_geometry(roads)
 
