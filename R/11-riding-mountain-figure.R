@@ -51,7 +51,7 @@ system.time(
 			tm_shape(water) +
 			tm_raster(col = watercol) +
 			tm_shape(forest) +
-			tm_raster(col = 'green') +
+			tm_raster(col = '#9cb682') +
 			tm_shape(roads) +
 			tm_lines(col = 'highway', legend.show = FALSE,
 							 palette = 'grey'),
