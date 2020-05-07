@@ -92,3 +92,15 @@ Reproducing: run  `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to generat
 knitr::include_graphics('graphics/09-bloomfield.png')
 ```
 
+
+7. Riding Mountain National Park
+
+This uses data from Open Street Map and six packages: `osmdata`, `sf`, `raster`, `data.table` and `ggplot`. 
+
+
+Reproducing: run  `10-riding-mountain-prep.R` to generate the RMNP data and `11-riding-mountain-figure.R` to combine and generate the figure. 
+
+```{r}
+knitr::include_graphics('graphics/11-riding-mountain-figure.png')
+```
+
