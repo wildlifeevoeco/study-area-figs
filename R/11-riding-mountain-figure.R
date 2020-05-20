@@ -6,8 +6,7 @@
 libs <- c(
 	'data.table',
 	'ggplot2',
-	'sf',
-	'raster'
+	'sf'
 )
 lapply(libs, require, character.only = TRUE)
 
@@ -15,9 +14,8 @@ lapply(libs, require, character.only = TRUE)
 ### Data ----
 rmnp <- st_read('output/rmnp-bounds.gpkg')
 roads <- st_read('output/rmnp-roads.gpkg')
-
-water <- raster('output/rmnp-water.tif')
-forest <- raster('output/rmnp-forest.tif')
+water <- st_read('output/rmnp-water.gpkg')
+forest <- st_read('output/rmnp-forest.gpkg')
 
 
 # CRS
