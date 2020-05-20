@@ -37,4 +37,24 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Base rmnp
 mb <- bounds[bounds$name_en == 'Manitoba',]
 
-bb <- st_bbox(st_buffer(st_centroid(mb), 1e9))
+bb <- st_bbox(st_buffer(st_centroid(mb), 1))
+
+gmb <- ggplot() +
+	geom_sf(fill = islandcol, data = mb) +
+	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = lakes) +
+	geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
+	guides(color = FALSE, fill = FALSE) +
+	# coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+	# 				 ylim = c(bb['ymin'], bb['ymax'])) +
+	themeMap
+
+
+
+# Output ------------------------------------------------------------------
+ggsave(
+	'graphics/13-manitoba.png',
+	gmb,
+	width = 10,
+	height = 10,
+	dpi = 320
+)
