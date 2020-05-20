@@ -11,7 +11,7 @@ lapply(libs, require, character.only = TRUE)
 
 # Download OSM data -------------------------------------------------------
 # Bounding box (min xy, max xy)
-bb <- c(-101.19, 50.20, -99.21, 51.46)
+bb <- c(-101.26, 50.16, -99.14, 51.50)
 
 # Download RMNP bounds
 boundscall <- opq(bb) %>%
