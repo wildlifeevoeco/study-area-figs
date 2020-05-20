@@ -48,7 +48,7 @@ system.time(
 	tmap_save(
 		tm_shape(rmnp) +
 			tm_polygons(alpha = 0.9) +
-			tm_shape(water) +
+			tm_shape(waterRaster) +
 			tm_raster(col = watercol) +
 			tm_shape(forest) +
 			tm_raster(col = '#9cb682') +
