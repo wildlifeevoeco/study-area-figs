@@ -23,16 +23,13 @@ utm <- st_crs(32614)
 
 
 ### Theme ----
-# Colors
+## Colors
 source('R/00-palette.R')
 
-
-# roadcols <- data.table(highway = roadlevels[roadlevels %in% unique(roads$highway)])
-# roadcols[, cols := gray.colors(.N, start = 0, end = 0.4)]
-# roadpal <- roadcols[, setNames(cols, highway)]
+# Road colors
 roads$highway <- factor(roads$highway, levels = levels(roadlevels))
 
-# Theme
+## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									panel.background = element_rect(fill = coastcol),
 									panel.grid = element_line(color = gridcol, size = 0.2),
