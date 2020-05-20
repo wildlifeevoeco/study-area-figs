@@ -40,7 +40,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-library(rasterVis)
 roads$geometry <- st_geometry(roads)
 
 gplot(water, maxpixels = 1e3) +
