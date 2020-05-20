@@ -3,21 +3,10 @@
 
 
 ### Packages ----
-libs <- c('sf', 'osmdata', 'fasterize', 'raster', 'rnaturalearth')
+libs <- c('sf', 'osmdata', 'raster')
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
-library(mapview)
-
-
-lakes <- rnaturalearth::ne_download(
-	scale = 'large',
-	type = 'lakes',
-	category = 'physical',
-	returnclass = 'sf'
-)
-
-
 # Bounding box (min xy, max xy)
 bb <- c(-101.1758, 50.3244, -99.4016, 51.1811)
 
