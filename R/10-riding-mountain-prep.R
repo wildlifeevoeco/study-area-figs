@@ -49,22 +49,11 @@ thresharea <- quantile(wpolys$area, .70)
 w <- st_as_sf(st_combine(wpolys[wpolys$area > thresharea,]))
 wm <- st_as_sf(st_combine(wmpolys[wmpolys$area > thresharea,]))
 
-# Note: fasterize still needs to update to use the new sf crs
-# 	in the meantime, install with devtools::install_github('ecohealthalliance/fasterize', ref ='2efaa974684b3abdc945274292c84759a7116f5c')
-res <- 250
-r <- raster(wpolys, resolution = res)
-fw <- fasterize(w, r)
-
-rm <- raster(wmpolys, resolution = res)
-fwm <- fasterize(wm, r)
-
-waterRaster <- fwm | fw
-
-plot(waterRaster, main = 'even larger')
+water
 
 ## Combine forest polygons into a raster
-fpolys <- st_transform(forest$osm_polygons, utm)
-fmpolys <- st_transform(forest$osm_multipolygons, utm)
+fpolys <- st_transform(forestcall$osm_polygons, utm)
+fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
 
 f <- st_as_sf(st_combine(fpolys))
 rf <- raster(fmpolys, resolution = res)
