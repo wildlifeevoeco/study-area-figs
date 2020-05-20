@@ -40,24 +40,6 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.title = element_blank())
 
 ### Plot ----
-library(tmap)
-
-system.time(
-	tmap_save(
-		tm_shape(rmnp) +
-			tm_polygons(alpha = 0.9) +
-			tm_shape(waterRaster) +
-			tm_raster(col = watercol) +
-			tm_shape(forest) +
-			tm_raster(col = '#9cb682') +
-			tm_shape(roads) +
-			tm_lines(col = 'highway', legend.show = FALSE,
-							 palette = 'grey'),
-		'graphics/11-riding-mountain.png',
-		dpi = 100))
-
-
-
 library(rasterVis)
 roads$geometry <- st_geometry(roads)
 
