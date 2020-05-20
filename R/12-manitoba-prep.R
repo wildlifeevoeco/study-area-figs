@@ -16,13 +16,11 @@ bounds <- ne_download(
 	returnclass = 'sf'
 )
 
-admin only
+keepAdmin <- c('United States of America', 'Canada')
 
-zz <- opq(getbb('Newfoundland')) %>%
-	add_osm_feature(key = 'place', value = 'island') %>%
-	osmdata_sf()
+keepb <- bounds[bounds$admin %in% keepAdmin,]
 
-get borders of all provinces and usa
+
 
 # Prep geometries ---------------------------------------------------------
 
