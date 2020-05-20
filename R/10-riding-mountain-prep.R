@@ -29,17 +29,17 @@ boundscall <- opq(bb) %>%
 bounds <- boundscall$osm_polygons
 
 # Download water
-water <- opq(bb) %>%
+watercall <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = 'water') %>%
 	osmdata_sf()
 
 # Download forest
-forest <- opq(bb) %>%
+forestcall <- opq(bb) %>%
 	add_osm_feature(key = 'natural', value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
 # Trails and roads
-roads <- opq(bb) %>%
+roadscall <- opq(bb) %>%
 	add_osm_feature(key = 'highway') %>% # , value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
@@ -48,8 +48,8 @@ utm <- st_crs(32614)
 
 ## Combine water polygons into a raster
 # Transform to UTM
-wpolys <- st_transform(water$osm_polygons, utm)
-wmpolys <- st_transform(water$osm_multipolygons, utm)
+wpolys <- st_transform(watercall$osm_polygons, utm)
+wmpolys <- st_transform(watercall$osm_multipolygons, utm)
 
 # Calculate area
 wpolys$area <- st_area(wpolys)
