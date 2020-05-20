@@ -35,7 +35,7 @@ roadscall <- opq(bb) %>%
 ### Prep geometries ----
 utm <- st_crs(32614)
 
-## Combine water polygons into a raster
+## Combine water polygons
 # Transform to UTM
 wpolys <- st_transform(watercall$osm_polygons, utm)
 wmpolys <- st_transform(watercall$osm_multipolygons, utm)
@@ -64,6 +64,5 @@ road <- st_transform(roadscall$osm_lines, utm)
 ### Output ----
 st_write(bounds, 'output/rmnp-bounds.gpkg')
 st_write(road, 'output/rmnp-roads.gpkg')
-
-writeRaster(waterRaster, 'output/rmnp-water.tif')
-writeRaster(forestRaster, 'output/rmnp-forest.tif')
+st_write(forest, 'output/rmnp-forest.gpkg')
+st_write(water, 'output/rmnp-water.gpkg')
