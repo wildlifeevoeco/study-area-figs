@@ -1,12 +1,15 @@
-### Riding Mountain - Prep ====
+# === Riding Mountain - Prep ----------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c('sf', 'osmdata', 'raster')
 lapply(libs, require, character.only = TRUE)
 
-### Download OSM data ----
+
+
+# Download OSM data -------------------------------------------------------
 # Bounding box (min xy, max xy)
 bb <- c(-101.1758, 50.3244, -99.4016, 51.1811)
 
@@ -32,7 +35,8 @@ roadscall <- opq(bb) %>%
 	add_osm_feature(key = 'highway') %>% # , value = c('forest', 'wood')) %>%
 	osmdata_sf()
 
-### Prep geometries ----
+
+# Prep geometries ---------------------------------------------------------
 utm <- st_crs(32614)
 
 ## Combine water polygons
@@ -56,12 +60,13 @@ fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
 
 forest <- st_as_sf(st_combine(st_simplify(fmpolys)))
 
-
-### Reproject ----
+# Reproject
 bound <- st_transform(bounds, utm)
 road <- st_transform(roadscall$osm_lines, utm)
 
-### Output ----
+
+
+# Output ------------------------------------------------------------------
 st_write(bounds, 'output/rmnp-bounds.gpkg')
 st_write(road, 'output/rmnp-roads.gpkg')
 st_write(forest, 'output/rmnp-forest.gpkg')
