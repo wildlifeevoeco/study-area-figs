@@ -4,10 +4,11 @@
 
 
 # Packages ----------------------------------------------------------------
+libs <- c('sf', 'osmdata', 'rnaturalearth')
+lapply(libs, require, character.only = TRUE)
 
 
 # Download OSM data -------------------------------------------------------
-
 
 # Prep geometries ---------------------------------------------------------
 
