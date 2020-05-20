@@ -24,13 +24,21 @@ forest <- st_read('output/rmnp-forest.gpkg')
 utm <- st_crs(32614)
 
 
-
 # Theme -------------------------------------------------------------------
 ## Colors
 source('R/00-palette.R')
 
 # Road colors
 roads$highway <- factor(roads$highway, levels = levels(roadlevels))
+roadcols <- data.table(highway = c('trunk',  'trunk_link', 'primary', 'primary_link',
+																	 'secondary', 'secondary_link', 'tertiary',
+																	 'tertiary_link',
+																	 'service', 'residential', 'construction' ,
+																	 'unclassified', 'cycleway', 'footway', 'bridleway',
+																	 'path', 'track', 'steps'
+))
+roadcols[, cols := gray.colors(.N, start = 0.1, end = 0.6)]
+roadpal <- roadcols[, setNames(cols, highway)]
 
 ## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
