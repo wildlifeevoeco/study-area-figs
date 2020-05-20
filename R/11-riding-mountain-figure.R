@@ -41,7 +41,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 ## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = islandcol),
+									panel.background = element_rect(fill = landcol),
 									panel.grid = element_line(color = gridcol, size = 0.3),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
@@ -54,7 +54,7 @@ roads$geometry <- st_geometry(roads)
 bb <- st_bbox(st_buffer(st_centroid(rmnp), 6e4))
 
 grmnp <- ggplot() +
-		geom_sf(fill = '#d1ddcd', data = rmnp) +
+		geom_sf(fill = landcol, data = rmnp) +
 		geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
 		geom_sf(fill = watercol, color = streamcol, size = 0.1, data = water) +
 		geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.2) +

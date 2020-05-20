@@ -9,6 +9,7 @@ coastcol <- '#b59f78'
 
 # Land
 islandcol <- '#d0c2a9'
+landcol <- '#d9ceba'
 
 # Anthro
 roadcol <- '#666666'
