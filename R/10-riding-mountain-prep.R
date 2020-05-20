@@ -61,13 +61,13 @@ fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
 forest <- st_as_sf(st_combine(st_simplify(fmpolys)))
 
 # Reproject
-bound <- st_transform(bounds, utm)
-road <- st_transform(roadscall$osm_lines, utm)
+boundutm <- st_transform(bounds, utm)
+roadutm <- st_transform(roadscall$osm_lines, utm)
 
 
 
 # Output ------------------------------------------------------------------
-st_write(bounds, 'output/rmnp-bounds.gpkg')
-st_write(road, 'output/rmnp-roads.gpkg')
+st_write(boundutm, 'output/rmnp-bounds.gpkg')
+st_write(roadutm, 'output/rmnp-roads.gpkg')
 st_write(forest, 'output/rmnp-forest.gpkg')
 st_write(water, 'output/rmnp-water.gpkg')
