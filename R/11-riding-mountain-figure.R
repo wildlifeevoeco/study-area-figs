@@ -1,8 +1,9 @@
-### Riding Mountain National Park Study Area Figure ====
+# === Riding Mountain National Park - Figure ------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -11,7 +12,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 rmnp <- st_read('output/rmnp-bounds.gpkg')
 roads <- st_read('output/rmnp-roads.gpkg')
 water <- st_read('output/rmnp-water.gpkg')
@@ -22,7 +24,8 @@ forest <- st_read('output/rmnp-forest.gpkg')
 utm <- st_crs(32614)
 
 
-### Theme ----
+
+# Theme -------------------------------------------------------------------
 ## Colors
 source('R/00-palette.R')
 
@@ -36,7 +39,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 roads$geometry <- st_geometry(roads)
 
 gplot(water, maxpixels = 1e3) +
@@ -57,7 +61,8 @@ gplot(water, maxpixels = 1e3) +
  	themeMap)
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/11-riding-mountain.png',
 	grmnp,
