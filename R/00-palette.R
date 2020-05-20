@@ -16,6 +16,9 @@ roadcol <- '#666666'
 parkcol <- '#b4bc9c'
 parkboundcol <- '#90967c'
 
+# Forest
+forestcol <- '#A4BC9C'
+
 # Map etc
 gridcol <- '#323232'
 
