@@ -62,7 +62,7 @@ grmnp <- ggplot() +
 		scale_color_manual(values = roadpal) +
 	 	guides(color = FALSE, fill = FALSE) +
 		coord_sf(xlim = c(bb['xmin'] - 1e4, bb['xmax']),
-						 ylim = c(bb['ymin'] - 1e3, bb['ymax'])) +
+						 ylim = c(bb['ymin'] + 4.5e4, bb['ymax']) - 3e4) +
 	 	themeMap
 
 
