@@ -30,11 +30,12 @@ lakes <- rnaturalearth::ne_download(
 	returnclass = 'sf'
 )
 
-# Prep geometries ---------------------------------------------------------
+wi <- st_within(lakes, keepb)
+subwi <- vapply(wi, function(x) length(x) >= 1, TRUE)
 
+keepl <- lakes[subwi, ]
 
 
 # Output ------------------------------------------------------------------
-
-
-
+st_write(keepl, 'manitoba-lakes.gpkg')
+st_write(keepb, 'manitoba-bounds.gpkg')
