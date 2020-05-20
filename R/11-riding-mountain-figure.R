@@ -54,6 +54,7 @@ roads$geometry <- st_geometry(roads)
 (grmnp <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.5, color = 'black', data = rmnp) +
  	geom_sf(aes(color = highway), data = roads, size = 0.2) +
+	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = water) +
  	scale_color_manual(values = roadpal) +
  	guides(color = FALSE, fill = FALSE) +
  	themeMap)
