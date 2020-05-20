@@ -51,19 +51,10 @@ wm <- st_as_sf(st_combine(wmpolys[wmpolys$area > thresharea,]))
 
 water <- st_union(st_make_valid(w), wm)
 
-## Combine forest polygons into a raster
-fpolys <- st_transform(forestcall$osm_polygons, utm)
+## Combine forest polygons
 fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
 
-f <- st_as_sf(st_combine(fpolys))
-rf <- raster(fmpolys, resolution = res)
-ff <- fasterize(f, rf)
-
-fm <- st_as_sf(st_combine(fmpolys))
-# rfm <- raster(fmpolys, resolution = res)
-ffm <- fasterize(fm, rf)
-
-forestRaster <- ff | ffm
+forest <- st_as_sf(st_combine(st_simplify(fmpolys)))
 
 
 ### Reproject ----
