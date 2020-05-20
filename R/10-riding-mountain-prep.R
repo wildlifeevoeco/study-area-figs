@@ -49,7 +49,7 @@ thresharea <- quantile(wpolys$area, .70)
 w <- st_as_sf(st_combine(wpolys[wpolys$area > thresharea,]))
 wm <- st_as_sf(st_combine(wmpolys[wmpolys$area > thresharea,]))
 
-water
+water <- st_union(st_make_valid(w), wm)
 
 ## Combine forest polygons into a raster
 fpolys <- st_transform(forestcall$osm_polygons, utm)
@@ -68,7 +68,7 @@ forestRaster <- ff | ffm
 
 ### Reproject ----
 bound <- st_transform(bounds, utm)
-road <- st_transform(roads$osm_lines, utm)
+road <- st_transform(roadscall$osm_lines, utm)
 
 ### Output ----
 st_write(bounds, 'output/rmnp-bounds.gpkg')
