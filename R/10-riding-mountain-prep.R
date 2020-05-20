@@ -46,22 +46,32 @@ roads <- opq(bb) %>%
 ### Prep geometries ----
 utm <- st_crs(32614)
 
-# Combine water polygons into a raster
+## Combine water polygons into a raster
+# Transform to UTM
 wpolys <- st_transform(water$osm_polygons, utm)
 wmpolys <- st_transform(water$osm_multipolygons, utm)
 
+# Calculate area
+wpolys$area <- st_area(wpolys)
+wmpolys$area <- st_area(wmpolys)
+
+thresharea <- quantile(wpolys$area, .70)
+
+w <- st_as_sf(st_combine(wpolys[wpolys$area > thresharea,]))
+wm <- st_as_sf(st_combine(wmpolys[wmpolys$area > thresharea,]))
+
 # Note: fasterize still needs to update to use the new sf crs
 # 	in the meantime, install with devtools::install_github('ecohealthalliance/fasterize', ref ='2efaa974684b3abdc945274292c84759a7116f5c')
-res <- 30
-w <- st_as_sf(st_combine(wpolys))
+res <- 250
 r <- raster(wpolys, resolution = res)
 fw <- fasterize(w, r)
 
-wm <- st_as_sf(st_combine(wmpolys))
 rm <- raster(wmpolys, resolution = res)
 fwm <- fasterize(wm, r)
 
 waterRaster <- fwm | fw
+
+plot(waterRaster, main = 'even larger')
 
 ## Combine forest polygons into a raster
 fpolys <- st_transform(forest$osm_polygons, utm)
