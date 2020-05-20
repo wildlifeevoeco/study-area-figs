@@ -2,7 +2,6 @@
 # Alec L. Robitaille
 
 
-
 # Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
@@ -51,19 +50,10 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Plot --------------------------------------------------------------------
 roads$geometry <- st_geometry(roads)
 
-gplot(water, maxpixels = 1e3) +
-	geom_tile(aes(fill = factor(value))) +
-	scale_fill_manual(values = c("NA" = NULL, "1" = watercol)) +
-	geom_sf(aes(color = highway), data = roads) +
-	# scale_color_manual(values = roadpal) +
-	guides(color = FALSE, fill = FALSE) +
-	coord_sf() +
-	themeMap
-
 # Base rmnp
 (grmnp <- ggplot() +
- 	# geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = rmnp) +
- 	geom_sf(aes(color = highway), data = roads) +
+ 	geom_sf(fill = islandcol, size = 0.5, color = 'black', data = rmnp) +
+ 	geom_sf(aes(color = highway), data = roads, size = 0.2) +
  	scale_color_manual(values = roadpal) +
  	guides(color = FALSE, fill = FALSE) +
  	themeMap)
