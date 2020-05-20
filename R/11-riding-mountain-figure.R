@@ -41,9 +41,8 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 ## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = NA),
+									panel.background = element_rect(fill = islandcol),
 									panel.grid = element_line(color = gridcol, size = 0.3),
-									panel.ontop = TRUE,
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
@@ -52,17 +51,17 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 roads$geometry <- st_geometry(roads)
 
 # Base rmnp
-bb <- st_bbox(st_buffer(st_centroid(rmnp), 4e4))
+bb <- st_bbox(st_buffer(st_centroid(rmnp), 6e4))
 
 grmnp <- ggplot() +
 		geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
 		geom_sf(fill = watercol, color = streamcol, size = 0.1, data = water) +
-		geom_sf(aes(color = highway), data = roads, size = 0.2) +
+		geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.2) +
 		geom_sf(fill = NA, size = 0.5, color = 'black', data = rmnp) +
 		scale_color_manual(values = roadpal) +
 	 	guides(color = FALSE, fill = FALSE) +
-		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
-						 ylim = c(bb['ymin'] + 1e3, bb['ymax']) - 1e3) +
+		coord_sf(xlim = c(bb['xmin'] - 1e4, bb['xmax']),
+						 ylim = c(bb['ymin'] - 1e3, bb['ymax'])) +
 	 	themeMap
 
 
