@@ -3,8 +3,7 @@
 
 
 ### Packages ----
-libs <- c('sf',
-					'osmdata')
+libs <- c('sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
 ### Download OSM data ----
