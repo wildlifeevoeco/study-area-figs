@@ -9,6 +9,7 @@ lapply(libs, require, character.only = TRUE)
 
 
 # Download OSM data -------------------------------------------------------
+## Bounds
 bounds <- ne_download(
 	scale = 'large',
 	type = 'states',
@@ -21,8 +22,16 @@ keepAdmin <- c('United States of America', 'Canada')
 keepb <- bounds[bounds$admin %in% keepAdmin,]
 
 
+## Lakes
+lakes <- rnaturalearth::ne_download(
+	scale = 'large',
+	type = 'lakes',
+	category = 'physical',
+	returnclass = 'sf'
+)
 
 # Prep geometries ---------------------------------------------------------
+
 
 
 # Output ------------------------------------------------------------------
