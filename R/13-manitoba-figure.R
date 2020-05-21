@@ -18,7 +18,7 @@ lakes <- st_read('output/manitoba-lakes.gpkg')
 
 
 # CRS
-crs <- st_crs('ESRI:102008')
+crs <- st_crs('ESRI:102001')
 
 
 # Theme -------------------------------------------------------------------
