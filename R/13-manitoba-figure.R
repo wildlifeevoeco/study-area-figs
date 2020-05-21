@@ -40,17 +40,16 @@ lakes <- st_transform(lakes, crs)
 # Base rmnp
 mb <- bounds[bounds$name_en == 'Manitoba',]
 
-bb <- st_bbox(st_buffer(mb, 24))
+bb <- st_bbox(st_buffer(mb, 2.5e6))
 
-(gmb <- ggplot() +
-	geom_sf(fill = islandcol, color = 'black', size = 0.5, data = bounds) +
-	geom_sf(fill = 'red', color = NA, alpha = 0.3, data = mb) +
+gmb <- ggplot() +
+	geom_sf(fill = islandcol, color = 'black', size = 0.2, data = bounds) +
+	geom_sf(fill = '#cd0001', color = NA, alpha = 0.3, data = mb) +
 	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = lakes) +
-	# geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
 	guides(color = FALSE, fill = FALSE) +
 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
-					 ylim = c(bb['ymin'] + 20, bb['ymax']) - 20) +
-	themeMap)
+					 ylim = c(bb['ymin'] + 2e6, bb['ymax']) - 1e5) +
+	themeMap
 
 
 
