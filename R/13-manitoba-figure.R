@@ -43,9 +43,10 @@ mb <- bounds[bounds$name_en == 'Manitoba',]
 bb <- st_bbox(st_buffer(mb, 24))
 
 (gmb <- ggplot() +
-	geom_sf(fill = islandcol, data = mb) +
+	geom_sf(fill = islandcol, color = 'black', size = 0.5, data = bounds) +
+	geom_sf(fill = 'red', color = NA, alpha = 0.3, data = mb) +
 	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = lakes) +
-	geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
+	# geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
 	guides(color = FALSE, fill = FALSE) +
 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 					 ylim = c(bb['ymin'] + 20, bb['ymax']) - 20) +
