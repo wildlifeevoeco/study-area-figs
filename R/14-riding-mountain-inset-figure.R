@@ -23,7 +23,7 @@ source('R/11-riding-mountain-figure.R')
 
 # Adjust plots ------------------------------------------------------------
 gmbAdjust <- gmb +
-	geom_point(aes(x, y), size = 10, shape = 18,
+	geom_point(aes(x, y), size = 5, shape = 18,
 						 data = data.table(x = -295169, y = 1197566)) +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
@@ -35,7 +35,7 @@ gmbAdjust <- gmb +
 # used the ggannotate package to make finding these numbers easier
 g <- grmnp +
  	annotation_custom(
- 		ggplotGrob(gmb),
+ 		ggplotGrob(gmbAdjust),
  		xmin = 340770,
  		ymin = 5584909,
  		xmax = 377059,
