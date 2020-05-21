@@ -4,7 +4,7 @@
 
 
 # Packages ----------------------------------------------------------------
-libs <- c('sf', 'osmdata', 'raster')
+libs <- c('sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
 

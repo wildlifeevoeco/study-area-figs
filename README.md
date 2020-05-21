@@ -21,7 +21,7 @@ Also, we output the features to `.gpkg` (GeoPackage) because…
 Also\! I made a bash script for rerunning all the figures. If you want
 to try it, let me know.
 
-## Currently:
+## Study area figures
 
 1.  Fogo Island
 
@@ -114,3 +114,31 @@ knitr::include_graphics('graphics/09-bloomfield.png')
 ```
 
 <img src="graphics/09-bloomfield.png" width="3200" />
+
+7.  Riding Mountain National Park
+
+This uses data from Open Street Map and six packages: `osmdata`, `sf`,
+`data.table` and `ggplot`.
+
+Reproducing: run `10-riding-mountain-prep.R` to generate the RMNP data
+and `11-riding-mountain-figure.R` to combine and generate the figure.
+
+``` r
+knitr::include_graphics('graphics/11-riding-mountain.png')
+```
+
+<img src="graphics/11-riding-mountain.png" width="3200" />
+
+8.  Manitoba
+
+This uses data from Natural Earth and six packages: `rnaturalearth`,
+`sf`, `data.table` and `ggplot`.
+
+Reproducing: run `12-manitba-prep.R` to generate the MB data and
+`13-manitoba-figure.R` to combine and generate the figure.
+
+``` r
+knitr::include_graphics('graphics/13-manitoba.png')
+```
+
+<img src="graphics/13-manitoba.png" width="3200" />

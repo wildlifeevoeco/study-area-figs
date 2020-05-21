@@ -19,7 +19,7 @@ Also, we output the features to `.gpkg` (GeoPackage) because... [shapefiles are 
 
 Also! I made a bash script for rerunning all the figures. If you want to try it, let me know. 
 
-## Currently:
+## Study area figures
 1. Fogo Island
 
 This uses data from Open Street Map and four packages: `osmdata`, `sf`, `data.table` and `ggplot`. 
@@ -95,12 +95,23 @@ knitr::include_graphics('graphics/09-bloomfield.png')
 
 7. Riding Mountain National Park
 
-This uses data from Open Street Map and six packages: `osmdata`, `sf`, `raster`, `data.table` and `ggplot`. 
+This uses data from Open Street Map and six packages: `osmdata`, `sf`, `data.table` and `ggplot`. 
 
 
 Reproducing: run  `10-riding-mountain-prep.R` to generate the RMNP data and `11-riding-mountain-figure.R` to combine and generate the figure. 
 
 ```{r}
 knitr::include_graphics('graphics/11-riding-mountain.png')
+```
+
+8. Manitoba
+
+This uses data from Natural Earth and six packages: `rnaturalearth`, `sf`, `data.table` and `ggplot`. 
+
+
+Reproducing: run  `12-manitba-prep.R` to generate the MB data and `13-manitoba-figure.R` to combine and generate the figure. 
+
+```{r}
+knitr::include_graphics('graphics/13-manitoba.png')
 ```
 
