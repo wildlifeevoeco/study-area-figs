@@ -23,22 +23,20 @@ source('R/11-riding-mountain-figure.R')
 
 # Adjust plots ------------------------------------------------------------
 gmb <- gmb +
-	theme(axis.text = element_blank())
+	theme(axis.text = element_blank(),
+				axis.ticks = element_blank())
 
 
 
 # Combine -----------------------------------------------------------------
-
+# used the ggannotate package to make finding these numbers easier
 g <- grmnp +
  	annotation_custom(
- 		ggplotGrob(gmb))#,
- 	# 	xmin = utmBB$x[2] - 0.9e4,
- 	# 	xmax = utmBB$x[2] + 0.1e4,
- 	# 	ymin = utmBB$y[1],
- 	# 	ymax = utmBB$y[1] + 1e4
- 	# )
-
-
+ 		ggplotGrob(gmb),
+ 		xmin = 340770,
+ 		ymin = 5584909,
+ 		xmax = 377059,
+ 		ymax = 5612715)
 
 
 
