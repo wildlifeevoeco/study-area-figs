@@ -22,9 +22,9 @@ source('R/11-riding-mountain-figure.R')
 
 
 # Adjust plots ------------------------------------------------------------
-gmb <- gmb +
-	geom_point(aes(x, y), data = data.table(x = 415472, y = 5631636),
-						 size = 10) +
+gmbAdjust <- gmb +
+	geom_point(aes(x, y), size = 10, shape = 18,
+						 data = data.table(x = -295169, y = 1197566)) +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
 				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
