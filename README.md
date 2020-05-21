@@ -9,8 +9,8 @@ Collecting WEEL study area figures in one place, for sharing\!
 2.  Add your script (follow the numbering scheme)
 3.  Add the output figure to `graphics/`, with a name and number
     matching the script it originates from.
-4.  (Ideally) add the figure to the `README.Rmd` so we can preview them
-    all together in one spot.
+4.  Add the figure to the `README.Rmd` so we can preview them all
+    together in one spot.
 
 **Note: currently the input folder is ignored, if you have small data
 you’d like to share, carefully remove it from the `.gitignore`**
@@ -25,7 +25,7 @@ to try it, let me know.
 
 1.  Fogo Island
 
-This uses data from Open Street Map and four packages: `osmdata`, `sf`,
+This uses data from Open Street Map and packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
 
 Reproducing: run `01-fogo-island-prep.R` to generate the islands polygon
@@ -39,7 +39,7 @@ knitr::include_graphics('graphics/02-fogo-island.png')
 
 2.  Newfoundland
 
-This uses data from Open Street Map and four packages: `osmdata`, `sf`,
+This uses data from Open Street Map and packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
 
 Reproducing: run `03-newfoundland-prep.R` to generate the islands
@@ -56,7 +56,7 @@ knitr::include_graphics('graphics/04-newfoundland.png')
 
 3.  Fogo with Newfoundland inset
 
-This uses data from Open Street Map and four packages: `osmdata`, `sf`,
+This uses data from Open Street Map and packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
 
 Reproducing: run `01-fogo-island-prep.R`, `03-newfoundland-prep.R`, to
@@ -72,7 +72,7 @@ knitr::include_graphics('graphics/05-fogo-inset-nl.png')
 
 4.  Terra Nova
 
-This uses data from GeoGratis and Open Street Map and six packages:
+This uses data from GeoGratis and Open Street Map and packages:
 `osmdata`, `curl`, `zip`, `sf`, `data.table` and `ggplot`.
 
 Reproducing: run `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to
@@ -87,7 +87,7 @@ knitr::include_graphics('graphics/07-terra-nova.png')
 
 5.  Terra Nova Bunny Grids
 
-This uses data from GeoGratis and Open Street Map and six packages:
+This uses data from GeoGratis and Open Street Map and packages:
 `osmdata`, `curl`, `zip`, `sf`, `data.table` and `ggplot`.
 
 Reproducing: run `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to
@@ -102,7 +102,7 @@ knitr::include_graphics('graphics/08-terra-nova-buns.png')
 
 6.  Bloomfield
 
-This uses data from Open Street Map and six packages: `osmdata`, `curl`,
+This uses data from Open Street Map and packages: `osmdata`, `curl`,
 `zip`, `sf`, `data.table` and `ggplot`.
 
 Reproducing: run `03-newfoundland-prep.R` and `06-terra-nova-prep.R` to
@@ -117,7 +117,7 @@ knitr::include_graphics('graphics/09-bloomfield.png')
 
 7.  Riding Mountain National Park
 
-This uses data from Open Street Map and six packages: `osmdata`, `sf`,
+This uses data from Open Street Map and packages: `osmdata`, `sf`,
 `data.table` and `ggplot`.
 
 Reproducing: run `10-riding-mountain-prep.R` to generate the RMNP data
@@ -131,8 +131,8 @@ knitr::include_graphics('graphics/11-riding-mountain.png')
 
 8.  Manitoba
 
-This uses data from Natural Earth and six packages: `rnaturalearth`,
-`sf`, `data.table` and `ggplot`.
+This uses data from Natural Earth and packages: `rnaturalearth`, `sf`,
+`data.table` and `ggplot`.
 
 Reproducing: run `12-manitba-prep.R` to generate the MB data and
 `13-manitoba-figure.R` to combine and generate the figure.
@@ -142,3 +142,18 @@ knitr::include_graphics('graphics/13-manitoba.png')
 ```
 
 <img src="graphics/13-manitoba.png" width="3200" />
+
+9.  RMNP with Manitoba Inset
+
+This uses data from Open Street Map and Natural Earth and packages:
+`osmdata`, `rnaturalearth`, `sf`, `data.table` and `ggplot`.
+
+Reproducing: run run `10-riding-mountain-prep.R` and
+`12-manitoba-prep.R` to generate the RMNP and MB data and
+`14-riding-mountain-inset-figure.R` to generate the figure.
+
+``` r
+knitr::include_graphics('graphics/14-riding-mountain-inset.png')
+```
+
+<img src="graphics/14-riding-mountain-inset.png" width="3200" />
