@@ -34,10 +34,13 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 
 # Plot --------------------------------------------------------------------
+bounds <- st_transform(bounds, crs)
+lakes <- st_transform(bounds, crs)
+
 # Base rmnp
 mb <- bounds[bounds$name_en == 'Manitoba',]
 
-bb <- st_bbox(st_buffer(st_centroid(mb), 1))
+bb <- st_bbox(st_buffer(mb, 24))
 
 gmb <- ggplot() +
 	geom_sf(fill = islandcol, data = mb) +
@@ -45,7 +48,7 @@ gmb <- ggplot() +
 	geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
 	guides(color = FALSE, fill = FALSE) +
 	# coord_sf(xlim = c(bb['xmin'], bb['xmax']),
-	# 				 ylim = c(bb['ymin'], bb['ymax'])) +
+	# 				 ylim = c(bb['ymin'] + 20, bb['ymax']) - 20) +
 	themeMap
 
 
@@ -58,3 +61,4 @@ ggsave(
 	height = 10,
 	dpi = 320
 )
+
