@@ -35,21 +35,21 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 
 # Plot --------------------------------------------------------------------
 bounds <- st_transform(bounds, crs)
-lakes <- st_transform(bounds, crs)
+lakes <- st_transform(lakes, crs)
 
 # Base rmnp
 mb <- bounds[bounds$name_en == 'Manitoba',]
 
 bb <- st_bbox(st_buffer(mb, 24))
 
-gmb <- ggplot() +
+(gmb <- ggplot() +
 	geom_sf(fill = islandcol, data = mb) +
 	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = lakes) +
 	geom_sf(fill = NA, size = 0.5, color = 'black', data = bounds) +
 	guides(color = FALSE, fill = FALSE) +
-	# coord_sf(xlim = c(bb['xmin'], bb['xmax']),
-	# 				 ylim = c(bb['ymin'] + 20, bb['ymax']) - 20) +
-	themeMap
+	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+					 ylim = c(bb['ymin'] + 20, bb['ymax']) - 20) +
+	themeMap)
 
 
 
