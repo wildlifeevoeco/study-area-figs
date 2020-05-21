@@ -17,7 +17,7 @@ bounds <- ne_download(
 	returnclass = 'sf'
 )
 
-keepAdmin <- c('United States of America', 'Canada')
+keepAdmin <- c('United States of America', 'Canada', 'Greenland')
 
 keepb <- bounds[bounds$admin %in% keepAdmin,]
 
