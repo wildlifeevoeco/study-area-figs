@@ -1,4 +1,4 @@
-### Palette - Study area figure ====
+# === Palette - Study area figures ----------------------------------------
 # Alec Robitaille
 
 # Water
@@ -24,7 +24,7 @@ forestcol <- '#A4BC9C'
 gridcol <- '#323232'
 
 
-# Road hiearchy
+# Road hierarchy
 levels <- c('motorway', 'trunk', 'primary', 'secondary', 'tertiary',
 						'unclassified', 'residential', 'motorway_link', 'trunk_link',
 						'primary_link', 'secondary_link', 'tertiary_link',

@@ -1,8 +1,8 @@
-### Terra Nova Study Area Figure ====
+# === Terra Nova - Figure -------------------------------------------------
 # Alec L. Robitaille, Isabella Richmond
 
 
-### Packages ----
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -11,7 +11,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 tn <- st_read('output/terra-nova-polygons.gpkg')
 roads <- st_read('output/terra-nova-roads.gpkg')
 
@@ -29,7 +30,8 @@ selroads <- c('trunk', 'primary')
 highway <- roads[roads$highway %in% selroads,]
 
 
-### Theme ----
+
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -49,7 +51,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 bb <- st_bbox(tn) - rep(c(1e3, -1e3), each = 2)
 
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # Crop NL
 nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
 
@@ -69,7 +72,7 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
  	themeMap)
 
 
-### Output ----
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/07-terra-nova.png',
 	gtn,

@@ -1,13 +1,15 @@
-### Terra Nova prep ====
+# === Terra Nova - Prep ---------------------------------------------------
 # Alec L. Robitaille, Isabella Richmond
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c('curl', 'zip', 'sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
 
-### Download Terra Nova data ----
+
+# Download TN data --------------------------------------------------------
 ## Polygon from Open Canada
 # https://open.canada.ca/data/en/dataset/e1f0c975-f40c-4313-9be2-beb951e35f4e
 curl_download('http://ftp.maps.canada.ca/pub/pc_pc/National-parks_Parc-national/national_parks_boundaries/national_parks_boundaries.shp.zip', 'input/national-parks.zip')
@@ -49,8 +51,9 @@ waterways <- opq(bb) %>%
 streamsPol <- st_cast(st_polygonize(st_union(waterways$osm_lines)))
 streamsLns <- waterways$osm_lines
 
-### Reproject ----
-# Projection
+
+
+# Reprojection ------------------------------------------------------------
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
@@ -60,7 +63,10 @@ utmWater <- st_transform(waterpols, utm)
 utmStreamsLns <- st_transform(streamsLns, utm)
 utmStreamsPol <- st_transform(streamsPol, utm)
 
-### Output ----
+
+
+
+# Output ------------------------------------------------------------------
 st_write(utmTN, 'output/terra-nova-polygons.gpkg')
 st_write(utmRoads, 'output/terra-nova-roads.gpkg')
 st_write(utmWater, 'output/terra-nova-water.gpkg')

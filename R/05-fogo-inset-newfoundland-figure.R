@@ -1,8 +1,9 @@
-### Fogo Inset in NL Study Area Figure ====
+# === Fogo Inset in NL Study Area Figure ----------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -12,7 +13,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 fogo <- st_read('output/fogo-island-polygons.gpkg')
 roads <- st_read('output/fogo-roads.gpkg')
 
@@ -38,9 +40,10 @@ utmBB <- data.table(dtbb[, project(cbind(x, y), utm$proj4string)])
 
 
 
-### Theme ----
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
+
 
 roadcols <- data.table(highway = c("primary", "secondary", "residential",
 																	 "service", "unclassified", "footway"))
@@ -55,7 +58,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # Base Fogo
 gfogo <- ggplot(fogo) +
 	geom_sf(fill = islandcol, size = 0.3, color = coastcol) +
@@ -99,7 +103,8 @@ gnl <- ggplot(nl) +
 )
 
 
-### Output ----
+
+# Output  -----------------------------------------------------------------
 ggsave(
 	'graphics/05-fogo-inset-nl.png',
 	g,
@@ -110,7 +115,8 @@ ggsave(
 
 
 
-### Alternative options ----
+
+# Alternative options -----------------------------------------------------
 # Fogo with NL coastline visible
 # (gnl <- ggplot(nl) +
 #  	geom_sf(fill = islandcol) +

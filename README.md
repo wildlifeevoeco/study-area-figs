@@ -157,3 +157,34 @@ knitr::include_graphics('graphics/14-riding-mountain-inset.png')
 ```
 
 <img src="graphics/14-riding-mountain-inset.png" width="3200" />
+
+10. Middle Ridge
+
+This uses data from Open Street Map and Newfoundland Government and
+packages: `osmdata`, `sf`, `data.table`, `ggrepel` and `ggplot`.
+
+Reproducing: run `03-newfoundland-prep.R` and `15-middle-ridge-prep.R`
+to generate the MR and NL data and `16-middle-ridge-figure.R` to
+generate the figure.
+
+``` r
+knitr::include_graphics('graphics/16-middle-ridge.png')
+```
+
+<img src="graphics/16-middle-ridge.png" width="3200" />
+
+10. Middle Ridge Inset
+
+This uses data from Open Street Map, Natural Earth and Newfoundland
+Government and packages: `osmdata`, `rnaturalearth`, `sf`, `data.table`,
+`ggrepel` and `ggplot`.
+
+Reproducing: run `03-newfoundland-prep.R`, `12-manitoba-prep.R` and
+`15-middle-ridge-prep.R` to generate the MR and NL data and
+`17-middle-ridge-inset-figure.R` to generate the figure.
+
+``` r
+knitr::include_graphics('graphics/17-middle-ridge-inset.png')
+```
+
+<img src="graphics/17-middle-ridge-inset.png" width="3200" />
