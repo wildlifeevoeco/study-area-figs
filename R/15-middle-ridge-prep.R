@@ -24,7 +24,7 @@ subareas <- areas[areas$NAME_E %in% c('Middle Ridge Wildlife Reserve',
 # Download OSM data -------------------------------------------------------
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
-areabb <- st_bbox(st_buffer(subareas, 0.5))
+areabb <- st_bbox(st_buffer(subareas, 0.7))
 bb <- c(areabb['xmin'], areabb['ymin'], areabb['xmax'], areabb['ymax'])
 
 # Download water
@@ -78,7 +78,7 @@ areasutm <- st_transform(subareas, utm)
 
 # Output ------------------------------------------------------------------
 # st_write(boundutm, 'output/mr-bounds.gpkg')
-st_write(roadutm, 'output/mr-roads.gpkg')
+st_write(roadutm, 'output/mr-roads.gpkg', append = FALSE)
 st_write(areasutm, 'output/mr-protected-areas.gpkg')
 # st_write(forest, 'output/mr-forest.gpkg')
 # st_write(water, 'output/mr-water.gpkg')
