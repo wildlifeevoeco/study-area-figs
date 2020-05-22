@@ -58,32 +58,30 @@ gnl <- ggplot() +
 						 data = data.table(x = 2856789, y = 1795543)) +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
-				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
+				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm")) +
+	themeMap
 
-gnl
+
 
 # Source MR figure ----------------------------------------------
 source('R/16-middle-ridge-figure.R')
 
 
 
-
 # Combine -----------------------------------------------------------------
 # used the ggannotate package to make finding these numbers easier
-g <- grmnp +
+g <- gmr +
 	annotation_custom(
-		ggplotGrob(gmbAdjust),
-		xmin = 340770,
-		ymin = 5584909,
-		xmax = 377059,
-		ymax = 5612715)
-
-
+		ggplotGrob(gnl),
+		xmin = 741737,
+		ymin = 5248241,
+		xmax = 686528,
+		ymax = 5293369)
 
 
 # Output ------------------------------------------------------------------
 ggsave(
-	'graphics/14-riding-mountain-inset.png',
+	'graphics/17-middle-ridge-inset.png',
 	g,
 	width = 10,
 	height = 10,
