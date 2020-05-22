@@ -27,3 +27,38 @@ roadscall <- opq(bb) %>%
 	osmdata_sf()
 
 
+
+# Prep geometries ---------------------------------------------------------
+utm <- st_crs(32621)
+
+## Combine water polygons
+# Transform to UTM
+wpolys <- st_transform(watercall$osm_polygons, utm)
+wmpolys <- st_transform(watercall$osm_multipolygons, utm)
+
+# Calculate area
+wpolys$area <- st_area(wpolys)
+wmpolys$area <- st_area(wmpolys)
+
+thresharea <- quantile(wpolys$area, .70)
+
+w <- st_as_sf(st_combine(wpolys[wpolys$area > thresharea,]))
+wm <- st_as_sf(st_combine(wmpolys[wmpolys$area > thresharea,]))
+
+water <- st_union(w, wm)
+
+## Combine forest polygons
+fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
+
+forest <- st_as_sf(st_combine(st_simplify(fmpolys)))
+
+## Reproject
+roadutm <- st_transform(roadscall$osm_lines, utm)
+
+
+# Output ------------------------------------------------------------------
+st_write(boundutm, 'output/mr-bounds.gpkg')
+st_write(roadutm, 'output/mr-roads.gpkg')
+st_write(forest, 'output/mr-forest.gpkg')
+st_write(water, 'output/mr-water.gpkg')
+
