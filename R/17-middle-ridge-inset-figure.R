@@ -36,11 +36,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Plot --------------------------------------------------------------------
 bounds <- st_transform(bounds, crs)
 lakes <- st_transform(lakes, crs)
+nl <- st_transform(nl, crs)
 
-# Base rmnp
-nl <- bounds[bounds$name_en == 'Newfoundland and Labrador',]
-
-bb <- st_bbox(st_buffer(nl, 1e3))
+on <- bounds[bounds$name == 'Manitoba',]
+adjust <- 1.3e6
+bb <- st_bbox(st_buffer(on, adjust))
 
 gnl <- ggplot() +
 	geom_sf(fill = islandcol, color = 'black', size = 0.1, data = bounds) +
@@ -48,6 +48,8 @@ gnl <- ggplot() +
 	geom_sf(fill = '#cd0001', color = NA, alpha = 0.3, data = nl) +
 	guides(color = FALSE, fill = FALSE) +
 	labs(x = NULL, y = NULL) +
+	coord_sf(xlim = c(bb['xmin'] - adjust, bb['xmax'] + adjust),
+					 ylim = c(bb['ymin'] + adjust, bb['ymax'] + adjust)) +
 	# geom_point(aes(x, y), size = 5, shape = 18,
 	# 					 data = data.table(x = -295169, y = 1197566)) +
 	theme(axis.text = element_blank(),
