@@ -11,12 +11,12 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-
 # Data --------------------------------------------------------------------
-mr <- st_read('output/mr-bounds.gpkg')
+# mr <- st_read('output/mr-bounds.gpkg')
 roads <- st_read('output/mr-roads.gpkg')
-water <- st_read('output/mr-water.gpkg')
-forest <- st_read('output/mr-forest.gpkg')
+# water <- st_read('output/mr-water.gpkg')
+# forest <- st_read('output/mr-forest.gpkg')
+areas <- st_read('output/mr-protected-areas.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 # CRS
@@ -41,7 +41,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 ## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = islandcol),
+									panel.background = element_rect(fill = watercol),
 									panel.grid = element_line(color = gridcol, size = 0.3),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
