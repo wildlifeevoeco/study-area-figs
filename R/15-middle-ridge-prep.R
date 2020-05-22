@@ -9,10 +9,23 @@ lapply(libs, require, character.only = TRUE)
 
 
 
+# Download Open Gov data --------------------------------------------------
+#
+curl_download('https://www.flr.gov.nl.ca/natural_areas/ProvincialProtectedAreasNL.zip', 'input/newfoundland-protected-areas.zip')
+dir.create('input')
+unzip('input/newfoundland-protected-areas.zip', exdir = 'input/newfoundland-protected-areas')
+
+areas <- st_read('input/newfoundland-protected-areas')
+
+subareas <- areas[areas$NAME_E %in% c('Middle Ridge Wildlife Reserve',
+																			'Bay du Nord Wilderness Reserve'),]
+
+
 # Download OSM data -------------------------------------------------------
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
-bb <- c(-55.58, 47.76, -54.52, 48.55)
+areabb <- st_bbox(st_buffer(subareas, 0.5))
+bb <- c(areabb['xmin'], areabb['ymin'], areabb['xmax'], areabb['ymax'])
 
 # Download water
 watercall <- opq(bb) %>%
@@ -29,18 +42,6 @@ roadscall <- opq(bb) %>%
 	add_osm_feature(key = 'highway') %>%
 	osmdata_sf()
 
-
-
-# Download Open Gov data --------------------------------------------------
-#
-curl_download('https://www.flr.gov.nl.ca/natural_areas/ProvincialProtectedAreasNL.zip', 'input/newfoundland-protected-areas.zip')
-dir.create('input')
-unzip('input/newfoundland-protected-areas.zip', exdir = 'input/newfoundland-protected-areas')
-
-areas <- st_read('input/newfoundland-protected-areas')
-
-subareas <- areas[areas$NAME_E %in% c('Middle Ridge Wildlife Reserve',
-																			'Bay du Nord Wilderness Reserve'),]
 
 
 # Prep geometries ---------------------------------------------------------
