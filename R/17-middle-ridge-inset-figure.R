@@ -15,7 +15,9 @@ lapply(libs, require, character.only = TRUE)
 # Data --------------------------------------------------------------------
 bounds <- st_read('output/manitoba-bounds.gpkg')
 lakes <- st_read('output/manitoba-lakes.gpkg')
+areas <- st_read('output/mr-protected-areas.gpkg')
 
+nl <- bounds[bounds$name_en == 'Newfoundland and Labrador',]
 
 # CRS
 crs <- st_crs('ESRI:102001')
@@ -37,10 +39,12 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 bounds <- st_transform(bounds, crs)
 lakes <- st_transform(lakes, crs)
 nl <- st_transform(nl, crs)
+areas <- st_transform(areas, crs)
 
-on <- bounds[bounds$name == 'Manitoba',]
+
+mb <- bounds[bounds$name == 'Manitoba',]
 adjust <- 1.3e6
-bb <- st_bbox(st_buffer(on, adjust))
+bb <- st_bbox(st_buffer(mb, adjust))
 
 gnl <- ggplot() +
 	geom_sf(fill = islandcol, color = 'black', size = 0.1, data = bounds) +
@@ -50,8 +54,8 @@ gnl <- ggplot() +
 	labs(x = NULL, y = NULL) +
 	coord_sf(xlim = c(bb['xmin'] - adjust, bb['xmax'] + adjust),
 					 ylim = c(bb['ymin'] + adjust, bb['ymax'] + adjust)) +
-	# geom_point(aes(x, y), size = 5, shape = 18,
-	# 					 data = data.table(x = -295169, y = 1197566)) +
+	geom_point(aes(x, y), size = 5, shape = 18,
+						 data = data.table(x = 2856789, y = 1795543)) +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
 				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
