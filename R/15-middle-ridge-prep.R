@@ -9,10 +9,7 @@ lapply(libs, require, character.only = TRUE)
 ### Download OSM data ----
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
-zz <- opq(c(-55.58, 47.61, -54.32, 49.11)) %>%
-	# add_osm_feature(key = 'place', value = 'island') %>%
-	osmdata_sf()
-
+bb <- c(-55.58, 47.76, -54.52, 48.55)
 
 # Download water
 watercall <- opq(bb) %>%
@@ -26,5 +23,7 @@ forestcall <- opq(bb) %>%
 
 # Trails and roads
 roadscall <- opq(bb) %>%
-	add_osm_feature(key = 'highway') %>% # , value = c('forest', 'wood')) %>%
+	add_osm_feature(key = 'highway') %>%
 	osmdata_sf()
+
+
