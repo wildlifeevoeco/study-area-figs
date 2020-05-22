@@ -13,10 +13,7 @@ lapply(libs, require, character.only = TRUE)
 
 
 # Data --------------------------------------------------------------------
-# mr <- st_read('output/mr-bounds.gpkg')
 roads <- st_read('output/mr-roads.gpkg')
-# water <- st_read('output/mr-water.gpkg')
-# forest <- st_read('output/mr-forest.gpkg')
 areas <- st_read('output/mr-protected-areas.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
