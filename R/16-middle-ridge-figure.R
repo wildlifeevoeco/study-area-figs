@@ -17,7 +17,7 @@ mr <- st_read('output/mr-bounds.gpkg')
 roads <- st_read('output/mr-roads.gpkg')
 water <- st_read('output/mr-water.gpkg')
 forest <- st_read('output/mr-forest.gpkg')
-
+nl <- st_read('output/newfoundland-polygons.gpkg')
 
 # CRS
 utm <- st_crs(32614)
@@ -41,7 +41,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 ## Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = landcol),
+									panel.background = element_rect(fill = islandcol),
 									panel.grid = element_line(color = gridcol, size = 0.3),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
@@ -54,15 +54,16 @@ roads$geometry <- st_geometry(roads)
 bb <- st_bbox(st_buffer(st_centroid(mr), 6e4))
 
 gmr <- ggplot() +
-	geom_sf(fill = landcol, data = mr) +
+	# geom_sf(fill = landcol, data = nl) +
+	# geom_sf(fill = landcol, data = mr) +
 	geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
-	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = water) +
-	geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.2) +
-	geom_sf(fill = NA, size = 0.5, color = 'black', data = mr) +
+	geom_sf(fill = watercol, color = streamcol, size = 0.2, data = water) +
+	geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.5) +
+	# geom_sf(fill = NA, size = 0.5, color = 'black', data = mr) +
 	scale_color_manual(values = roadpal) +
 	guides(color = FALSE, fill = FALSE) +
-	coord_sf(xlim = c(bb['xmin'] - 1e4, bb['xmax']),
-					 ylim = c(bb['ymin'] + 4.5e4, bb['ymax']) - 3e4) +
+	# coord_sf(xlim = c(bb['xmin'] - 1e4, bb['xmax']),
+	# 				 ylim = c(bb['ymin'] + 4.5e4, bb['ymax']) - 3e4) +
 	themeMap
 
 
