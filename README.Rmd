@@ -137,3 +137,15 @@ Reproducing: run  `03-newfoundland-prep.R` and `15-middle-ridge-prep.R` to gener
 ```{r}
 knitr::include_graphics('graphics/16-middle-ridge.png')
 ```
+
+
+10. Middle Ridge Inset
+
+This uses data from Open Street Map, Natural Earth and Newfoundland Government and packages: `osmdata`, `rnaturalearth`, `sf`, `data.table`, `ggrepel` and `ggplot`. 
+
+
+Reproducing: run  `03-newfoundland-prep.R`, `12-manitoba-prep.R` and `15-middle-ridge-prep.R` to generate the MR and NL data and `17-middle-ridge-inset-figure.R` to generate the figure. 
+
+```{r}
+knitr::include_graphics('graphics/17-middle-ridge-inset.png')
+```
