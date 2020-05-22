@@ -52,9 +52,12 @@ fmpolys <- st_transform(forestcall$osm_multipolygons, utm)
 
 forest <- st_as_sf(st_combine(st_simplify(fmpolys)))
 
+## Bounds
+bounds <- st_as_sfc(st_bbox(c(xmin = bb[1], xmax = bb[3], ymin = bb[2], ymax = bb[4]), crs = st_crs(4326)))
+
 ## Reproject
 roadutm <- st_transform(roadscall$osm_lines, utm)
-
+boundutm <- st_transform(bounds, utm)
 
 # Output ------------------------------------------------------------------
 st_write(boundutm, 'output/mr-bounds.gpkg')
