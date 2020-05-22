@@ -56,10 +56,10 @@ gnl <- ggplot() +
 					 ylim = c(bb['ymin'] + adjust, bb['ymax'] + adjust)) +
 	geom_point(aes(x, y), size = 5, shape = 18,
 						 data = data.table(x = 2856789, y = 1795543)) +
+	themeMap +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
-				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm")) +
-	themeMap
+				plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
 
 
 
