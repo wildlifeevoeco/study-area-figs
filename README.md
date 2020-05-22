@@ -1,7 +1,10 @@
 
 # study-area-figures
 
-Collecting WEEL study area figures in one place, for sharing\!
+Collecting WEEL study area figures in one place, for sharing\! These
+should be a good foundation for more specific figures. And a useful
+resource for spatial plotting, and downloading open spatial data from
+OSM, Natural Earth and government sources.
 
 ## Contributing:
 
