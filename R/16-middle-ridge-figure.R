@@ -54,15 +54,15 @@ roads$geometry <- st_geometry(roads)
 # Base mr
 bb <- st_bbox(st_buffer(areas, 4e4))
 
+areas$labx <- st_coordinates(st_centroid(areas))[, 'X']
+areas$laby <- st_coordinates(st_centroid(areas))[, 'Y']
+
 gmr <- ggplot() +
 	geom_sf(fill = landcol, color = coastcol, data = nl) +
-	geom_sf(fill = parkcol, color = parkboundcol, size = 0.4, data = areas) +
-	# geom_sf(fill = landcol, data = mr) +
-	# geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
-	# geom_sf(fill = watercol, color = streamcol, size = 0.2, data = water) +
+	geom_sf(fill = parkcol, color = parkcol, data = areas) +
 	geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.5) +
-	# geom_sf(fill = NA, size = 0.5, color = 'black', data = mr) +
 	scale_color_manual(values = roadpal) +
+	# geom_label_repel(aes(labx, laby, label = NAME_E), size = 5, fontface = 'bold', data = areas) +
 	guides(color = FALSE, fill = FALSE) +
 	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 					 ylim = c(bb['ymin'], bb['ymax'])) +
@@ -78,5 +78,4 @@ ggsave(
 	height = 10,
 	dpi = 320
 )
-
 
