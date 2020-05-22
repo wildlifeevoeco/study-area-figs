@@ -51,19 +51,20 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 roads$geometry <- st_geometry(roads)
 
 # Base mr
-bb <- st_bbox(st_buffer(st_centroid(mr), 6e4))
+bb <- st_bbox(st_buffer(areas, 1e4))
 
 gmr <- ggplot() +
-	# geom_sf(fill = landcol, data = nl) +
+	geom_sf(fill = landcol, data = nl) +
+	geom_sf(fill = parkcol, color = parkboundcol, size = 0.1, data = areas) +
 	# geom_sf(fill = landcol, data = mr) +
-	geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
-	geom_sf(fill = watercol, color = streamcol, size = 0.2, data = water) +
+	# geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
+	# geom_sf(fill = watercol, color = streamcol, size = 0.2, data = water) +
 	geom_sf(aes(color = highway), alpha = 0.8, data = roads, size = 0.5) +
 	# geom_sf(fill = NA, size = 0.5, color = 'black', data = mr) +
 	scale_color_manual(values = roadpal) +
 	guides(color = FALSE, fill = FALSE) +
-	# coord_sf(xlim = c(bb['xmin'] - 1e4, bb['xmax']),
-	# 				 ylim = c(bb['ymin'] + 4.5e4, bb['ymax']) - 3e4) +
+	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+					 ylim = c(bb['ymin'], bb['ymax'])) +
 	themeMap
 
 
