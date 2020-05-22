@@ -1,12 +1,15 @@
-### Middle Ridge prep ====
+# === Middle Ridge - Prep -------------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
-libs <- c('sf', 'osmdata')
+
+# Packages ----------------------------------------------------------------
+libs <- c('curl', 'sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
-### Download OSM data ----
+
+
+# Download OSM data -------------------------------------------------------
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
 bb <- c(-55.58, 47.76, -54.52, 48.55)
@@ -26,6 +29,18 @@ roadscall <- opq(bb) %>%
 	add_osm_feature(key = 'highway') %>%
 	osmdata_sf()
 
+
+
+# Download Open Gov data --------------------------------------------------
+#
+curl_download('https://www.flr.gov.nl.ca/natural_areas/ProvincialProtectedAreasNL.zip', 'input/newfoundland-protected-areas.zip')
+dir.create('input')
+unzip('input/newfoundland-protected-areas.zip', exdir = 'input/newfoundland-protected-areas')
+
+areas <- st_read('input/newfoundland-protected-areas')
+
+subareas <- areas[areas$NAME_E %in% c('Middle Ridge Wildlife Reserve',
+																			'Bay du Nord Wilderness Reserve'),]
 
 
 # Prep geometries ---------------------------------------------------------
@@ -58,10 +73,12 @@ bounds <- st_as_sfc(st_bbox(c(xmin = bb[1], xmax = bb[3], ymin = bb[2], ymax = b
 ## Reproject
 roadutm <- st_transform(roadscall$osm_lines, utm)
 boundutm <- st_transform(bounds, utm)
+areasutm <- st_transform(subareas, utm)
 
 # Output ------------------------------------------------------------------
 st_write(boundutm, 'output/mr-bounds.gpkg')
 st_write(roadutm, 'output/mr-roads.gpkg')
+st_write(areasutm, 'output/mr-protected-areas.gpkg')
 st_write(forest, 'output/mr-forest.gpkg')
 st_write(water, 'output/mr-water.gpkg')
 
