@@ -1,8 +1,9 @@
-### Bloomfield Study Area Figure ====
+# === Bloomfield Figure ---------------------------------------------------
 # Alec L. Robitaille, Juliana Balluffi-Fry
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -12,7 +13,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 grids <- data.table(SiteName = 'Bloomfield',
 										x = 723457,
 										y = 5359856)
@@ -44,9 +46,7 @@ highway <- st_crop(roads, bb + (zoomout * 2))
 nlcrop <- st_crop(nl, bb + (zoomout * 2))
 
 
-
-
-### Theme ----
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -68,8 +68,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
-### Plot ----
 
+# Plot --------------------------------------------------------------------
 # NL plot
 (gnl <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.1, color = 'black', data = nl) +
@@ -122,7 +122,8 @@ g <- gblm +
 		)
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/09-bloomfield.png',
 	g,

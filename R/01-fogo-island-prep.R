@@ -1,13 +1,15 @@
-### Fogo island prep ====
+# === Fogo Island Prep ----------------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+# Packages ----------------------------------------------------------------
 libs <- c('sf',
 					'osmdata')
 lapply(libs, require, character.only = TRUE)
 
-### Download OSM data ----
+
+
+# Download OSM data -------------------------------------------------------
 # Set up bounding box - order: xmin, ymin, xmax, ymax
 bb <- c(xmin = -54.3533,
 				ymin = 49.5194,
@@ -62,6 +64,7 @@ roads <- routes$osm_lines
 
 ### Cut water out of islands
 cutisles <- st_difference(islands, waterpols)
+
 
 
 

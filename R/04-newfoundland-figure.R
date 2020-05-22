@@ -1,8 +1,9 @@
-### Newfoundland Study Area Figure ====
+# === Newfoundland - Figure -----------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -11,14 +12,14 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+# Data --------------------------------------------------------------------
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 
-### Theme ----
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -29,7 +30,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # NOTE: this figure only has the main island's coastline (eg missing Fogo)
 # Base NL
 (gnl <- ggplot(nl) +
@@ -37,7 +39,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	themeMap)
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/04-newfoundland.png',
 	gnl,

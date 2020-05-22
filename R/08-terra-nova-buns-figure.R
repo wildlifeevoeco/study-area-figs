@@ -1,8 +1,8 @@
-### Terra Nova Buns Grid Study Area Figure ====
+# === Terra Nova Buns Grid - Figure ---------------------------------------
 # Alec L. Robitaille, Isabella Richmond
 
 
-### Packages ----
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -12,7 +12,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 grids <- data.table(
 	SiteName = c("Bloomfield",
 							 "Dunphy's Pond", "TNNP North", "Unicorn"),
@@ -51,7 +52,8 @@ selroads <- c('trunk', 'primary')
 highway <- roads[roads$highway %in% selroads,]
 
 
-### Theme ----
+
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -72,7 +74,8 @@ bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
 bbadjust <- bb #+ c(-1e3, 0, 0, 0)
 
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # Crop NL
 nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 
@@ -134,7 +137,8 @@ annotateBB <- st_bbox(st_transform(annotateSf, utm))
 
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/08-terra-nova-buns.png',
 	g,
