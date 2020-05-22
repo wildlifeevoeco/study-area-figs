@@ -51,11 +51,11 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 roads$geometry <- st_geometry(roads)
 
 # Base mr
-bb <- st_bbox(st_buffer(areas, 1e4))
+bb <- st_bbox(st_buffer(areas, 4e4))
 
 gmr <- ggplot() +
-	geom_sf(fill = landcol, data = nl) +
-	geom_sf(fill = parkcol, color = parkboundcol, size = 0.1, data = areas) +
+	geom_sf(fill = landcol, color = coastcol, data = nl) +
+	geom_sf(fill = parkcol, color = parkboundcol, size = 0.4, data = areas) +
 	# geom_sf(fill = landcol, data = mr) +
 	# geom_sf(fill = forestcol, color = forestcol, size = 0.1, data = forest) +
 	# geom_sf(fill = watercol, color = streamcol, size = 0.2, data = water) +
