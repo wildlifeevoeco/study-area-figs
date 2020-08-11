@@ -1,6 +1,8 @@
 
 # study-area-figures
 
+[![DOI](https://zenodo.org/badge/266179303.svg)](https://doi.org/10.5281/zenodo.3979666)
+
 Collecting WEEL study area figures in one place, for sharing\! These
 should be a good foundation for more specific figures. And a useful
 resource for spatial plotting, and downloading open spatial data from
@@ -23,6 +25,8 @@ Also, we output the features to `.gpkg` (GeoPackage) because…
 
 Also\! I made a bash script for rerunning all the figures. If you want
 to try it, let me know.
+
+Also.. Zenodo record above for citing.
 
 ## Study area figures
 
