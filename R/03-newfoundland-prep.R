@@ -1,13 +1,15 @@
-### Newfoundland prep ====
+# === Newfoundland Prep ---------------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
-libs <- c('sf',
-					'osmdata')
+
+# Packages ----------------------------------------------------------------
+libs <- c('sf', 'osmdata')
 lapply(libs, require, character.only = TRUE)
 
-### Download OSM data ----
+
+
+# Download OSM data -------------------------------------------------------
 # Download osm coastlines in bbox
 # NOTE: This steps takes a few moments
 zz <- opq(getbb('Newfoundland')) %>%
@@ -24,7 +26,8 @@ castpolys <- st_cast(st_polygonize(st_union(lns)))
 nl <- st_as_sf(castpolys)
 
 
-### Reproject islands ----
+
+# Reproject islands -------------------------------------------------------
 # Projections
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
@@ -32,5 +35,6 @@ utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 utmNL <- st_transform(nl, utm)
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 st_write(utmNL, 'output/newfoundland-polygons.gpkg')

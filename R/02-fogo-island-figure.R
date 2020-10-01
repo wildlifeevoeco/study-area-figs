@@ -1,8 +1,8 @@
-### Fogo Study Area Figure ====
+# === Fogo Island Figure --------------------------------------------------
 # Alec L. Robitaille
 
 
-### Packages ----
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -11,7 +11,7 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+# Data --------------------------------------------------------------------
 fogo <- st_read('output/fogo-island-polygons.gpkg')
 roads <- st_read('output/fogo-roads.gpkg')
 tracks <- fread('../fogo_coyote_repeat/data/derived-data/final-dt-coyote-fixes.csv')
@@ -29,11 +29,12 @@ caribou <- caribou[!is.na(caribou$season),]
 carWinter <- caribou[season == "winter"]
 carSummer <- caribou[season == "summer"]
 
+
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 
-### Theme ----
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -50,7 +51,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 									axis.text = element_text(size = 11, color = 'black'),
 									axis.title = element_blank())
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # Base fogo
 (gfogo <- ggplot() +
  	geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = fogo) +
@@ -63,7 +65,8 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
  	themeMap)
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/02-fogo-island.png',
 	gfogo,

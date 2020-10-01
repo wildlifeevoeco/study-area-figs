@@ -1,8 +1,8 @@
-### Terra Nova Buns Grid Study Area Figure ====
+# === Terra Nova Buns Grid - Figure ---------------------------------------
 # Alec L. Robitaille, Isabella Richmond
 
 
-### Packages ----
+# Packages ----------------------------------------------------------------
 libs <- c(
 	'data.table',
 	'ggplot2',
@@ -12,7 +12,8 @@ libs <- c(
 lapply(libs, require, character.only = TRUE)
 
 
-### Data ----
+
+# Data --------------------------------------------------------------------
 grids <- data.table(
 	SiteName = c("Bloomfield",
 							 "Dunphy's Pond", "TNNP North", "Unicorn"),
@@ -40,6 +41,8 @@ roads <- st_read('output/terra-nova-roads.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
 water <- st_read('output/terra-nova-water.gpkg')
+streamLns <- st_read('output/terra-nova-streams-lns.gpkg')
+streamPols <- st_read('output/terra-nova-streams-pols.gpkg')
 
 # CRS
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
@@ -49,7 +52,8 @@ selroads <- c('trunk', 'primary')
 highway <- roads[roads$highway %in% selroads,]
 
 
-### Theme ----
+
+# Theme -------------------------------------------------------------------
 # Colors
 source('R/00-palette.R')
 
@@ -70,7 +74,8 @@ bb <- st_bbox(tn) + rep(c(-5e3, 5e3), each = 2)
 bbadjust <- bb #+ c(-1e3, 0, 0, 0)
 
 
-### Plot ----
+
+# Plot --------------------------------------------------------------------
 # Crop NL
 nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 
@@ -100,8 +105,10 @@ nlcrop <- st_crop(nl, bbadjust + rep(c(-5e4, 5e4), each = 2))
 		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
 		geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = tn) +
 		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
-		geom_sf(aes(color = highway), data = highway) +
 		scale_color_manual(values = roadpal) +
+		geom_sf(color = streamcol, size = 0.4, data = streamLns) +
+		geom_sf(fill = streampolcol, color = streamcol, alpha = 0.5, color = NA, data = streamPols) +
+		geom_sf(aes(color = highway), data = highway) +
 		geom_point(aes(x, y), data = grids) +
 		geom_sf_label(aes(label = 'Terra Nova National Park'), data = tn, fill = '#bbcbbc') +
 		geom_label_repel(aes(x, y, label = SiteName), size = 4.5, data = grids) +
@@ -130,7 +137,8 @@ annotateBB <- st_bbox(st_transform(annotateSf, utm))
 
 
 
-### Output ----
+
+# Output ------------------------------------------------------------------
 ggsave(
 	'graphics/08-terra-nova-buns.png',
 	g,
