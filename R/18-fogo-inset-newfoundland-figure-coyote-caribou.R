@@ -1,7 +1,7 @@
 
 
-# === Fogo Inset in NL Study Area Figure ----------------------------------
-# Alec L. Robitaille
+# === Fogo Inset in NL Study Area Figure With Caribou and Coyote data points ----------------------------------
+# Alec L. Robitaille & Quinn M.R. Webber
 
 
 
