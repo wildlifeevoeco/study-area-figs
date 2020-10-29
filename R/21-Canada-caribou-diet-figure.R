@@ -16,8 +16,8 @@ lapply(libs, require, character.only = TRUE)
 
 
 # Data --------------------------------------------------------------------
-bounds <- st_read('output/NA-bounds.gpkg')
-lakes <- st_read('output/NA-lakes.gpkg')
+bounds <- st_read('output/large files/NA-bounds.gpkg')
+lakes <- st_read('output/large files/NA-lakes.gpkg')
 
 boundsEurope <- st_read('output/Europe-bounds.gpkg')
 lakesEurope <- st_read('output/Europe-lakes.gpkg')

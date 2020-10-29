@@ -40,5 +40,5 @@ keepl <- lakes[subwi, ]
 
 
 # Output ------------------------------------------------------------------
-st_write(keepl, 'output/NA-lakes.gpkg', append = F)
-st_write(keepb, 'output/NA-bounds.gpkg', append = F)
+st_write(keepl, 'output/large files/NA-lakes.gpkg', append = F)
+st_write(keepb, 'output/large files/NA-bounds.gpkg', append = F)
