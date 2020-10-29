@@ -4,4 +4,5 @@
 .Ruserdata
 
 input/
+Output/large files/
 output/newfoundland-polygons.Rds
