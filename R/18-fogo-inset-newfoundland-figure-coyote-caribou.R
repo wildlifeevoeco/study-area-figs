@@ -66,8 +66,8 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = watercol),
-									panel.grid = element_line(color = gridcol, size = 0.2),
+									panel.background = element_rect(fill = 'lightgrey', color = "lightgrey"),
+									panel.grid = element_blank(), #line(color = gridcol, size = 0.2),
 									axis.text = element_text(size = 16, color = 'black'),
 									axis.title = element_blank())
 
@@ -75,20 +75,20 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Plot --------------------------------------------------------------------
 # Base Fogo
 gfogo <- ggplot(fogo) +
-	geom_sf(fill = islandcol, size = 0.3, color = coastcol) +
+	geom_sf(fill = "white", size = 0.3, color = NA) +
 	geom_sf(aes(color = highway), data = roads) +
-	geom_point(data = carWinter, aes(EASTING, NORTHING), color = "#8da0cb", alpha = 0.5, size = 0.5) +
-	geom_point(data = carSummer, aes(EASTING, NORTHING), color = "#66c2a5", alpha = 0.5, size = 0.5) +
-	geom_point(data = tracks[observed == TRUE], aes(X,Y), color = "black", size = 3, alpha = 0.75) +
+	geom_point(data = carWinter, aes(EASTING, NORTHING), color = "black", alpha = 0.5, size = 0.25, shape = 16) +
+	geom_point(data = carSummer, aes(EASTING, NORTHING), color = "lightgrey", alpha = 0.5, size = 0.25, shape = 16) +
+	geom_point(data = tracks[observed == TRUE], aes(X,Y), color = "black", size = 3, shape = 18) +
 	scale_color_manual(values = roadpal) +
 	guides(color = FALSE) +
 	themeMap
 
 # Base NL with red box indicating Fogo
 gnl <- ggplot(nl) +
-	geom_sf(fill = islandcol, size = 0.3, color = coastcol) +
+	geom_sf(fill = "white", size = 0.3, color = "black") +
 	themeMap +
-	geom_sf(fill = islandcol, , size = 0.3, color = coastcol, data = fogo) +
+	geom_sf(fill = "white", size = 0.3, color = "black", data = fogo) +
 	geom_rect(
 		aes(
 			xmin = x[1],
@@ -99,7 +99,7 @@ gnl <- ggplot(nl) +
 		data = utmBB + c(-buf, buf),
 		fill = NA,
 		size = 1.5,
-		color = 'red'
+		color = 'black'
 	) +
 	theme(axis.text = element_blank(),
 				axis.ticks = element_blank(),
@@ -122,7 +122,7 @@ gnl <- ggplot(nl) +
 
 # Output  -----------------------------------------------------------------
 ggsave(
-	'graphics/18-fogo-inset-nl-caribou-coyote.png',
+	'graphics/18-fogo-inset-nl-caribou-coyote.pdf',
 	g,
 	width = 7,
 	height = 7,
