@@ -76,9 +76,9 @@ gfogo <- ggplot(fogo) +
 	geom_sf(fill = "#eaeaea", size = 0.3, color = "#000000") +
 	geom_sf(aes(color = highway), data = roads) +
 	geom_point(data = carWinter, aes(EASTING, NORTHING),
-						 color = "#6b6b6b", alpha = 0.7, size = 1, shape = 1) +
+						 color = "#6b6b6b", alpha = 0.7, size = 1, shape = 16) +
 	geom_point(data = carSummer, aes(EASTING, NORTHING),
-						 color = "#adadad", alpha = 0.7, size = 1, shape = 1) +
+						 color = "#adadad", alpha = 0.7, size = 1, shape = 16) +
 	geom_point(data = tracks[observed == TRUE], aes(X,Y), color = "black", size = 3, shape = 18) +
 	scale_color_manual(values = roadpal) +
 	guides(color = FALSE) +
