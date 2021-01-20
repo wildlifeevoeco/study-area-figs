@@ -73,7 +73,7 @@ swe <- boundsEurope[boundsEurope$name_en == 'Lapland',]
 bb2 <- st_bbox(st_buffer(swe, 2.5e6))
 
 
-ggplot() +
+caribou <- ggplot() +
 	geom_sf(fill = islandcol, color = 'black', size = 0.1, data = bounds) +
 	geom_sf(fill = watercol, color = streamcol, size = 0.1, data = lakes) +
   geom_sf(data = sites2, size = 2, alpha = 0.75, color = "darkred") +
@@ -97,10 +97,10 @@ ggplot() +
 
 
 # Output ------------------------------------------------------------------
-#ggsave(
-#	'graphics/13-manitoba.png',
-#	gmb,
-#	width = 10,
-#	height = 10,
-#	dpi = 320
-#)
+ggsave(
+	'graphics/21-caribou-diet.png',
+	caribou,
+	width = 10,
+	height = 10,
+	dpi = 320
+)
