@@ -1,5 +1,3 @@
-
-
 # === Fogo Inset in NL Study Area Figure With Caribou and Coyote data points ----------------------------------
 # Alec L. Robitaille & Quinn M.R. Webber
 
@@ -17,16 +15,16 @@ lapply(libs, require, character.only = TRUE)
 
 
 # Data --------------------------------------------------------------------
-fogo <- st_read('output/fogo-island-polygons.gpkg')
+fogo <- st_read('output/fogo-island-polygons-no-ponds.gpkg')
 roads <- st_read('output/fogo-roads.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 tracks <- fread('../fogo_coyote_repeat/data/derived-data/final-dt-coyote-fixes.csv')
 caribou <- fread("../fogo_coyote_repeat/data/raw-data/caribou/FogoCaribou.csv")
-caribou <- caribou[Year == "2016" | Year == "2017"]
-islands <- readRDS('../social-issa/output/vertices/islandsPoly.Rds')
-islands <- st_as_sf(islands)
+nl <- st_read('output/newfoundland-polygons.gpkg')
+
 
 ## add season to caribou data
+caribou <- caribou[Year == "2016" | Year == "2017"]
 caribou[JDate >= 15 & JDate <= 63, season := 'winter']
 caribou[JDate >= 196 & JDate <= 244, season := 'summer']
 caribou <- caribou[!is.na(caribou$season),]
