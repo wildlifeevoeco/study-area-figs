@@ -64,7 +64,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 # Theme
 themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
-									panel.background = element_rect(fill = 'lightgrey', color = "lightgrey"),
+									panel.background = element_rect(fill = '#cccccc'),
 									panel.grid = element_blank(), #line(color = gridcol, size = 0.2),
 									axis.text = element_text(size = 16, color = 'black'),
 									axis.title = element_blank())
@@ -73,14 +73,17 @@ themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
 # Plot --------------------------------------------------------------------
 # Base Fogo
 gfogo <- ggplot(fogo) +
-	geom_sf(fill = "white", size = 0.3, color = NA) +
+	geom_sf(fill = "#eaeaea", size = 0.3, color = "#000000") +
 	geom_sf(aes(color = highway), data = roads) +
-	geom_point(data = carWinter, aes(EASTING, NORTHING), color = "black", alpha = 0.5, size = 0.25, shape = 16) +
-	geom_point(data = carSummer, aes(EASTING, NORTHING), color = "lightgrey", alpha = 0.5, size = 0.25, shape = 16) +
+	geom_point(data = carWinter, aes(EASTING, NORTHING),
+						 color = "#6b6b6b", alpha = 0.7, size = 1, shape = 1) +
+	geom_point(data = carSummer, aes(EASTING, NORTHING),
+						 color = "#adadad", alpha = 0.7, size = 1, shape = 1) +
 	geom_point(data = tracks[observed == TRUE], aes(X,Y), color = "black", size = 3, shape = 18) +
 	scale_color_manual(values = roadpal) +
 	guides(color = FALSE) +
 	themeMap
+gfogo
 
 # Base NL with red box indicating Fogo
 gnl <- ggplot(nl) +
