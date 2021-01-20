@@ -48,7 +48,9 @@ onlywaterpols <- pols[pols$natural == 'water',]
 # Union and combine
 waterpols <- st_union(st_combine(mpols), st_combine(pols))
 
-
+# Cut water out of islands
+withPonds <- st_difference(islands, waterpols)
+withoutPonds <- islands
 
 ## Roads
 routes <- opq(bb) %>%
@@ -62,9 +64,6 @@ roads <- routes$osm_lines
 # NOTE: there is also wetland data
 
 
-### Cut water out of islands
-cutisles <- st_difference(islands, waterpols)
-
 
 
 
@@ -73,10 +72,11 @@ cutisles <- st_difference(islands, waterpols)
 utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
 
 # Project to UTM
-utmislands <- st_transform(cutisles, utm)
-
+utmislands <- st_transform(withPonds, utm)
+utmislandsNoPonds <- st_transform(withoutPonds, utm)
 utmroads <- st_transform(roads, utm)
 
 ### Output ----
-st_write(utmislands, 'output/fogo-island-polygons.gpkg')
-st_write(utmroads, 'output/fogo-roads.gpkg')
+write_sf(utmislands, 'output/fogo-island-polygons.gpkg')
+write_sf(utmislandsNoPonds, 'output/fogo-island-polygons-no-ponds.gpkg')
+write_sf(utmroads, 'output/fogo-roads.gpkg')
