@@ -11,7 +11,7 @@ lapply(libs, require, character.only = TRUE)
 
 # Download Open Gov data --------------------------------------------------
 #
-curl_download('https://www.flr.gov.nl.ca/natural_areas/ProvincialProtectedAreasNL.zip', 'input/newfoundland-protected-areas.zip')
+curl_download('https://www.gov.nl.ca/ecc/files/natural-areas-provincialprotectedareasnl.zip', 'input/newfoundland-protected-areas.zip')
 dir.create('input')
 unzip('input/newfoundland-protected-areas.zip', exdir = 'input/newfoundland-protected-areas')
 
