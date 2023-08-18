@@ -87,8 +87,13 @@ mpols <- water$osm_multipolygons
 
 #!!!!!! Error here.
 # Union and combine
+# Getting a invalid geometry from OSM with spherical geometry
+# Turning off for this operation
+# https://github.com/r-spatial/sf/issues/1762
+# https://r-spatial.org/book/04-Spherical.html#validity-on-the-sphere
+sf_use_s2(FALSE)
 waterpols <- st_union(st_combine(mpols))
-
+sf_use_s2(TRUE)
 
 # Streams
 waterways <- opq(map_bb) %>%
