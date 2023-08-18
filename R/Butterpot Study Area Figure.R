@@ -106,7 +106,7 @@ streamsLns <- waterways$osm_lines
 
 
 # Reprojection ------------------------------------------------------------
-utm <- st_crs('+proj=utm +zone=21 ellps=WGS84')
+utm <- st_crs(32621)
 
 # Project to UTM
 #shape file doesn't do this transformation, not sure what I need here
