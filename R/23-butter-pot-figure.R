@@ -51,10 +51,26 @@ bb <- st_bbox(butter_pot) - rep(c(1e3, -1e3), each = 2)
 nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
 
 
+(gbp <- ggplot() +
+		geom_sf(fill = islandcol, size = 0.3, color = coastcol, data = nlcrop) +
+		geom_sf(fill = parkcol, size = 0.3, color = parkboundcol, data = butter_pot) +
+		geom_sf(fill = watercol, size = 0.2, color = coastcol, data = water) +
+		geom_sf(fill = streampolcol, color = NA, data = streams_pols) +
+		geom_sf(color = streamcol, size = 0.4, data = streams_lns) +
+		geom_sf(aes(color = highway), data = highway) +
+		geom_sf_label(aes(label = 'Butter Pot Provincial'), size = 5, fontface = 'bold',
+									data = butter_pot) +
+		scale_color_manual(values = roadpal) +
+		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+						 ylim = c(bb['ymin'], bb['ymax'])) +
+		guides(color = 'none') +
+		themeMap)
+
+
 # Output ------------------------------------------------------------------
 ggsave(
 	'graphics/23-butter-pot.png',
-	gtn,
+	gbp,
 	width = 10,
 	height = 10,
 	dpi = 320
