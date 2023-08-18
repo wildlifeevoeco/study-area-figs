@@ -1,5 +1,3 @@
-#Attempt at making map of study sites:
-require(rgdal)
 
 #shape file for butterpot was downloaded from here:
 #https://www.gov.nl.ca/tcar/home/parks/gis-data/
