@@ -109,22 +109,26 @@ streamsLns <- waterways$osm_lines
 utm <- st_crs(32621)
 
 # Project to UTM
-#shape file doesn't do this transformation, not sure what I need here
-#utmbp <- st_transform(bp_shp, utm)
-utmRoads <- st_transform(roads, utm)
-#water isn't working, sticking point above
-utmWater <- st_transform(waterpols, utm)
-utmStreamsLns <- st_transform(streamsLns, utm)
-utmStreamsPol <- st_transform(streamsPol, utm)
-
+utm_protected <- st_transform(protected, utm)
+utm_butter_pot <- st_transform(butter_pot, utm)
+utm_roads <- st_transform(roads, utm)
+utm_water <- st_transform(waterpols, utm)
+utm_streams_lns <- st_transform(streamsLns, utm)
+utm_streams_pols <- st_transform(streamsPol, utm)
 
 
 
 # Output ------------------------------------------------------------------
-#st_write(utmTN, 'output/terra-nova-polygons.gpkg')
-st_write(utmRoads, 'bp-roads.gpkg')
-#the water one isn't working
-st_write(utmWater, 'bp-water.gpkg')
-st_write(utmStreamsLns, 'bp-streams-lns.gpkg')
-st_write(utmStreamsPol, 'bp-streams-pols.gpkg')
+st_write(utm_protected, file.path('output', 'newfoundland-protected-areas.gpkg'),
+				 append = FALSE)
+st_write(utm_butter_pot, file.path('output', 'butter-pot-protected-areas.gpkg'),
+				 append = FALSE)
+st_write(utm_roads, file.path('output', 'butter-pot-roads.gpkg'),
+				 append = FALSE)
+st_write(utm_water, file.path('output', 'butter-pot-water.gpkg'),
+				 append = FALSE)
+st_write(utm_streams_lns, file.path('output', 'butter-pot-streams-lns.gpkg'),
+				 append = FALSE)
+st_write(utm_streams_pols, file.path('output', 'butter-pot-streams-pols.gpkg'),
+				 append = FALSE)
 
