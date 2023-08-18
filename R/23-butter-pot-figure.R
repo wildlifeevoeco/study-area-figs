@@ -3,7 +3,7 @@
 
 
 # Packages ----------------------------------------------------------------
-libs <- c('sf', 'ggplot2')
+libs <- c('sf', 'ggplot2', 'data.table')
 lapply(libs, require, character.only = TRUE)
 
 
