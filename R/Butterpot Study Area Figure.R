@@ -53,6 +53,15 @@ utmNL <- st_transform(nl, utm)
 
 # Output ------------------------------------------------------------------
 st_write(utmNL, 'newfoundland-polygons.gpkg')
+# Protected areas ---------------------------------------------------------
+# Butterpot shapefile:
+# https://www.gov.nl.ca/tcar/home/parks/gis-data/
+protected <- st_read(file.path(
+	'input',
+	'NL_Provincial_Protected_Areas_Sept9_2016',
+	'NL_Provincial_Protected_Areas_Sept9_2016.shp'
+))
+butter_pot <- protected[grepl('Butter', protected$NAME_E),]
 
 
 
