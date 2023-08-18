@@ -1,3 +1,5 @@
+# === Butter Pot Prep -----------------------------------------------------
+# Emily Monk, Alec L. Robitaille
 
 #shape file for butterpot was downloaded from here:
 #https://www.gov.nl.ca/tcar/home/parks/gis-data/
