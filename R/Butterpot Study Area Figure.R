@@ -68,6 +68,7 @@ butter_pot <- protected[grepl('Butter', protected$NAME_E),]
 ####################################################
 #Now prepare the butterpot area, as was done in the code for terra nova by Alec
 map_bb <- bp_shp@bbox + c(-0.5, -0.5, 0.5, 0.5)
+map_bb <- st_bbox(butter_pot) + c(-0.2, -0.2, 0.2, 0.2)
 
 routes <- opq(map_bb) %>%
   add_osm_feature(key = 'highway') %>%
