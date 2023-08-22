@@ -17,10 +17,11 @@ streams_pols <- st_read(file.path('output', 'butter-pot-streams-pols.gpkg'))
 nl <- st_read(file.path('output', 'newfoundland-polygons.gpkg'))
 
 
-# Select only main highway and primary
-# TODO: check if you want to include other types of roads
-#  with unique(roads$highway)
-selroads <- c('trunk', 'primary')
+# Select road types to display
+#service roads include campground roads and fire road in butterpot
+#motorway includes TCH
+#primary provides context of other major roads in area
+selroads <- c('primary',  'motorway', 'service')
 highway <- roads[roads$highway %in% selroads,]
 
 
