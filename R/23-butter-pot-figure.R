@@ -3,7 +3,7 @@
 
 
 # Packages ----------------------------------------------------------------
-libs <- c('sf', 'ggplot2', 'data.table')
+libs <- c('sf', 'sfheaders', 'ggplot2', 'data.table')
 lapply(libs, require, character.only = TRUE)
 
 
@@ -29,31 +29,23 @@ highway <- roads[roads$highway %in% selroads,]
 
 
 
-#Add trapping grids
-old_grid <- data.frame(
-	x = c(-53.06592, -53.06749, -53.07224, -53.0738),
-	y = c(47.39021, 47.39421, 47.38913, 47.39313)
+# Add trapping grids
+old_grid <- sf_polygon(matrix(
+	c(-53.06592, -53.06749, -53.0738, -53.07224,
+		47.39021, 47.39421, 47.39313, 47.38913),
+	ncol = 2)
 )
+st_crs(old_grid) <- crs_latlon
+old_grid <- st_transform(st_as_sfc(old_grid), crs_proj)
 
-new_grid <- data.frame(
-	x = c(-53.06253, -53.05724, -53.06596, -53.06068),
-	y = c(47.41072, 47.41287, 47.41459, 47.41674)
+new_grid <- sf_polygon(matrix(
+	c(-53.06253, -53.05724, -53.06068, -53.06596,
+		47.41072, 47.41287, 47.41674, 47.41459),
+	ncol = 2)
 )
+st_crs(new_grid) <- crs_latlon
+new_grid <- st_transform(st_as_sfc(new_grid), crs_proj)
 
-
-old_unprojected = st_as_sf(old_grid, coords = c('x', 'y'), crs = 4326)
-old_projected = st_transform(old_unprojected, 32621)
-old_poly <- old_projected %>%
-	dplyr::summarise() %>%
-	st_cast("POLYGON") %>%
-	st_convex_hull()
-
-new_unprojected = st_as_sf(new_grid, coords = c('x', 'y'), crs = 4326)
-new_projected = st_transform(new_unprojected, 32621)
-new_poly <- new_projected %>%
-	dplyr::summarise() %>%
-	st_cast("POLYGON") %>%
-	st_convex_hull()
 
 
 # Theme -------------------------------------------------------------------
@@ -91,8 +83,8 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
 		geom_sf(aes(color = highway), data = highway) +
 		geom_sf_label(aes(label = 'Butter Pot Provincial Park'), size = 4, fontface = 'bold',
 									data = butter_pot, nudge_x = -600, nudge_y = -1000) +
-		geom_sf(color = "red", data = old_poly) +
-		geom_sf(color = "red", data = new_poly) +
+		geom_sf(fill = 'red', data = old_grid) +
+		geom_sf(fill = 'red', data = new_grid) +
 		scale_color_manual(values = roadpal) +
 		coord_sf(xlim = c(bb['xmin'], bb['xmax']),
 						 ylim = c(bb['ymin'], bb['ymax'])) +
@@ -124,9 +116,8 @@ gnl <- ggplot() +
 annotateSf <- st_sfc(st_multipoint(matrix(c(-53.055, -53.01,
 																						47.319, 47.38),
 																					nrow = 2)))
-st_crs(annotateSf) <- 4326
-utm <- st_crs(32621)
-annotateBB <- st_bbox(st_transform(annotateSf, utm))
+st_crs(annotateSf) <- crs_latlon
+annotateBB <- st_bbox(st_transform(annotateSf, crs_proj))
 
 (g <- gbp +
 		annotation_custom(
