@@ -9,6 +9,9 @@ lapply(libs, require, character.only = TRUE)
 
 
 # Data --------------------------------------------------------------------
+crs_latlon <- st_crs(4326)
+crs_proj <- st_crs(32621)
+
 butter_pot <- st_read(file.path('output', 'butter-pot-protected-areas.gpkg'))
 roads <- st_read(file.path('output', 'butter-pot-roads.gpkg'))
 water <- st_read(file.path('output', 'butter-pot-water.gpkg'))
