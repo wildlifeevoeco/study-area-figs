@@ -21,12 +21,11 @@ nl <- st_read(file.path('output', 'newfoundland-polygons.gpkg'))
 
 
 # Select road types to display
-#service roads include campground roads and fire road in butterpot
-#motorway includes TCH
-#primary provides context of other major roads in area
+# - service: roads include campground roads and fire road in Butter Pot
+# - motorway: TCH
+# - primary: context of other major roads in area
 selroads <- c('primary',  'motorway', 'service')
 highway <- roads[roads$highway %in% selroads,]
-
 
 
 # Add trapping grids
@@ -58,7 +57,7 @@ roadpal <- roadcols[, setNames(cols, highway)]
 
 
 # Theme
-themeMap <- theme(panel.border = element_rect(size = 1, fill = NA),
+themeMap <- theme(panel.border = element_rect(linewidth = 1, fill = NA),
 									panel.background = element_rect(fill = watercol),
 									panel.grid = element_line(color = gridcol, size = 0.2),
 									axis.text = element_text(size = 11, color = 'black'),
@@ -81,8 +80,8 @@ nlcrop <- st_crop(nl, bb + rep(c(-5e4, 5e4), each = 2))
 		geom_sf(fill = streampolcol, color = NA, data = streams_pols) +
 		geom_sf(color = streamcol, size = 0.4, data = streams_lns) +
 		geom_sf(aes(color = highway), data = highway) +
-		geom_sf_label(aes(label = 'Butter Pot Provincial Park'), size = 4, fontface = 'bold',
-									data = butter_pot, nudge_x = -600, nudge_y = -1000) +
+		# geom_sf_label(aes(label = 'Butter Pot Provincial Park'), size = 4, fontface = 'bold',
+		# 							data = butter_pot, nudge_x = -600, nudge_y = -1000) +
 		geom_sf(fill = 'red', data = old_grid) +
 		geom_sf(fill = 'red', data = new_grid) +
 		scale_color_manual(values = roadpal) +
@@ -109,13 +108,14 @@ gnl <- ggplot() +
 		themeMap +
 		theme(axis.text = element_blank(),
 					axis.ticks = element_blank(),
-					plot.margin = grid::unit(c(-1,-1,-1,-1), "mm"))
+					plot.margin = grid::unit(c(-1,-1,-1,-1), 'mm'))
 
 
 # Overlay NL map onto butterpot map
-annotateSf <- st_sfc(st_multipoint(matrix(c(-53.055, -53.01,
-																						47.319, 47.38),
-																					nrow = 2)))
+annotateSf <- st_sfc(st_multipoint(matrix(
+	c(-53.055,-53.01, 47.319, 47.38),
+	nrow = 2))
+)
 st_crs(annotateSf) <- crs_latlon
 annotateBB <- st_bbox(st_transform(annotateSf, crs_proj))
 
@@ -135,6 +135,6 @@ ggsave(
 	'graphics/23-butter-pot.png',
 	gbp,
 	width = 10,
-	height = 10,
+	height = 8,
 	dpi = 320
 )
