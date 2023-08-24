@@ -1,8 +1,5 @@
-
-
-
 # === Caribou diet - Figure ------------------------------
-# Alec L. Robitaille and Quinn M.R. webber
+# Alec L. Robitaille and Quinn M.R. Webber
 
 
 # Packages ----------------------------------------------------------------
