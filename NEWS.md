@@ -1,3 +1,7 @@
+# v 0.1.11
+
+* added Butter Pot and Butter Pot with inset Newfoundland
+
 # v 0.1.9
 
 * added Middle Ridge and Middle Ridge with inset North America
