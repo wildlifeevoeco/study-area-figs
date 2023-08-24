@@ -138,3 +138,11 @@ ggsave(
 	height = 8,
 	dpi = 320
 )
+
+ggsave(
+	'graphics/23-butter-pot-inset-nl.png',
+	g,
+	width = 10,
+	height = 8,
+	dpi = 320
+)
