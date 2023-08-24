@@ -173,10 +173,10 @@ knitr::include_graphics('graphics/14-riding-mountain-inset.png')
 ```
 
 
-### Circumpolar
+## Circumpolar
 
 
-#### Caribou diet
+### Caribou diet
 
 
 This uses data from Open Street Map and Natural Earth and packages: `osmdata`, `rnaturalearth`, `sf`, `data.table` and `ggplot`. 

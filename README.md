@@ -16,7 +16,8 @@ study-area-figures
   - [Manitoba](#manitoba)
     - [Riding Mountain National Park](#riding-mountain-national-park)
     - [RMNP with Manitoba Inset](#rmnp-with-manitoba-inset)
-    - [Circumpolar](#circumpolar)
+  - [Circumpolar](#circumpolar)
+    - [Caribou diet](#caribou-diet)
 
 Collecting WEEL study area figures in one place, for sharing! These
 should be a good foundation for more specific figures. And a useful
@@ -234,9 +235,9 @@ knitr::include_graphics('graphics/14-riding-mountain-inset.png')
 
 <img src="graphics/14-riding-mountain-inset.png" width="3200" />
 
-### Circumpolar
+## Circumpolar
 
-#### Caribou diet
+### Caribou diet
 
 This uses data from Open Street Map and Natural Earth and packages:
 `osmdata`, `rnaturalearth`, `sf`, `data.table` and `ggplot`.
