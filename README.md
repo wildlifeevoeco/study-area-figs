@@ -1,6 +1,5 @@
 study-area-figures
 ================
-<img src="https://zenodo.org/badge/266179303.svg" alt="https://doi.org/10.5281/zenodo.3979666" />
 
 - [Contributing](#contributing)
 - [Citing](#citing)
@@ -23,6 +22,8 @@ Collecting WEEL study area figures in one place, for sharing! These
 should be a good foundation for more specific figures. And a useful
 resource for spatial plotting, and downloading open spatial data from
 OSM, Natural Earth and government sources.
+
+[![DOI](https://zenodo.org/badge/266179303.svg)](https://doi.org/10.5281/zenodo.3979666)
 
 # Contributing
 
