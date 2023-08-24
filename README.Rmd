@@ -1,6 +1,10 @@
 ---
 title: study-area-figures
 author: '<img src="https://zenodo.org/badge/266179303.svg" alt="https://doi.org/10.5281/zenodo.3979666" />'
+output: 
+  github_document:
+    toc: true
+toc-depth: 4
 ---
 
 # study-area-figures
