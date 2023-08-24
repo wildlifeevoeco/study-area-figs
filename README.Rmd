@@ -126,6 +126,17 @@ Reproducing: run  `03-newfoundland-prep.R`, `12-manitoba-prep.R` and `15-middle-
 knitr::include_graphics('graphics/17-middle-ridge-inset.png')
 ```
 
+### Butter Pot
+
+This uses data from Open Street Map, Natural Earth and Newfoundland Government
+and packages: `osmdata`, `sf`, `data.table`, `sfheaders` and `ggplot`.
+
+Reproducing: run  `03-newfoundland-prep.R`, and `22-butter-pot-prep.R` to
+generate the MR and NL data and `23-butter-pot-figure.R` to generate the figure.
+
+```{r}
+knitr::include_graphics('graphics/23-butter-pot-inset-nl.png')
+```
 
 ## Manitoba
 This uses data from Natural Earth and packages: `rnaturalearth`, `sf`, `data.table` and `ggplot`. 
