@@ -1,6 +1,3 @@
-
-
-
 # === North America - Prep -----------------------------------------------------
 # Alec Robitaille and Quinn M.R. Webber
 
