@@ -1,4 +1,4 @@
-# === Middle Ridge - Inset Figure ------------------------------
+# === Newfoundland Caribou Herds - Inset Figure ---------------------------
 # Alec L. Robitaille
 
 
@@ -56,7 +56,6 @@ bb <- st_bbox(st_buffer(mb, adjust))
 gnl <- ggplot() +
 	geom_sf(fill = islandcol, color = 'grey20', linewidth = 0.1, data = bounds) +
 	geom_sf(fill = watercol, color = streamcol, linewidth = 0.1, data = lakes) +
-	# geom_sf(fill = '#', color = NA, data = nl) +
 	guides(color = FALSE, fill = FALSE) +
 	labs(x = NULL, y = NULL) +
 	coord_sf(xlim = c(bb['xmin'] - adjust, bb['xmax'] + adjust),
