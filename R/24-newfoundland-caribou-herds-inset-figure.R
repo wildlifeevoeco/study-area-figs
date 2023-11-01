@@ -89,13 +89,11 @@ g_herds <- ggplot() +
 
 # Combine -----------------------------------------------------------------
 # used the ggannotate package to make finding these numbers easier
-g <- gmr +
+g <- g_herds +
 	annotation_custom(
 		ggplotGrob(gnl),
-		xmin = 741737,
-		ymin = 5248241,
-		xmax = 686528,
-		ymax = 5293369)
+		xmin = 660957.51487944, xmax = 828089.05257478,
+		ymin = 5547949.0686487, ymax = 5715080.6063441)
 
 
 # Output ------------------------------------------------------------------
