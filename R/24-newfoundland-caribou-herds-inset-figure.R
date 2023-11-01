@@ -98,9 +98,10 @@ g <- g_herds +
 
 # Output ------------------------------------------------------------------
 ggsave(
-	'graphics/17-middle-ridge-inset.png',
+	'graphics/24-newfoundland-caribou-herds-inset.png',
 	g,
 	width = 10,
 	height = 10,
 	dpi = 320
 )
+
