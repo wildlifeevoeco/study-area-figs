@@ -56,12 +56,12 @@ bb <- st_bbox(st_buffer(mb, adjust))
 gnl <- ggplot() +
 	geom_sf(fill = islandcol, color = 'grey20', linewidth = 0.1, data = bounds) +
 	geom_sf(fill = watercol, color = streamcol, linewidth = 0.1, data = lakes) +
-	geom_sf(fill = '#cd0001', color = NA, data = nl) +
-	guides(color = '#cd0001', fill = FALSE) +
+	# geom_sf(fill = '#', color = NA, data = nl) +
+	guides(color = FALSE, fill = FALSE) +
 	labs(x = NULL, y = NULL) +
 	coord_sf(xlim = c(bb['xmin'] - adjust, bb['xmax'] + adjust),
 					 ylim = c(bb['ymin'] + adjust, bb['ymax'] + adjust)) +
-	geom_point(aes(x, y), size = 5, shape = 18,
+	geom_point(aes(x, y), size = 8, shape = 1, stroke = 1.5,
 						 data = data.table(x = 2856789, y = 1795543)) +
 	themeMap +
 	theme(axis.text = element_blank(),
@@ -86,6 +86,10 @@ g_herds <- ggplot() +
 	guides(color = FALSE) +
 	scale_fill_scico_d(palette = 'tokyo') +
 	labs(x = NULL, y = NULL, fill = 'Herd') +
+	coord_sf(xlim = c(bb['xmin'], bb['xmax']),
+					 ylim = c(bb['ymin'], bb['ymax'])) +
+	themeMap
+
 
 # Combine -----------------------------------------------------------------
 # used the ggannotate package to make finding these numbers easier
