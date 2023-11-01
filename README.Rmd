@@ -21,7 +21,7 @@ Collecting WEEL study area figures in one place, for sharing! These should be a 
 1. Add the output figure to `graphics/`, with a name and number matching the script it originates from
 1. Add the figure to the `README.Rmd` so we can preview them all together in one spot
 
-**Note: currently the input folder is ignored, if you have small data you'd like to share, carefully remove it from the `.gitignore`**
+Note: currently the input folder is ignored, if you have small data you'd like to share, carefully remove it from the `.gitignore`
 
 Also, we output the features to `.gpkg` (GeoPackage) because... [shapefiles are hell](http://switchfromshapefile.org).
 
@@ -188,4 +188,16 @@ Reproducing: run `19-Caribou-diet-North-America-prep.R` and
 
 ```{r}
 knitr::include_graphics('graphics/21-caribou-diet.png')
+```
+
+
+### Newfoundland Caribou Herds Inset
+
+This uses data from Open Street Map, Natural Earth and Newfoundland Government and packages: `osmdata`, `rnaturalearth`, `rnaturalearthhires`, `sf`, `data.table`, `ggrepel` and `ggplot`. 
+
+
+Reproducing: run  `03-newfoundland-prep.R`, `15-manitoba-prep.R` and `15-middle-ridge-prep.R` to generate the MR and NL data and `24-newfoundland-caribou-herds-inset-figure.R` to generate the figure. 
+
+```{r}
+knitr::include_graphics('graphics/24-newfoundland-caribou-herds-inset.png')
 ```

@@ -17,9 +17,6 @@ roads <- st_read('output/mr-roads.gpkg')
 areas <- st_read('output/mr-protected-areas.gpkg')
 nl <- st_read('output/newfoundland-polygons.gpkg')
 
-# CRS
-utm <- st_crs(32614)
-
 
 # Theme -------------------------------------------------------------------
 ## Colors
