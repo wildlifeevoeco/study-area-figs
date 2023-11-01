@@ -68,8 +68,12 @@ gnl <- ggplot() +
 
 
 
-# Source MR figure ----------------------------------------------
-source('R/16-middle-ridge-figure.R')
+# NL herds ----------------------------------------------------------------
+bounds <- st_transform(bounds, crs_herds)
+ca_bounds <- st_transform(bounds, crs_herds)
+nl <- st_transform(nl, crs_herds)
+lakes <- st_transform(lakes, crs_herds)
+areas <- st_transform(areas, crs_herds)
 
 
 
