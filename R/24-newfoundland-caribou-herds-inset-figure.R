@@ -20,10 +20,12 @@ lakes <- st_read('output/manitoba-lakes.gpkg')
 areas <- st_read('output/mr-protected-areas.gpkg')
 
 nl <- bounds[bounds$name_en == 'Newfoundland and Labrador',]
+herds <- st_read('input/NL-caribou-calving-mcps-50p.gpkg')
 ca_bounds <- ne_states('Canada', returnclass = 'sf')
 
 # CRS
 crs <- st_crs('ESRI:102001')
+crs_herds <- st_crs(herds)
 
 
 # Theme -------------------------------------------------------------------
