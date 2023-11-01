@@ -6,7 +6,9 @@
 libs <- c(
 	'data.table',
 	'ggplot2',
-	'sf'
+	'sf',
+	'rnaturalearth',
+	'rnaturalearthhires'
 )
 lapply(libs, require, character.only = TRUE)
 
@@ -18,6 +20,7 @@ lakes <- st_read('output/manitoba-lakes.gpkg')
 areas <- st_read('output/mr-protected-areas.gpkg')
 
 nl <- bounds[bounds$name_en == 'Newfoundland and Labrador',]
+ca_bounds <- ne_states('Canada', returnclass = 'sf')
 
 # CRS
 crs <- st_crs('ESRI:102001')
