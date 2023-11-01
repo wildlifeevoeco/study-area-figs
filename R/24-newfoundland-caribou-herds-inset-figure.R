@@ -8,7 +8,9 @@ libs <- c(
 	'ggplot2',
 	'sf',
 	'rnaturalearth',
-	'rnaturalearthhires'
+	'rnaturalearthhires',
+	'scico',
+	'stringr'
 )
 lapply(libs, require, character.only = TRUE)
 
@@ -75,7 +77,15 @@ nl <- st_transform(nl, crs_herds)
 lakes <- st_transform(lakes, crs_herds)
 areas <- st_transform(areas, crs_herds)
 
+bb <- st_bbox(nl)
 
+g_herds <- ggplot() +
+	geom_sf(fill = islandcol, color = 'black', linewidth = 0.3, data = ca_bounds) +
+	geom_sf(fill = watercol, color = streamcol, linewidth = 0.1, data = lakes) +
+	geom_sf(aes(fill = str_to_sentence(herd)), alpha = 0.8, data = herds) +
+	guides(color = FALSE) +
+	scale_fill_scico_d(palette = 'tokyo') +
+	labs(x = NULL, y = NULL, fill = 'Herd') +
 
 # Combine -----------------------------------------------------------------
 # used the ggannotate package to make finding these numbers easier
